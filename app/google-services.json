@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "830930926309",
+    "project_id": "cleandrinksapplication"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830930926309:android:530b0574e890cf5a",
+        "android_client_info": {
+          "package_name": "coffee.prototype.android.cleandrinksapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830930926309-gt57bpp86nj2d27nflufd8mofrvqsj5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaBjgHqMOGbya7EXnYT9WJfE6mmx6igX8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
