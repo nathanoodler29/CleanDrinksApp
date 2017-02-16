@@ -93,6 +93,14 @@
     <string name="accessibility_label_for_french_press_image">Image of a french press</string>
     <string name="accessibility_label_for_moka_pot_image">Image of a Moka pot</string>
 
+    <string name="receipt_heading_title">TODAY</string>
+    <string name="place_holder_caffine_entry_text">Time: 15:30pm  Espresso</string>
+            <string name="place_holder_alcohol_entry_text">Time: 11:40pm  Beer</string>
+
+    <string name="receipt_heading_title_yesterday">YESTERDAY</string>
+
+    <string name="place_holder_alcohol_entry_text_wine">Time: 12:40pm  Red wine</string>
+
 
 
 </resources>
