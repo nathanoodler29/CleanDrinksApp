@@ -81,5 +81,10 @@
     <string name="email_hint">Email address</string>
     <string name="password_hint">Password</string>
     <string name="login">Login</string>
+    <string name="alcohol_category_name">Alcohol</string>
+    <string name="caffeine_category_name">Caffeine</string>
+    <string name="accessibility_label_for_caffeine_image">Images of different machines for brewing coffee</string>
+    <string name="accessibility_label_for_alcohol_image">Images of different bottles of alcohol</string>
+
 
 </resources>
