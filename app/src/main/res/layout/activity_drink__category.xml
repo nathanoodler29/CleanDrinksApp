@@ -19,10 +19,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_gravity="center"
-
-
-        >
+        android:layout_gravity="center">
 
         <ImageView
             android:id="@+id/alcohol_background_category_card"

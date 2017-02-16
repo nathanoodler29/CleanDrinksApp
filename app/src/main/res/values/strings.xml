@@ -61,7 +61,6 @@
         <item>2</item>
         <item>3</item>
     </string-array>
-
     <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
@@ -81,6 +80,7 @@
     <string name="email_hint">Email address</string>
     <string name="password_hint">Password</string>
     <string name="login">Login</string>
+
     <string name="alcohol_category_name">Alcohol</string>
     <string name="caffeine_category_name">Caffeine</string>
     <string name="accessibility_label_for_caffeine_image">Images of different machines for brewing coffee</string>
