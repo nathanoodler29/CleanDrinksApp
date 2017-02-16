@@ -85,6 +85,14 @@
     <string name="caffeine_category_name">Caffeine</string>
     <string name="accessibility_label_for_caffeine_image">Images of different machines for brewing coffee</string>
     <string name="accessibility_label_for_alcohol_image">Images of different bottles of alcohol</string>
+    <string name="button_plus_symbol">+</string>
+    <string name="espresso_heading">Espresso</string>
+    <string name="moka_pot_heading">Moka Pot</string>
+    <string name="french_press_heading">French Press</string>
+    <string name="accessibility_label_for_espresso_cup_image">Image of an espresso cup</string>
+    <string name="accessibility_label_for_french_press_image">Image of a french press</string>
+    <string name="accessibility_label_for_moka_pot_image">Image of a Moka pot</string>
+
 
 
 </resources>

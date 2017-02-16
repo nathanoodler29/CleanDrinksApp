@@ -13,7 +13,7 @@
     tools:context="coffee.prototype.android.cleandrinksapplication.DrinkListingPage">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_coffee_container"
+        android:id="@+id/espresso_card"
         android:layout_width="140dp"
         android:layout_height="120dp"
         android:layout_alignParentLeft="true"
@@ -26,108 +26,79 @@
         >
 
         <TextView
-            android:id="@+id/espresso_card"
+            android:id="@+id/espresso_card_title"
             style="@style/Heading_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="2dp"
-            android:text="Espresso" />
+            android:text="@string/espresso_heading" />
 
         <ImageView
-            android:id="@+id/coffee_background"
+            android:id="@+id/espresso_card_drink_image"
             android:layout_width="40dp"
             android:layout_height="89dp"
 
             android:layout_below="@+id/espresso_card"
             android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/accessibility_label_for_espresso_cup_image"
             android:paddingTop="20dp"
             android:src="@drawable/espressocolor" />
 
-        <TextView
-            android:id="@+id/description"
-            style="@style/Heading_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/coffee_background"
-
-            />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="100dp"
-            android:backgroundTint="@color/cardview_light_background"
-            android:text="+"
-            android:textAlignment="center" />
+        <include
+            android:id="@+id/espresso_button_add"
+            layout="@layout/card_layout_drink_listing_page_plus_button" />
 
 
     </android.support.v7.widget.CardView>
 
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_coffee_container_two"
+        android:id="@+id/frenchpress_card"
         android:layout_width="140dp"
         android:layout_height="120dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/card_coffee_container"
+
         card_view:cardBackgroundColor="@color/cardview_shadow_start_color"
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="0dp">
 
         <TextView
-            android:id="@+id/frenchpress_card"
+            android:id="@+id/french_press_card_title"
             style="@style/Heading_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="2dp"
-            android:text="French Press" />
+            android:text="@string/french_press_heading" />
 
         <ImageView
-            android:id="@+id/frenchpress"
+            android:id="@+id/french_press_card_drink_image"
             android:layout_width="40dp"
             android:layout_height="89dp"
-
-            android:layout_below="@+id/frenchpress"
+            android:layout_below="@+id/french_press_card_title"
             android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/accessibility_label_for_french_press_image"
             android:paddingTop="20dp"
             android:src="@drawable/frenchpress" />
 
-        <TextView
-            android:id="@+id/description_two"
-            style="@style/Heading_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/coffee_background"
-
-            />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="100dp"
-            android:backgroundTint="@color/cardview_light_background"
-            android:text="+"
-            android:textAlignment="center" />
+        <include
+            android:id="@+id/long_drinks_add"
+            layout="@layout/card_layout_drink_listing_page_plus_button" />
 
 
     </android.support.v7.widget.CardView>
 
 
     <android.support.v7.widget.CardView
-        android:id="@+id/mokaPotCard"
+        android:id="@+id/moka_pot_card"
         android:layout_width="140dp"
         android:layout_height="120dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/card_coffee_container"
+        android:layout_below="@+id/espresso_card"
 
         android:layout_marginTop="42dp"
         card_view:cardBackgroundColor="@color/cardview_shadow_start_color"
@@ -135,115 +106,43 @@
         card_view:cardElevation="0dp">
 
         <TextView
-            android:id="@+id/mokaPot"
+            android:id="@+id/moka_pot_card_title"
             style="@style/Heading_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="2dp"
-            android:text="Moka Pot" />
+            android:text="@string/moka_pot_heading" />
 
         <ImageView
-            android:id="@+id/mokapot"
+            android:id="@+id/moka_pot_card_drink_image"
             android:layout_width="40dp"
             android:layout_height="89dp"
 
             android:layout_below="@+id/mokaPot"
             android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/accessibility_label_for_moka_pot_image"
             android:paddingTop="20dp"
             android:src="@drawable/mokapot" />
 
-        <TextView
-            android:id="@+id/description_three"
-            style="@style/Heading_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/moka_pot_card"
-
-            />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="100dp"
-            android:backgroundTint="@color/cardview_light_background"
-            android:text="+"
-            android:textAlignment="center" />
-        <!--Need to make colour compatible with older devices i.e background tint -->
-        <!-- Promote code re-use for this, so define one tile and then use this https://developer.android.com/training/improving-layouts/reusing-layouts.html-->
+        <include
+            android:id="@+id/moka_drinks_add"
+            layout="@layout/card_layout_drink_listing_page_plus_button" />
         <!-- Images found http://www.flaticon.com/search/2?word=coffee-->
 
     </android.support.v7.widget.CardView>
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/placeHolder"
-        android:layout_width="140dp"
-        android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/cardview_shadow_start_color"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="0dp"
-
-        android:layout_alignTop="@+id/mokaPotCard"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-
-        <TextView
-            android:id="@+id/placeHolder_text"
-            style="@style/Heading_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="2dp"
-            android:text="Espresso" />
-
-        <ImageView
-            android:id="@+id/placeHolderImage"
-            android:layout_width="40dp"
-            android:layout_height="89dp"
-
-            android:layout_below="@+id/espresso_card"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="20dp"
-            android:src="@drawable/espressocolor" />
-
-        <TextView
-            android:id="@+id/placeHolderDescrption"
-            style="@style/Heading_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/placeHolder"
-
-            />
-
-        <Button
-            android:id="@+id/buttonPlaceHolder"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="100dp"
-            android:backgroundTint="@color/cardview_light_background"
-            android:text="+"
-            android:textAlignment="center" />
-
-
-    </android.support.v7.widget.CardView>
-
-
-
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_drink_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-
+        android:layout_alignParentRight="true"
         android:src="@drawable/plussymbol"
 
         >
-
 
     </android.support.design.widget.FloatingActionButton>
 
