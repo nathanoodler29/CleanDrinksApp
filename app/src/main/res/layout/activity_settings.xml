@@ -1,82 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/card_default_background"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="coffee.prototype.android.cleandrinksapplication.SettingsActivity"
-    >
+    tools:context="coffee.prototype.android.cleandrinksapplication.SettingsActivity">
 
 
     <android.support.v7.widget.CardView
-        android:layout_gravity="center"
-        android:layout_width="900dp"
-        android:layout_height="200dp"
+        android:id="@+id/profile_card"
+        android:layout_width="400dp"
+        android:layout_height="160dp"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/white">
 
-        android:id="@+id/cardView"
-        card_view:cardBackgroundColor="@android:color/background_light"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="395dp">
-        <RelativeLayout
+        <TextView
+            android:id="@+id/profile_text"
+            style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="@string/settings_profile_title"
+            android:textSize="25sp" />
+
+        <!-- http://stackoverflow.com/questions/4146221/how-to-put-a-horizontal-divisor-line-between-edit-texts-in-a-activity-->
+        <View
+            android:id="@+id/divider_profile_heading_text"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/black">
+
+        </View>
+
+        <TextView
+            android:id="@+id/weight_child_text"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="60dp"
+            android:text="@string/settings_profile_weight"
+            android:textSize="20sp"
+
+            />
+
+        <!-- Need to populate the list full of different metrics-->
+        <Spinner
+            android:id="@+id/weight_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingStart="10dp"
+            android:layout_marginTop="60dp" />
 
 
-            <TextView
-                android:layout_marginLeft="40dp"
+        <ImageView
+            android:id="@+id/weight_scales_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="1dp"
+            android:contentDescription="Image of a set of bathroom scales"
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/scale" />
 
-                android:id="@+id/profileText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Profile"
-                />
+        <View
+            android:id="@+id/child_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/light_grey">
 
+        </View>
 
-
-
-            <TextView
-                android:layout_marginLeft="40dp"
-
-                android:layout_marginTop="10dp"
-                android:id="@+id/weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weight"
-                android:layout_below="@id/profileText"
-
-
-                />
-
-            <TextView
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="height"
-                android:layout_below="@id/weight"
-
-                />
-
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/height_text"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45dp"
+            android:paddingTop="75dp"
+            android:text="@string/settings_profile_height"
+            android:textSize="20sp"
 
 
+            />
 
 
+        <!-- got image from https://icons8.com/web-app/for/androidL/tape%20measure-->
 
+        <ImageView
+            android:id="@+id/height_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="110dp"
+            android:contentDescription=""
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/height_tape_measure" />
 
-
+        <Spinner
+            android:id="@+id/height_dropdown"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="120dp" />
 
 
     </android.support.v7.widget.CardView>
 
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/notifications_card"
+        android:layout_width="400dp"
+        android:layout_height="160dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/profile_card"
+        android:layout_marginTop="31dp"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/white">
+
+        <TextView
+            android:id="@+id/notifications_card_title"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="@string/settings_notification_title"
+            android:textSize="25sp" />
+
+
+        <View
+            android:id="@+id/divider_heading_notifications_text"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/black">
+
+        </View>
+
+        <TextView
+            android:id="@+id/smart_phone_text"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="60dp"
+            android:text="@string/settings_notification_smartphone"
+            android:textSize="20sp"
+
+            />
+
+
+        <ImageView
+            android:id="@+id/smart_phone_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="50dp"
+            android:contentDescription=""
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/smartphone" />
+
+
+        <ToggleButton
+            android:id="@+id/smart_phone_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="45dp" />
+
+        <TextView
+            android:id="@+id/smart_watch_text"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:paddingTop="70dp"
+            android:text="@string/settings_notification_smartwatch"
+            android:textSize="20sp"
+
+
+            />
+
+
+        <ImageView
+            android:id="@+id/smart_watch_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="110dp"
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/smart_watch" />
+
+        <ToggleButton
+            android:id="@+id/smart_watch_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="105dp"
+            android:checked="true"
+            android:textOn="On" />
+
+        <View
+            android:id="@+id/divider_smart_devices_text"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/light_grey">
+
+        </View>
+
+    </android.support.v7.widget.CardView>
+
+
 </RelativeLayout>
+
+

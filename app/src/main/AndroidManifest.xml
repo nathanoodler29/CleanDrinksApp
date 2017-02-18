@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="coffee.prototype.android.cleandrinksapplication">
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +9,6 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".SplashActivitiy"
             android:theme="@style/splash_screen">
@@ -18,18 +16,20 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
-            <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".DrinkCategory" />
         <activity android:name=".DrinkListingPage" />
-        <activity android:name=".DrinkRecipt" />
-        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".DrinkRecipt">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".DrinksCategoryTypes"></activity>
     </application>
 
 </manifest>
