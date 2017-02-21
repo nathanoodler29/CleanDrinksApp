@@ -29,7 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".DrinksCategoryTypes"></activity>
+        <activity android:name=".DrinksCategoryTypes" />
+        <activity android:name=".GoalActivity"></activity>
     </application>
 
 </manifest>

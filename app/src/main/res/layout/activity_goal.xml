@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_goal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="coffee.prototype.android.cleandrinksapplication.GoalActivity">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/notifications_card"
+        android:layout_width="400dp"
+        android:layout_height="160dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/profile_card"
+        android:layout_marginTop="10dp"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/splash_background">
+
+
+        <ImageView
+            android:id="@+id/smart_phone_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:contentDescription=""
+
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/goal_medal_new" />
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/create_a_goal"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/notifications_card"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/white">
+
+
+        <TextView
+            android:id="@+id/smart_phone_text"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="60dp"
+            android:text="Create a goal"
+            android:textSize="25sp"
+
+            />
+
+        <TextView
+            android:id="@+id/paragraph_text"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="110dp"
+            android:text="This will allow you to set water targets. "
+            android:textSize="20sp"
+
+            />
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_drink_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/plussymbol"
+
+        >
+
+    </android.support.design.widget.FloatingActionButton>
+
+
+</RelativeLayout>
+
+
