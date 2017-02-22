@@ -13,25 +13,23 @@
 
 
     <android.support.v7.widget.CardView
-        android:id="@+id/notifications_card"
+        android:id="@+id/goal_heading_card"
         android:layout_width="400dp"
-        android:layout_height="160dp"
+        android:layout_height="120dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/profile_card"
         android:layout_marginTop="10dp"
         android:foregroundGravity="center_horizontal"
         card_view:cardBackgroundColor="@color/splash_background">
 
 
         <ImageView
-            android:id="@+id/smart_phone_image"
+            android:id="@+id/goal_image_heading"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
-            android:contentDescription=""
-
+            android:layout_marginTop="15dp"
+            android:contentDescription="@string/goal_gold_medal_image_content_description"
             android:foregroundGravity="center_horizontal"
             android:src="@drawable/goal_medal_new" />
 
@@ -42,56 +40,120 @@
     <android.support.v7.widget.CardView
         android:id="@+id/create_a_goal"
         android:layout_width="400dp"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/notifications_card"
+        android:layout_below="@+id/goal_heading_card"
         android:foregroundGravity="center_horizontal"
         card_view:cardBackgroundColor="@color/white">
 
 
         <TextView
-            android:id="@+id/smart_phone_text"
+            android:id="@+id/goal_parent_heading"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="60dp"
-            android:text="Create a goal"
+            android:paddingTop="40dp"
+            android:text="@string/goal_parent_heading"
             android:textSize="25sp"
 
             />
 
         <TextView
-            android:id="@+id/paragraph_text"
+            android:id="@+id/goal_paragraph_text"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="110dp"
-            android:text="This will allow you to set water targets. "
+            android:paddingTop="90dp"
+            android:text="@string/goal_child_paragraph"
             android:textSize="20sp"
 
             />
 
+
     </android.support.v7.widget.CardView>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_drink_button"
+    <android.support.v7.widget.CardView
+        android:id="@+id/goals"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/create_a_goal"
+        android:layout_marginTop="10dp"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/white">
+
+
+        <TextView
+            android:id="@+id/goal_heading_value"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:text="@string/goal_placeholder_text"
+            android:textSize="22sp"
+
+            />
+
+        <ImageView
+            android:id="@+id/goal_icon"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="6dp"
+            android:contentDescription="@string/goal_target_image_content_description"
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/goal_icon" />
+
+        <CheckBox
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp" />
+
+    </android.support.v7.widget.CardView>
+
+
+    <Button
+        android:id="@+id/add_drink_goal"
+        style="@style/receipt_child_values"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/plussymbol"
+        android:layout_marginLeft="200dp"
+        android:layout_marginStart="200dp"
+        android:layout_toEndOf="@+id/remove_drink_goal"
+        android:layout_toRightOf="@+id/remove_drink_goal"
+        android:background="@drawable/circle_green_button"
+        android:contentDescription="@string/goal_add_button_content_description"
+        android:text="@string/goal_add_button_icon_text"
+        android:textSize="28sp"
 
-        >
+        />
 
-    </android.support.design.widget.FloatingActionButton>
+    <Button
+        android:id="@+id/remove_drink_goal"
+        style="@style/receipt_child_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/circle_red_button"
+        android:contentDescription="@string/goal_remove_button_content_description"
+        android:text="@string/goal_remove_button_icon_text"
+        android:textSize="28sp"
 
+        />
 
 </RelativeLayout>
 

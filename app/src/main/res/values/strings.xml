@@ -120,6 +120,23 @@
 
     <string name="settings_notification_smartwatch">Smartwatch</string>
 
+    <string name="goal_gold_medal_image_content_description">Gold medal image</string>
+
+    <string name="goal_parent_heading">Create a goal</string>
+
+    <string name="goal_child_paragraph">This will allow you to set  targets.</string>
+
+    <string name="goal_placeholder_text">5 glasses</string>
+
+    <string name="goal_target_image_content_description">Image of a target with an arrow inside, to represent a target goal.</string>
+
+    <string name="goal_add_button_content_description">Add goal button</string>
+
+    <string name="goal_remove_button_content_description">Remove goal button</string>
+
+    <string name="goal_add_button_icon_text">+</string>
+
+    <string name="goal_remove_button_icon_text">-</string>
 
 
 </resources>

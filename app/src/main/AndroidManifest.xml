@@ -30,7 +30,15 @@
         </activity>
         <activity android:name=".SettingsActivity" />
         <activity android:name=".DrinksCategoryTypes" />
-        <activity android:name=".GoalActivity"></activity>
+        <activity android:name=".GoalActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
