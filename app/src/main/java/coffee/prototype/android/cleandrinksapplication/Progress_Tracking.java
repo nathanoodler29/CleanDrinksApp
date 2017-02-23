@@ -8,6 +8,8 @@ public class Progress_Tracking extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //uses progress tracking layout file
         setContentView(R.layout.activity_progress__tracking);
+
     }
 }
