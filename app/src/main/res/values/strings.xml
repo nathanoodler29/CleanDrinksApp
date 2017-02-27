@@ -138,5 +138,17 @@
 
     <string name="goal_remove_button_icon_text">-</string>
 
+    <string name="settings_bathroom_scales_weight_icon">Image of bathroom scales to represent weight</string>
+
+    <string name="settings_bathroom_tape_height_icon">Image of a tape measure to represent height</string>
+
+    <string name="settings_smartphone_preference_icon">Image of a  to represent a smartphone device</string>
+
+    <string name="settings_smartwatch_preference_icon">Image of a  to represent a smartwatch device</string>
+
+    <string name="settings_preferences_toggle_on_text">on</string>
+
+
+
 
 </resources>

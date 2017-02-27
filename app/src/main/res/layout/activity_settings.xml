@@ -58,25 +58,24 @@
             android:id="@+id/weight_spinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:paddingEnd="10dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingStart="10dp"
-            android:layout_marginTop="60dp" />
+            android:paddingRight="10dp" />
 
 
         <ImageView
             android:id="@+id/weight_scales_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:layout_marginTop="50dp"
             android:layout_marginStart="1dp"
-            android:contentDescription="Image of a set of bathroom scales"
-            android:foregroundGravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/settings_bathroom_scales_weight_icon"
             android:src="@drawable/scale" />
 
         <View
@@ -104,17 +103,16 @@
             />
 
 
-        <!-- got image from https://icons8.com/web-app/for/androidL/tape%20measure-->
-
+        <!-- images from https://icons8.com/web-app/for/androidL/tape%20measure-->
         <ImageView
             android:id="@+id/height_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
             android:layout_marginTop="110dp"
-            android:contentDescription=""
+            android:contentDescription="@string/settings_bathroom_tape_height_icon"
             android:foregroundGravity="center_horizontal"
             android:src="@drawable/height_tape_measure" />
 
@@ -122,6 +120,7 @@
             android:id="@+id/height_dropdown"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="120dp" />
 
@@ -178,21 +177,24 @@
             android:id="@+id/smart_phone_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_marginLeft="1dp"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="50dp"
-            android:contentDescription=""
+            android:contentDescription="@string/settings_smartphone_preference_icon"
             android:foregroundGravity="center_horizontal"
             android:src="@drawable/smartphone" />
 
 
         <ToggleButton
             android:id="@+id/smart_phone_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="45dp" />
+            android:layout_marginTop="50dp"
+            android:background="@drawable/toggle_button_style" />
 
         <TextView
             android:id="@+id/smart_watch_text"
@@ -214,21 +216,26 @@
             android:id="@+id/smart_watch_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_marginLeft="1dp"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="110dp"
+            android:contentDescription="@string/settings_smartwatch_preference_icon"
             android:foregroundGravity="center_horizontal"
             android:src="@drawable/smart_watch" />
 
+        <!--/http://stackoverflow.com/questions/6054562/how-to-make-the-corners-of-a-button-round-->
         <ToggleButton
             android:id="@+id/smart_watch_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="110dp"
+            android:background="@drawable/toggle_button_style"
             android:checked="true"
-            android:textOn="On" />
+            android:textOn="@string/settings_preferences_toggle_on_text" />
 
         <View
             android:id="@+id/divider_smart_devices_text"
@@ -240,7 +247,6 @@
         </View>
 
     </android.support.v7.widget.CardView>
-
 
 </RelativeLayout>
 
