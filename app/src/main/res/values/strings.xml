@@ -17,6 +17,7 @@
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
 
+
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
         <item>Always</item>
@@ -77,6 +78,10 @@
 
 
     <string name="google_plus_sign_in">Sign up using Google+</string>
+
+    <string name="facebook_sign_in">Sign up using Facebook</string>
+
+    <string name="application_name">Water Monitor</string>
     <string name="email_hint">Email address</string>
     <string name="password_hint">Password</string>
     <string name="login">Login</string>
