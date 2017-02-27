@@ -38,7 +38,7 @@
 
 
     <android.support.v7.widget.CardView
-        android:id="@+id/achievement_banner"
+        android:id="@+id/water_monitor_logo_banner"
         android:layout_width="400dp"
         android:layout_height="375dp"
         android:layout_alignParentLeft="true"
@@ -49,7 +49,7 @@
 
 
         <TextView
-            android:id="@+id/goal_parent_heading"
+            android:id="@+id/water_monitor_heading"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
