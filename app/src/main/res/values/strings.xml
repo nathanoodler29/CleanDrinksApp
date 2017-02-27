@@ -148,7 +148,33 @@
 
     <string name="settings_preferences_toggle_on_text">on</string>
 
+    <string name="achivement_card_heading_text">Achievements</string>
+
+    <string name='achivement_card_sub_heading_text'>view your accomplishments!</string>
+
+    <string name='achivement_card_name_water_god'>Water God</string>
+
+    <string name='achivement_card_name_water_god_description'> Matched every goal set in a week!</string>
+
+    <string name='achivement_card_name_fantastic_four_title'>Fantastic four streak </string>
+
+    <string name='achivement_card_name_fantastic_four_description'>Matched a goal four weeks in a row! </string>
+
+    <string name='achivement_card_name_fantastic_four_avater'>Image of the human torch fantastic four character </string>
+
+    <string name='activity_progress_heading'>Track progress</string>
 
 
+    <string name='activity_progress_progress_value_placeholder'>50%</string>
+
+    <string name='activity_progress_progress_completed_goals_placeholder'>Completed five goals</string>
+
+    <string name='activity_progress_outstanding_goals_placeholder'>One outstanding goal</string>
+
+
+    <string name='activity_progress_progress_completed_goals_image_description'>Green tick to indicate completed goal</string>
+
+
+    <string name='activity_progress_progress_outstanding_goals_image_description'>An arrow target board is present to indicate an goals </string>
 
 </resources>
