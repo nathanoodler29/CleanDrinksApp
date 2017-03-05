@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">CleanDrinksApplication</string>
-    <string name="facebook_app_id">insert hash here</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -181,5 +180,23 @@
 
 
     <string name='activity_progress_progress_outstanding_goals_image_description'>An arrow target board is present to indicate an goals </string>
+
+    <string name="facebook_app_id">222172451584698</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="weight_units">
+        <item>Kg</item>
+        <item>Stone</item>
+        <item>lbs</item>
+    </string-array>
+
+    <string-array name="height_units">
+        <item>foot</item>
+        <item>metres</item>
+    </string-array>
+
+
 
 </resources>

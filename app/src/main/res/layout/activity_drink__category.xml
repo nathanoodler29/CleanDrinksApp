@@ -20,7 +20,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/dark_blue">
+        card_view:cardBackgroundColor="@color/darkBlue">
 
         <ImageView
             android:id="@+id/alcohol_background_category_card"
@@ -42,7 +42,7 @@
 
         android:layout_below="@+id/alcohol_category_card"
         android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/splash_background">
+        card_view:cardBackgroundColor="@color/lightGrey">
 
         <TextView
             android:id="@+id/alcohol_heading"

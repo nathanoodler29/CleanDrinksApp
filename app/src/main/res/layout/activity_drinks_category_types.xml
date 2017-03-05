@@ -42,7 +42,7 @@
         android:id="@+id/alcohol_sub_cat_beer"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/light_grey"
+        card_view:cardBackgroundColor="@color/lightGrey"
         android:layout_below="@+id/alcohol_sub_cat_wine"
 
 
@@ -71,7 +71,7 @@
         android:id="@+id/alcohol_sub_cat_spirits"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/dark_blue"
+        card_view:cardBackgroundColor="@color/darkBlue"
         android:layout_below="@+id/alcohol_sub_cat_beer"
 
         >

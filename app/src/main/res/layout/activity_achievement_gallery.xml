@@ -22,7 +22,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
         android:foregroundGravity="center_horizontal"
-        card_view:cardBackgroundColor="@color/green">
+        card_view:cardBackgroundColor="@color/forestGreen">
 
 
         <ImageView
@@ -47,7 +47,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/goal_heading_card"
         android:foregroundGravity="center_horizontal"
-        card_view:cardBackgroundColor="@color/white">
+       >
 
 
         <TextView
@@ -84,7 +84,7 @@
         android:layout_width="400dp"
         android:layout_height="85dp"
         android:foregroundGravity="center_horizontal"
-        card_view:cardBackgroundColor="@color/light_grey"
+        card_view:cardBackgroundColor="@color/lightGrey"
 
         android:layout_marginTop="11dp"
         android:layout_below="@+id/achievement_banner"
@@ -147,7 +147,7 @@
         android:layout_width="400dp"
         android:layout_height="85dp"
         android:foregroundGravity="center_horizontal"
-        card_view:cardBackgroundColor="@color/dark_blue"
+        card_view:cardBackgroundColor="@color/darkBlue"
 
         android:layout_marginTop="18dp"
         android:layout_below="@+id/achievement"
