@@ -119,7 +119,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="325dp"
 
-            android:text="Create account"
+            android:text="@string/login_create_an_account"
             android:textSize="20sp" />
 
 
@@ -131,7 +131,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="355dp"
-            android:text="Sign up"
+            android:text="@string/login_sign_up_button_text"
             android:onClick="openSignUpActivity"
            />
 
