@@ -24,12 +24,12 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
 
 
         <ImageView
-            android:id="@+id/goal_image_heading"
+            android:id="@+id/weight_height_image_banner"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:contentDescription="@string/goal_gold_medal_image_content_description"
+            android:contentDescription="@string/weight_height_activity_height_image_content_description"
             android:foregroundGravity="center_horizontal"
             android:src="@drawable/weight_height" />
 
@@ -38,7 +38,7 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
 
 
     <android.support.v7.widget.CardView
-        android:id="@+id/create_a_goal"
+        android:id="@+id/description_of_weight_activity"
         android:layout_width="400dp"
         android:layout_height="360dp"
         android:layout_alignParentLeft="true"
@@ -49,33 +49,33 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
 
 
         <TextView
-            android:id="@+id/goal_parent_heading"
+            android:id="@+id/weight_sub_heading"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="40dp"
-            android:text="A bit about you."
+            android:text="@string/weight_height_activity_heading"
             android:textSize="25sp"
 
             />
 
         <TextView
-            android:id="@+id/goal_paragraph_text"
+            android:id="@+id/weight_paragraph_text"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="90dp"
-            android:text="Please enter weight and height."
+            android:text="@string/weight_height_activity_sub_heading"
             android:textSize="20sp"
 
             />
 
         <View
-            android:id="@+id/divider_smart_devices_text"
+            android:id="@+id/divider_between_headings"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="140dp"
@@ -90,7 +90,7 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:textAlignment="center"
-            android:hint="Weight"
+            android:hint="@string/weight_height_activity_weight_hint"
             android:layout_marginTop="150dp"
             android:layout_gravity="center_horizontal"
             style="@style/receipt_child_values"
@@ -122,7 +122,7 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:textAlignment="center"
-            android:hint="Height"
+            android:hint="@string/weight_height_activity_height_hint"
             android:layout_marginTop="220dp"
             android:layout_gravity="center_horizontal"
             style="@style/receipt_child_values"
@@ -140,12 +140,12 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
             />
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/next_button"
             android:layout_width="305dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="280dp"
-            android:text="Next" />
+            android:text="@string/next_button_text" />
 
     </android.support.v7.widget.CardView>
 
