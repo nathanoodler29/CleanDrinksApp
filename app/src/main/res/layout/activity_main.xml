@@ -28,7 +28,7 @@
             android:layout_height="86dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="4dp"
-            android:contentDescription="@string/goal_gold_medal_image_content_description"
+            android:contentDescription="@string/login_heading_image_content_description"
             android:foregroundGravity="center_horizontal"
             android:src="@drawable/waterdrop_blue" />
 
