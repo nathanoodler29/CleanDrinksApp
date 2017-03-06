@@ -3,10 +3,10 @@
 
     android:shape="rectangle">
     <corners android:radius="10dp" />
-    <solid android:color="@color/light_grey" />
+    <solid android:color="@color/lightGrey" />
     <stroke
         android:width="2dip"
-        android:color="@color/dark_grey" />
+        android:color="@color/black" />
 
 </shape>
     <!--http://www.viralandroid.com/2016/01/circular-button-with-icon-and-text-in-android.html-->
