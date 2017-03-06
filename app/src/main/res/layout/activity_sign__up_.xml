@@ -28,7 +28,7 @@
             android:layout_height="86dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="4dp"
-            android:contentDescription="@string/goal_gold_medal_image_content_description"
+            android:contentDescription="@string/sign_up_icon_content_description"
             android:foregroundGravity="center_horizontal"
             android:src="@drawable/sign_up_user" />
 
@@ -55,8 +55,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="8dp"
-            android:text="Sign Up."
-
+            android:text="@string/sign_up_heading"
             android:textSize="30sp"
 
             />
@@ -95,7 +94,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="180dp"
-            android:text="Sign up"
+            android:text="@string/login_sign_up_button_text"
             android:onClick="openWeightActivityAfterCorrectSignUp"/>
 
 
