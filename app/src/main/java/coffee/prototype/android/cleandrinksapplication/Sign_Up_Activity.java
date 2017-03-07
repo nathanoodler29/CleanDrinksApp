@@ -26,6 +26,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
         validateEmailField();
         validatePasswordField();
 
+
     }
 
 
@@ -52,7 +53,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 //Converts the input from a user
                 String userInput = signUpEmailAddressInput.getText().toString();
-                checkNumberEmail=0;
+                checkNumberEmail = 0;
 
                 if (userInput.isEmpty()) {
                     signUpEmailAddressInput.setError("Please don't leave blank");
@@ -67,14 +68,14 @@ public class Sign_Up_Activity extends AppCompatActivity {
 //                Regex from Google regex checker
 
                 } else if (userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
-                    checkNumberEmail+=1;
+                    checkNumberEmail += 1;
                     createToastWithText("Valid Email");
                 } else if (!userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
                     signUpEmailAddressInput.setError("Please include a valid email");
                 }
             }
         });
-        return  checkNumberEmail;
+        return checkNumberEmail;
 
     }
 
@@ -98,7 +99,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 //Converts the input from a user
                 String userInput = signUpPasswordInput.getText().toString();
-                checkNumberPassword=0;
+                checkNumberPassword = 0;
 
                 if (userInput.isEmpty()) {
                     signUpPasswordInput.setError("Please don't leave blank ");
@@ -109,15 +110,13 @@ public class Sign_Up_Activity extends AppCompatActivity {
                         | userInput.contains("\\") | userInput.contains("%")) {
                     signUpPasswordInput.setError("Special characters can't be used");
 
-                } else if (userInput.length()<=3) {
+                } else if (userInput.length() <= 3) {
                     signUpPasswordInput.setError("Password must be longer than four characters");
-                }else if (!userInput.matches(".*\\d+.*")) {
+                } else if (!userInput.matches(".*\\d+.*")) {
                     signUpPasswordInput.setError("Password Needs to contain 1 number");
-                }else if (userInput.matches(".*\\d+.*")) {
-                    checkNumberPassword+=1;
+                } else if (userInput.matches(".*\\d+.*")) {
+                    checkNumberPassword += 1;
                 }
-
-
 
 
             }
@@ -140,16 +139,15 @@ public class Sign_Up_Activity extends AppCompatActivity {
         toast.show();
     }
 
-    public void openWeightActivityAfterCorrectSignUp(View view){
-        if(validateEmailField()==1 && validatePasswordField()==1){
+    public void openWeightActivityAfterCorrectSignUp(View view) {
+        if (validateEmailField() == 1 && validatePasswordField() == 1) {
             Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
             startActivity(changeToWeightPage);
-        }else if(checkNumberEmail==0 | checkNumberPassword==0){
+        } else if (checkNumberEmail == 0 | checkNumberPassword == 0) {
             createToastWithText("Please ensure email and password are valid");
         }
 
     }
-
 
 
 }
