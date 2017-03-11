@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersEntry;
 
 /**
- * Created by Noodle on 10/03/2017.
+ * created by Noodle on 10/03/2017.
  */
 
 public class UsersDBHelper extends SQLiteOpenHelper{

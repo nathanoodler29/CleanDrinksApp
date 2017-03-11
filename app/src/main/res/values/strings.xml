@@ -90,7 +90,6 @@
     <string name="login_heading_image_content_description">Image of a water droplet smiling</string>
 
 
-
     <string name="sign_up_heading">Sign up</string>
 
     <string name="sign_up_icon_content_description">Icon of a user with a plus symbol next to them.</string>
@@ -211,7 +210,6 @@
     <string name="next_button_text">Next</string>
 
 
-
     <string-array name="weight_units">
         <item>Kg</item>
         <item>Stone</item>
@@ -222,7 +220,6 @@
         <item>foot</item>
         <item>metres</item>
     </string-array>
-
 
 
 </resources>

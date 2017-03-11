@@ -3,7 +3,7 @@ package coffee.prototype.android.cleandrinksapplication.data;
 import android.provider.BaseColumns;
 
 /**
- * Created by Noodle on 10/03/2017.
+ * created by Noodle on 10/03/2017.
  */
 
 public class UsersContract {
