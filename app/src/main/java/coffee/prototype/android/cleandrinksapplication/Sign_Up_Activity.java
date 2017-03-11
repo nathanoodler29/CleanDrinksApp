@@ -1,14 +1,29 @@
 package coffee.prototype.android.cleandrinksapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersEntry;
+
+import org.w3c.dom.Text;
+
+import coffee.prototype.android.cleandrinksapplication.data.UsersContract;
+import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
+
+import static coffee.prototype.android.cleandrinksapplication.R.id.debugging;
+import static coffee.prototype.android.cleandrinksapplication.R.id.password_address_sign_up_field;
 
 public class Sign_Up_Activity extends AppCompatActivity {
     private EditText signUpEmailAddressInput;
@@ -16,24 +31,49 @@ public class Sign_Up_Activity extends AppCompatActivity {
     private int checkNumberEmail;
     private int checkNumberPassword;
 
+
+
+    private String userEmail;
+    private String userPassword;
+
+    private UsersDBHelper usersDBHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign__up_);
         signUpEmailAddressInput = (EditText) findViewById(R.id.email_address_sign_up_field);
-        signUpPasswordInput = (EditText) findViewById(R.id.password_address_sign_up_field);
-
+        signUpPasswordInput = (EditText) findViewById(password_address_sign_up_field);
         validateEmailField();
         validatePasswordField();
 
+        usersDBHelper = new UsersDBHelper(this);
+//        validateDataBaseHasBeenCreated();
 
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
 
-    /**
-     * This method checks that a user isn't passing in illegal special characters.
-     * or empty strings or invalid emails.
-     */
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+//    }
+//
+//
+////    /**
+//     * This method checks that a user isn't passing in illegal special characters.
+//     * or empty strings or invalid emails.
+//     */
     public int validateEmailField() {
 
         signUpEmailAddressInput.addTextChangedListener(new TextWatcher() {
@@ -69,7 +109,12 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
                 } else if (userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
                     checkNumberEmail += 1;
+                    String validUserEmail = userInput.trim();
                     createToastWithText("Valid Email");
+                    setUserEmail(validUserEmail);
+
+
+
                 } else if (!userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
                     signUpEmailAddressInput.setError("Please include a valid email");
                 }
@@ -115,7 +160,11 @@ public class Sign_Up_Activity extends AppCompatActivity {
                 } else if (!userInput.matches(".*\\d+.*")) {
                     signUpPasswordInput.setError("Password Needs to contain 1 number");
                 } else if (userInput.matches(".*\\d+.*")) {
+                    createToastWithText("Valid Passowrd");
                     checkNumberPassword += 1;
+                    String validPassword = userInput.trim();
+                    setUserPassword(validPassword);
+
                 }
 
 
@@ -125,6 +174,9 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
         return 1;
     }
+
+
+
 
 
     /**
@@ -141,6 +193,10 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
     public void openWeightActivityAfterCorrectSignUp(View view) {
         if (validateEmailField() == 1 && validatePasswordField() == 1) {
+//            Log.d("Creating database CREATED","CREATED");
+            insertUser(getUserEmail(),getUserPassword());
+            Log.d("aFTER CREATED","CREATED");
+            validateDataBaseUserBeenCreated();
             Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
             startActivity(changeToWeightPage);
         } else if (checkNumberEmail == 0 | checkNumberPassword == 0) {
@@ -148,6 +204,62 @@ public class Sign_Up_Activity extends AppCompatActivity {
         }
 
     }
+
+
+    private void validateDataBaseHasBeenCreated(){
+        UsersDBHelper dbHelper = new UsersDBHelper(this);
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ UsersContract.UsersEntry.TABLE_NAME,null);
+
+
+
+        try{
+            TextView displayResult = (TextView) findViewById(debugging);
+            displayResult.setText("Rows present: " +cursor.getCount());
+            Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
+
+        }finally {
+            cursor.close();
+        }
+    }
+
+    private void validateDataBaseUserBeenCreated(){
+        UsersDBHelper dbHelper = new UsersDBHelper(this);
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM "+UsersEntry.TABLE_NAME+" WHERE "+UsersEntry.COLUMN_USER_EMAIL+"= 'nas29@aber.ac.uk'",null);
+
+
+
+        try{
+            TextView displayResult = (TextView) findViewById(debugging);
+//            displayResult.setText("Rows present: " +cursor.getCount());
+            Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
+
+        }finally {
+            cursor.close();
+        }
+    }
+
+    private void insertUser(String email, String password){
+        SQLiteDatabase db = usersDBHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(UsersEntry.COLUMN_USER_EMAIL,email);
+        contentValues.put(UsersEntry.COLUMN_USER_PASSWORD,password);
+
+        long newRowId = db.insert(UsersEntry.TABLE_NAME,null,contentValues);
+
+        Log.v("sign up activity","new row id"+newRowId);
+
+    }
+
+
+
+
+
 
 
 }
