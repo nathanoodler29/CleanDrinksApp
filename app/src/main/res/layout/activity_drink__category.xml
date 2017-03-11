@@ -18,7 +18,7 @@
         android:layout_height="160dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         card_view:cardBackgroundColor="@color/darkBlue">
 
@@ -66,7 +66,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/alcohol_text_below_category"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         card_view:cardBackgroundColor="@color/colorAccent">
 
         <ImageView
@@ -89,7 +89,7 @@
 
         android:layout_below="@+id/caffeine_category_card"
         android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/cardview_shadow_start_color">
+        card_view:cardBackgroundColor="@color/lightGrey">
 
         <TextView
             android:id="@+id/caffeine_heading"
