@@ -15,4 +15,7 @@
     <color name="grey">#cecece</color>
     <color name="white">#ffffff</color>
     <color name="skyBlue">#7EC0EE</color>
+    <color name="bottleGreen">#006a4e</color>
+    <color name="beerBottleBrown">#985336</color>
+    <color name="spiritsColour">#EBE5CD</color>
 </resources>

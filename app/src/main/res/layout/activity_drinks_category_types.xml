@@ -18,7 +18,7 @@
         android:id="@+id/alcohol_sub_cat_wine"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/orange"
+        card_view:cardBackgroundColor="@color/bottleGreen"
         >
         <TextView
             android:layout_gravity="center_horizontal"
@@ -42,7 +42,7 @@
         android:id="@+id/alcohol_sub_cat_beer"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/lightGrey"
+        card_view:cardBackgroundColor="@color/beerBottleBrown"
         android:layout_below="@+id/alcohol_sub_cat_wine"
 
 
@@ -71,10 +71,11 @@
         android:id="@+id/alcohol_sub_cat_spirits"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/darkBlue"
-        android:layout_below="@+id/alcohol_sub_cat_beer"
+        card_view:cardBackgroundColor="@color/spiritsColour"
 
-        >
+        android:layout_below="@+id/alcohol_sub_cat_beer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_gravity="center_horizontal"
@@ -100,7 +101,7 @@
         android:id="@+id/alcohol_sub_cat_vodka"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/colorAccent"
+        card_view:cardBackgroundColor="@color/darkBlue"
 
 
         android:layout_below="@+id/alcohol_sub_cat_spirits"
