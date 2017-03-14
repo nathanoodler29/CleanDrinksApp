@@ -161,6 +161,8 @@ public class Sign_Up_Activity extends AppCompatActivity {
                 if (userInput.isEmpty()) {
                     //creates an error message asking not to leave blank.
                     signUpPasswordInput.setError("Please don't leave blank ");
+                    checkNumberPassword = 0;
+
                     //Checks that any special chars are used, if so then error is thrown.
                 } else if (userInput.contains("*") | userInput.contains("\0") | userInput.contains("\'")
                         | userInput.contains("\0")
@@ -173,11 +175,15 @@ public class Sign_Up_Activity extends AppCompatActivity {
                 } else if (userInput.length() <= 3) {
                     //Error message is thrown
                     signUpPasswordInput.setError("Password must be longer than four characters");
+                    checkNumberPassword = 0;
+
                     //Regex used from http://javarevisited.blogspot.co.uk/2012/10/regular-expression-example-in-java-to-check-String-number.html
                     //checks that at least a number is present in the string
                 } else if (!userInput.matches(".*\\d+.*")) {
                     //Error is thrown if the input of at least one number is added.
                     signUpPasswordInput.setError("Password Needs to contain 1 number");
+                    checkNumberPassword = 0;
+
                     //Regex used from http://javarevisited.blogspot.co.uk/2012/10/regular-expression-example-in-java-to-check-String-number.html
                 } else if (userInput.matches(".*\\d+.*")) {
                     //Toast is displayed to show a valid password.

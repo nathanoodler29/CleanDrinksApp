@@ -87,26 +87,29 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
 
         
         <EditText
-            android:layout_width="300dp"
+            android:id="@+id/weight_edit_text"
+            android:layout_width="100dp"
             android:layout_height="50dp"
             android:textAlignment="center"
-            android:hint="@string/weight_height_activity_weight_hint"
             android:layout_marginTop="150dp"
             android:layout_gravity="center_horizontal"
             style="@style/receipt_child_values"
-            />
+            android:maxLength="3"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
 
-        <Spinner
-            android:id="@+id/weight_spinner"
-            android:layout_width="70dp"
+
+            tools:ignore="Deprecated" />
+
+        <TextView
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="145dp"
-            android:layout_gravity="end"
-            android:textAlignment="textEnd"
+            android:textAlignment="center"
+            android:layout_marginTop="162dp"
+            android:layout_gravity="center_horizontal"
             style="@style/receipt_child_values"
-
-            />
-
+            android:layout_marginLeft="35dp"
+            android:text="KG"/>
 
 
         <View
@@ -118,34 +121,34 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
 
         </View>
 
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:textAlignment="center"
-            android:hint="@string/weight_height_activity_height_hint"
-            android:layout_marginTop="220dp"
-            android:layout_gravity="center_horizontal"
-            style="@style/receipt_child_values"
 
-            />
 
-        <Spinner
-            android:id="@+id/height_spinner"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="215dp"
-            android:layout_gravity="end"
-            android:textAlignment="textEnd"
-            style="@style/receipt_child_values"
-            />
 
         <Button
             android:id="@+id/next_button"
             android:layout_width="305dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="280dp"
-            android:text="@string/next_button_text" />
+            android:layout_marginTop="300dp"
+            android:text="@string/next_button_text"
+            android:onClick="moveToDrinksCategory"/>
+
+        <EditText
+            android:id="@+id/editFoot"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="245dp"
+            android:layout_gravity="center_horizontal"
+            style="@style/receipt_child_values"
+            android:maxLength="4"
+            android:maxLines="1"
+            android:hint="Example  Height 5ft11"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            tools:ignore="Deprecated"
+            android:textAlignment="center"/>
+
+
 
     </android.support.v7.widget.CardView>
 
