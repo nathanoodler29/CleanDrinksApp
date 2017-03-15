@@ -228,6 +228,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
             boolean userExists = validateIfUserExists();
             if (userExists == false) {
                 insertUser(getUserEmail(), getUserPassword());
+                checkIfDataHasBeenAddedToDb();
                 Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
                 startActivity(changeToWeightPage);
 
@@ -258,6 +259,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
         //Performs the sql query on the email a user has passed, to check if present in the DB.
         Cursor cursor = db.rawQuery("SELECT * FROM " + UsersEntry.TABLE_NAME + " WHERE " + UsersEntry.COLUMN_USER_EMAIL + "=" + "'" + getUserEmail() + "'", null);
         //If a column number exists related to the query, then the user is sent back to the login screen.
+        cursor.moveToFirst();
         if (cursor.getCount() == 1) {
             createToastWithText("Account with this email already exists");
             userExists = true;
@@ -303,7 +305,20 @@ public class Sign_Up_Activity extends AppCompatActivity {
         //Log cat used to show that a database insertion is occuring.
         Log.v("sign up activity", "new row id" + newRowId);
 
+        db.close();
     }
 
+    private void checkIfDataHasBeenAddedToDb(){
+
+        SQLiteDatabase db = usersDBHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + UsersEntry.TABLE_NAME, null);
+        createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+    }
 
 }
+
+
