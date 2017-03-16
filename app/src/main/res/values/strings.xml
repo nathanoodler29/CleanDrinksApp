@@ -200,10 +200,10 @@
 
     <string name="weight_height_activity_sub_heading">Please enter weight and height.</string>
 
-    <string name="weight_height_activity_weight_hint">Weight</string>
+    <string name="weight_height_activity_weight_hint"> Weight </string>
 
 
-    <string name="weight_height_activity_height_hint">Height</string>
+    <string name="weight_height_activity_height_hint"> Height </string>
 
     <string name="weight_height_activity_height_image_content_description">Image of a weight lifter</string>
 

@@ -6,21 +6,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import coffee.prototype.android.cleandrinksapplication.data.UsersContract;
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
-import coffee.prototype.android.cleandrinksapplication.data.UsersWeightContract;
 import coffee.prototype.android.cleandrinksapplication.data.WeightContract.WeightEntry;
 
 public class Weight_and_Height_Activity extends AppCompatActivity {
@@ -250,6 +245,7 @@ public class Weight_and_Height_Activity extends AppCompatActivity {
             cursor.moveToFirst();
         }
     }
+
 
 
 

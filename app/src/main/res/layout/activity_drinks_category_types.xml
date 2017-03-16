@@ -19,6 +19,9 @@
         android:layout_width="400dp"
         android:layout_height="120dp"
         card_view:cardBackgroundColor="@color/bottleGreen"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="goToWineCategory"
+
         >
         <TextView
             android:layout_gravity="center_horizontal"

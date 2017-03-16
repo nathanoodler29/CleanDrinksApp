@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCancel() {
                 //Finishes the current process.
-                finish();
+//                finish();
                 createToastWithText("Facebook login canceled ");
 
             }
@@ -168,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
         //If the user credentials are correct then current activity finishes
         if (validateIfCreated) {
             //To prevent the user going back to the login screen.
-            finish();
             //Goes to the next activity for adding weight and height.
             Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
             startActivity(changeToWeightPage);
