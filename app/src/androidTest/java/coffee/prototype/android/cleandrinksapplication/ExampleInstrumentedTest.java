@@ -23,4 +23,7 @@ public class ExampleInstrumentedTest {
 
         assertEquals("coffee.prototype.android.cleandrinksapplication", appContext.getPackageName());
     }
+
+
 }
+
