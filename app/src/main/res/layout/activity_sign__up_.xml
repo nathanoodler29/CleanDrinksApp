@@ -89,7 +89,7 @@
 
 
         <Button
-            android:id="@+id/sign_activity_button"
+            android:id="@+id/sign_activity_button_signupactivity"
             android:layout_width="305dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"

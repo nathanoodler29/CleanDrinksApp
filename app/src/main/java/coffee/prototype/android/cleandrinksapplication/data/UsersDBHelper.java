@@ -13,7 +13,7 @@ import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersE
 
 public class UsersDBHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "userdetails.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public UsersDBHelper(Context context){
         super(context,DATABASE_NAME,null, DATABASE_VERSION);
@@ -29,14 +29,19 @@ public class UsersDBHelper extends SQLiteOpenHelper{
 
         Log.v("Creating users table","users table");
         db.execSQL(SQL_CREATE_USERS_TABLE);
-        String SQL_CREATE_WEIGHT_TABLE ="CREATE TABLE " + WeightContract.WeightEntry.TABLE_NAME + "("
-                + WeightContract.WeightEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + WeightContract.WeightEntry.COLUMN_WEIGHT + " INTEGER NOT NULL, "
-                + WeightContract.WeightEntry.COLUMN_HEIGHT + " REAL NOT NULL);";
+
+        String SQL_CREATE_WEIGHT_TABLE ="CREATE TABLE " + WeightContract.WeightEntry.TABLE_NAME + " ("
+                +  WeightContract.WeightEntry.USER_FK_REF + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+
+                +  WeightContract.WeightEntry.COLUMN_WEIGHT + " INTEGER NOT NULL, "
+                + WeightContract.WeightEntry.COLUMN_HEIGHT + " REAL NOT NULL,"+
+                " FOREIGN KEY("+ WeightContract.WeightEntry.USER_FK_REF+")"+ " REFERENCES "+UsersEntry.TABLE_NAME+"("+UsersEntry._ID+"));";
         Log.v("Creating weight table","weight table");
 
         db.execSQL(SQL_CREATE_WEIGHT_TABLE);
 
+
+//FOREIGN KEY(artist) REFERENCES artists(id)
 
     }
 

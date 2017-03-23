@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import coffee.prototype.android.cleandrinksapplication.data.UsersContract;
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
 import coffee.prototype.android.cleandrinksapplication.data.WeightContract.WeightEntry;
 

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersEntry;
 
 
@@ -34,6 +35,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
     private UsersDBHelper usersDBHelper;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,8 @@ public class Sign_Up_Activity extends AppCompatActivity {
         validatePasswordField();
 
         usersDBHelper = new UsersDBHelper(this);
+
+
 
     }
 
@@ -186,7 +190,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
                     //Regex used from http://javarevisited.blogspot.co.uk/2012/10/regular-expression-example-in-java-to-check-String-number.html
                 } else if (userInput.matches(".*\\d+.*")) {
-                    //Toast is displayed to show a valid password.
+                    //Toast is displayed to show a ps password.
                     createToastWithText("Valid Password");
                     //adds 1 to the number password.
                     checkNumberPassword += 1;
@@ -223,13 +227,15 @@ public class Sign_Up_Activity extends AppCompatActivity {
      * @param view relates to the current activity view.
      */
     public void openWeightActivityAfterCorrectSignUp(View view) {
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
         if (validateEmailField() == 1 && validatePasswordField() == 1) {
             Log.d("After CREATED", "CREATED");
             boolean userExists = validateIfUserExists();
             if (userExists == false) {
                 insertUser(getUserEmail(), getUserPassword());
-                checkIfDataHasBeenAddedToDb();
-                finish();
+//                checkIfDataHasBeenAddedToDb();
+
                 Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
                 startActivity(changeToWeightPage);
 
@@ -240,7 +246,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
         } else if (checkNumberEmail == 0 | checkNumberPassword == 0) {
             //If both methods return 0, this means that they haven't passed Validation for the fields.
-            createToastWithText("Please ensure email and password are valid");
+            createToastWithText("Please ensure email or password fields aren't blank.");
 
         }
 
@@ -261,6 +267,9 @@ public class Sign_Up_Activity extends AppCompatActivity {
         Cursor cursor = db.rawQuery("SELECT * FROM " + UsersEntry.TABLE_NAME + " WHERE " + UsersEntry.COLUMN_USER_EMAIL + "=" + "'" + getUserEmail() + "'", null);
         //If a column number exists related to the query, then the user is sent back to the login screen.
         cursor.moveToFirst();
+
+
+
         if (cursor.getCount() == 1) {
             createToastWithText("Account with this email already exists");
             userExists = true;
@@ -270,7 +279,10 @@ public class Sign_Up_Activity extends AppCompatActivity {
             finish();
         } else if (cursor.getCount() == 0) {
             //This means the email the user has entered doesn't exist.
+
+
             userExists = false;
+
 
         }
 
@@ -304,6 +316,22 @@ public class Sign_Up_Activity extends AppCompatActivity {
         //Inserts the email and password into the database.
         long newRowId = db.insert(UsersEntry.TABLE_NAME, null, contentValues);
         //Log cat used to show that a database insertion is occuring.
+
+
+        //INSERT SESSION HERE
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+//
+        String session = sessionManager.createSessionForUser(getUserId(),email);
+        createToastWithText("Created session"+session);
+        createToastWithText("Created sesh"+String.valueOf(sessionManager.checkIfUserIsLoggedin()));
+
+
+
+//        sessionManager.deleteSession();
+//        createToastWithText("deleted sesh"+String.valueOf(sessionManager.checkIfUserIsLoggedin()));
+//
+//        createToastWithText("Deleted session");
+
         Log.v("sign up activity", "new row id" + newRowId);
 
         db.close();
@@ -320,6 +348,29 @@ public class Sign_Up_Activity extends AppCompatActivity {
         }
     }
 
+
+
+        private int getUserId(){
+            UsersDBHelper dbHelper = new UsersDBHelper(this);
+            //Makes the database readable.
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cursor= db.rawQuery("SELECT "+UsersEntry._ID+" " +"FROM "+
+                    UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getUserEmail()+"'"+" AND "+"" +
+                    UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getUserPassword()+"'",null);
+
+            cursor.moveToFirst();
+
+            int num = Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID)));
+
+            createToastWithText("User ID" +num);
+            Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
+
+
+            db.close();
+            return num;
+
+
+        }
 }
 
 

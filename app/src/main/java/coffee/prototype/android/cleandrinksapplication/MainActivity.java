@@ -25,6 +25,8 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
+import coffee.prototype.android.cleandrinksapplication.data.UsersContract;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersEntry;
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
 
@@ -47,11 +49,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailAddressInput;
     private EditText passwordInput;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         FacebookSdk.sdkInitialize(getApplicationContext());
+        setContentView(R.layout.activity_main);
 
 
         emailAddressInput = (EditText) findViewById(R.id.email_address_field);
@@ -152,9 +155,17 @@ public class MainActivity extends AppCompatActivity {
      */
     public void openSignUpActivity(View view) {
         //Creates an intent related to the sign up activity.
-        Intent changeToSignUpPage = new Intent(this, Sign_Up_Activity.class);
-        //Switches the activity to sign up.
-        startActivity(changeToSignUpPage);
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+//
+        if(sessionManager.checkIfUserIsLoggedin().equals("User is  logged in")){
+            createToastWithText("You're already signed in, please sign out.");
+        }else{
+
+            Intent changeToSignUpPage = new Intent(this, Sign_Up_Activity.class);
+            //Switches the activity to sign up.
+            startActivity(changeToSignUpPage);
+        }
+
 
     }
 
@@ -164,13 +175,20 @@ public class MainActivity extends AppCompatActivity {
      */
     public void openWeightActivityAfterCorrectSignOn(View view) {
 
+
      boolean validateIfCreated =  validateIfUsersAccountCredentialsAreCorrect();
+
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
         //If the user credentials are correct then current activity finishes
-        if (validateIfCreated) {
+        if (validateIfCreated ) {
             //To prevent the user going back to the login screen.
             //Goes to the next activity for adding weight and height.
+            createUserSession();
             Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
             startActivity(changeToWeightPage);
+
+
         } else{
             // Is displayed if a user's account can't be found.
             createToastWithText("Unable to find Account.");
@@ -278,6 +296,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private boolean validateIfUsersAccountCredentialsAreCorrect(){
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
 
         boolean useLoggedIn=false;
         UsersDBHelper dbHelper = new UsersDBHelper(this);
@@ -288,9 +307,14 @@ public class MainActivity extends AppCompatActivity {
                 UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getEmailAddressField()+"'"+" AND "+"" +
                 UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getPasswordField()+"'",null);
         //If the data returned from the query is 1 then the account exists.
+//            cursor.moveToFirst();
+        //Get the user ID
+
         if(cursor.getCount()==1){
             createToastWithText("Account valid");
             useLoggedIn=true;
+////            sessionManager.createSessionForUser(1,getEmailAddressField());
+//            createToastWithText(sessionManager.checkIfUserIsLoggedin());
         //This means the user hasn't got an account.
         }else if(cursor.getCount()==0){
             createToastWithText("No such account");
@@ -306,8 +330,52 @@ public class MainActivity extends AppCompatActivity {
             cursor.close();
         }
         //Returns whether the user is logged in i.e false means user doesn't have an account, while true then the user does.
+//        getUserId();
         return useLoggedIn;
     }
+
+    private int getUserId(){
+        UsersDBHelper dbHelper = new UsersDBHelper(this);
+        //Makes the database readable.
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor= db.rawQuery("SELECT "+UsersEntry._ID+" " +"FROM "+
+                UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getEmailAddressField()+"'"+" AND "+"" +
+                UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getPasswordField()+"'",null);
+
+    cursor.moveToFirst();
+
+       int num = Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID)));
+
+        createToastWithText("User ID" +num);
+        Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
+
+
+        db.close();
+        return num;
+
+
+    }
+
+    private void createUserSession(){
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        UsersDBHelper dbHelper = new UsersDBHelper(this);
+        //Makes the database readable.
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        //SQL query uses the email and password passed to check if it matches the database equivalents
+        Cursor cursor = db.rawQuery("SELECT * FROM "+
+                UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getEmailAddressField()+"'"+" AND "+"" +
+                UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getPasswordField()+"'",null);
+        //If the data returned from the query is 1 then the account exists.
+            cursor.moveToFirst();
+        //Get the user ID
+
+            createToastWithText("session manager from create sesh method"+            sessionManager.createSessionForUser(getUserId(),getEmailAddressField()));
+
+        cursor.close();
+
+    }
+
 
 }
 
