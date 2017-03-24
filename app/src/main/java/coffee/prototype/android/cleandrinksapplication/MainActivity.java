@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailAddressInput;
     private EditText passwordInput;
 
+    private TextView numOfAttempts;
+    private int attempts=3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +69,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         emailAddressInput = (EditText) findViewById(R.id.email_address_field);
 
         passwordInput = (EditText) findViewById(R.id.password_field);
 
         usersDBHelper = new UsersDBHelper(this);
+
+
+        numOfAttempts = (TextView) findViewById(R.id.attempts);
 
         //creates the facebook login button
         createFacebookLoginButton();
@@ -215,11 +223,28 @@ public class MainActivity extends AppCompatActivity {
             Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
             startActivity(changeToWeightPage);
 
+        } else if(!validateIfCreated){
 
-        } else{
-            // Is displayed if a user's account can't be found.
-            createToastWithText("Unable to find Account.");
+             attempts--;
+
+            numOfAttempts.setText("Attempts left: "+Integer.toString(attempts));
+
+            if(attempts==0){
+                Intent changeToForgottenPage = new Intent(this, ForgottenPassword.class);
+                //Switches the activity to sign up.
+                startActivity(changeToForgottenPage);
+                resetAttempts();
+
+            }
+
         }
+
+
+    }
+
+
+    public void resetAttempts(){
+        attempts=3;
 
     }
 
@@ -324,7 +349,6 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean validateIfUsersAccountCredentialsAreCorrect(){
         SessionManager sessionManager = new SessionManager(getApplicationContext());
-
         boolean useLoggedIn=false;
         UsersDBHelper dbHelper = new UsersDBHelper(this);
         //Makes the database readable.
@@ -333,19 +357,18 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.rawQuery("SELECT * FROM "+
                 UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getEmailAddressField()+"'"+" AND "+"" +
                 UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getPasswordField()+"'",null);
-        //If the data returned from the query is 1 then the account exists.
-//            cursor.moveToFirst();
-        //Get the user ID
+
 
         if(cursor.getCount()==1){
             createToastWithText("Account valid");
             useLoggedIn=true;
-////            sessionManager.createSessionForUser(1,getEmailAddressField());
-//            createToastWithText(sessionManager.checkIfUserIsLoggedin());
-        //This means the user hasn't got an account.
+
         }else if(cursor.getCount()==0){
             createToastWithText("No such account");
             useLoggedIn=false;
+
+
+
         }
 
         try{

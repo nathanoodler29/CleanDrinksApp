@@ -24,8 +24,7 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:title="DrinkClean!"
             app:titleTextAppearance="@style/tool_bar_text"
-
-            app:logo="@drawable/logosmalltoolbar"
+            app:logo="@drawable/logowaterbottle"
             />
 
 
@@ -82,7 +81,7 @@
             android:paddingTop="8dp"
             android:text="@string/application_name"
 
-            android:textSize="30sp"
+            android:textSize="25sp"
 
             />
 
@@ -96,9 +95,10 @@
             android:layout_width="305dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="160dp"
             android:onClick="openWeightActivityAfterCorrectSignOn"
-            android:text="@string/login" />
+            android:text="@string/login"
+            />
 
 
         <TextView
@@ -143,6 +143,20 @@
 
             android:text="@string/login_create_an_account"
             android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/attempts"
+            style="@style/Heading_font_non_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="210dp"
+            android:textSize="20sp" />
+
+
+
+
 
 
         <!--https://developers.google.com/identity/sign-in/android/sign-in Implement this properly -->
