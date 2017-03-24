@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGrey"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
+
+
     tools:context="coffee.prototype.android.cleandrinksapplication.MainActivity">
 
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:title="DrinkClean!"
+            app:titleTextAppearance="@style/tool_bar_text"
+
+            app:logo="@drawable/logosmalltoolbar"
+            />
+
+
+
     <android.support.v7.widget.CardView
+
         android:id="@+id/goal_heading_card"
-        android:layout_width="400dp"
+        android:layout_width="380dp"
         android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="70dp"
         android:foregroundGravity="center_horizontal"
-        card_view:cardBackgroundColor="@color/com_facebook_blue">
+        card_view:cardBackgroundColor="@color/com_facebook_blue"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        >
 
 
         <ImageView
@@ -37,14 +59,17 @@
 
 
     <android.support.v7.widget.CardView
+
         android:id="@+id/water_monitor_logo_banner"
-        android:layout_width="400dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+
+        android:layout_width="380dp"
         android:layout_height="430dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/goal_heading_card"
         android:foregroundGravity="center_horizontal"
-   >
+        app:cardUseCompatPadding="true">
 
 
         <TextView
@@ -72,10 +97,8 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="180dp"
-            android:text="@string/login"
             android:onClick="openWeightActivityAfterCorrectSignOn"
-            />
-
+            android:text="@string/login" />
 
 
         <TextView
@@ -98,7 +121,6 @@
             android:layout_marginTop="290dp">
 
         </com.facebook.login.widget.LoginButton>
-
 
 
         <View
@@ -131,16 +153,11 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="355dp"
-            android:text="@string/login_sign_up_button_text"
             android:onClick="openSignUpActivity"
-           />
+            android:text="@string/login_sign_up_button_text" />
 
 
     </android.support.v7.widget.CardView>
-
-
-
-
 
 
 </RelativeLayout>

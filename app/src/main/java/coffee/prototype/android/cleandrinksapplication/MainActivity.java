@@ -8,9 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -55,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
+
 
 
         emailAddressInput = (EditText) findViewById(R.id.email_address_field);
@@ -62,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = (EditText) findViewById(R.id.password_field);
 
         usersDBHelper = new UsersDBHelper(this);
+
         //creates the facebook login button
         createFacebookLoginButton();
         //Allows the single sign on to occur for a user.
@@ -70,6 +79,24 @@ public class MainActivity extends AppCompatActivity {
         validatePasswordField();
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.current_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        if(item.getItemId()==R.id.action_logout){
+            sessionManager.deleteSession();
+            createToastWithText("Successfully logged out");
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public String getEmailAddressField() {

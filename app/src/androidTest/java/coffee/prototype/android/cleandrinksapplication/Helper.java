@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Noodle on 20/03/2017.
+ * created by Noodle on 20/03/2017.
  */
 
 public class Helper {
@@ -16,7 +16,6 @@ public class Helper {
         //http://stackoverflow.com/questions/15283245/java-date-in-mmddhhmmss-format
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMddhhmmss");
         String dateString= simpleDateFormat.format(new Date());
-
 
         return dateString;
 
