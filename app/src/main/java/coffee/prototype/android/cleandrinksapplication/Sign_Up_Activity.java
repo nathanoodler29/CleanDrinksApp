@@ -234,7 +234,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
             boolean userExists = validateIfUserExists();
             if (userExists == false) {
                 insertUser(getUserEmail(), getUserPassword());
-//                checkIfDataHasBeenAddedToDb();
+                checkIfDataHasBeenAddedToDb();
 
                 Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
                 startActivity(changeToWeightPage);

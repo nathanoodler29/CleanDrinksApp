@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,16 +23,14 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-
-
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
-import coffee.prototype.android.cleandrinksapplication.data.UsersContract;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersEntry;
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
+import coffee.prototype.android.cleandrinksapplication.data.WeightContract;
 
 
 @SuppressWarnings("deprecation")
@@ -47,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private UsersDBHelper usersDBHelper;
 
-    private String  emailAddressField;
+    private String emailAddressField;
     private String passwordFiled;
 
 
@@ -55,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordInput;
 
     private TextView numOfAttempts;
-    private int attempts=3;
+    private int attempts = 3;
 
 
     @Override
@@ -65,9 +62,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-
-
-
 
 
         emailAddressInput = (EditText) findViewById(R.id.email_address_field);
@@ -92,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.current_menu,menu);
+        menuInflater.inflate(R.menu.current_menu, menu);
         return true;
     }
 
@@ -100,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         SessionManager sessionManager = new SessionManager(getApplicationContext());
 
-        if(item.getItemId()==R.id.action_logout){
+        if (item.getItemId() == R.id.action_logout) {
             sessionManager.deleteSession();
             createToastWithText("Successfully logged out");
         }
@@ -186,15 +180,16 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * If a user clicks the sign up button then they are re-directed to the sign up activity.
+     *
      * @param view Relates to the current activity view.
      */
     public void openSignUpActivity(View view) {
         //Creates an intent related to the sign up activity.
         SessionManager sessionManager = new SessionManager(getApplicationContext());
 //
-        if(sessionManager.checkIfUserIsLoggedin().equals("User is  logged in")){
+        if (sessionManager.checkIfUserIsLoggedin().equals("User is  logged in")) {
             createToastWithText("You're already signed in, please sign out.");
-        }else{
+        } else {
 
             Intent changeToSignUpPage = new Intent(this, Sign_Up_Activity.class);
             //Switches the activity to sign up.
@@ -206,30 +201,39 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method controls whether a user has successfully logged in with username + password.
+     *
      * @param view Reflects the current activity view.
      */
     public void openWeightActivityAfterCorrectSignOn(View view) {
 
 
-     boolean validateIfCreated =  validateIfUsersAccountCredentialsAreCorrect();
+        boolean validateIfCreated = validateIfUsersAccountCredentialsAreCorrect();
+
+        boolean weight = checkIfUserHasSuppliedWeightAndHeight();
 
         SessionManager sessionManager = new SessionManager(getApplicationContext());
 
         //If the user credentials are correct then current activity finishes
-        if (validateIfCreated ) {
+        if (validateIfCreated && weight) {
             //To prevent the user going back to the login screen.
             //Goes to the next activity for adding weight and height.
             createUserSession();
-            Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
-            startActivity(changeToWeightPage);
+            checkIfUserHasSuppliedWeightAndHeight();
+            Intent changeToDrinksCat = new Intent(this, DrinkCategory.class);
+            startActivity(changeToDrinksCat);
 
-        } else if(!validateIfCreated){
+        } else if (validateIfCreated && !weight) {
 
-             attempts--;
+            Intent changeToAddWeight = new Intent(this, Weight_and_Height_Activity.class);
+            startActivity(changeToAddWeight);
 
-            numOfAttempts.setText("Attempts left: "+Integer.toString(attempts));
+        } else if (!validateIfCreated) {
 
-            if(attempts==0){
+            attempts--;
+
+            numOfAttempts.setText("Attempts left: " + Integer.toString(attempts));
+
+            if (attempts == 0) {
                 Intent changeToForgottenPage = new Intent(this, ForgottenPassword.class);
                 //Switches the activity to sign up.
                 startActivity(changeToForgottenPage);
@@ -243,8 +247,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void resetAttempts(){
-        attempts=3;
+    public void resetAttempts() {
+        attempts = 3;
 
     }
 
@@ -286,7 +290,6 @@ public class MainActivity extends AppCompatActivity {
                     String validUserEmail = userInput.trim();
                     createToastWithText("Valid Email");
                     setEmailAddressField(validUserEmail);
-
 
 
                 } else if (!userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
@@ -347,35 +350,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private boolean validateIfUsersAccountCredentialsAreCorrect(){
+    private boolean validateIfUsersAccountCredentialsAreCorrect() {
         SessionManager sessionManager = new SessionManager(getApplicationContext());
-        boolean useLoggedIn=false;
+        boolean useLoggedIn = false;
         UsersDBHelper dbHelper = new UsersDBHelper(this);
         //Makes the database readable.
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         //SQL query uses the email and password passed to check if it matches the database equivalents
-        Cursor cursor = db.rawQuery("SELECT * FROM "+
-                UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getEmailAddressField()+"'"+" AND "+"" +
-                UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getPasswordField()+"'",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " +
+                UsersEntry.TABLE_NAME + " WHERE " + UsersEntry.COLUMN_USER_EMAIL + "=" + "'" + getEmailAddressField() + "'" + " AND " + "" +
+                UsersEntry.COLUMN_USER_PASSWORD + "=" + "'" + getPasswordField() + "'", null);
 
 
-        if(cursor.getCount()==1){
+        if (cursor.getCount() == 1) {
             createToastWithText("Account valid");
-            useLoggedIn=true;
+            useLoggedIn = true;
 
-        }else if(cursor.getCount()==0){
+        } else if (cursor.getCount() == 0) {
             createToastWithText("No such account");
-            useLoggedIn=false;
-
+            useLoggedIn = false;
 
 
         }
 
-        try{
+        try {
             //Prints whole query output, used for debugging if results are incorrect or sql query isn't right.
             Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
 
-        }finally {
+        } finally {
             //closes the cursor query.
             cursor.close();
         }
@@ -384,20 +386,26 @@ public class MainActivity extends AppCompatActivity {
         return useLoggedIn;
     }
 
-    private int getUserId(){
+    private int getUserId() {
         UsersDBHelper dbHelper = new UsersDBHelper(this);
         //Makes the database readable.
+        int num = 0;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor= db.rawQuery("SELECT "+UsersEntry._ID+" " +"FROM "+
-                UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getEmailAddressField()+"'"+" AND "+"" +
-                UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getPasswordField()+"'",null);
+        Cursor cursor = db.rawQuery("SELECT " + UsersEntry._ID + " " + "FROM " +
+                UsersEntry.TABLE_NAME + " WHERE " + UsersEntry.COLUMN_USER_EMAIL + "=" + "'" + getEmailAddressField() + "'" + " AND " + "" +
+                UsersEntry.COLUMN_USER_PASSWORD + "=" + "'" + getPasswordField() + "'", null);
+        //Bug: In program, before this logic from this source http://stackoverflow.com/questions/4396604/how-to-solve-cursorindexoutofboundsexception
+        //my code would return -1 index, becuase of the check, the code now doesn't throw the exception because it's handed.
+        // move to first, when no intial insertion of item caused the program to fail, this is why moveatoNEXT IS USED, if a user has been added.
+        if (cursor.getCount() >= 1) {
+            while (cursor.moveToNext()) {
+                num = Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID)));
 
-    cursor.moveToFirst();
+                createToastWithText("User ID FROM GET USERid" + num);
+                Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
 
-       int num = Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID)));
-
-        createToastWithText("User ID" +num);
-        Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
+            }
+        }
 
 
         db.close();
@@ -406,24 +414,54 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void createUserSession(){
+    private void createUserSession() {
         SessionManager sessionManager = new SessionManager(getApplicationContext());
 
         UsersDBHelper dbHelper = new UsersDBHelper(this);
         //Makes the database readable.
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         //SQL query uses the email and password passed to check if it matches the database equivalents
-        Cursor cursor = db.rawQuery("SELECT * FROM "+
-                UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getEmailAddressField()+"'"+" AND "+"" +
-                UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getPasswordField()+"'",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " +
+                UsersEntry.TABLE_NAME + " WHERE " + UsersEntry.COLUMN_USER_EMAIL + "=" + "'" + getEmailAddressField() + "'" + " AND " + "" +
+                UsersEntry.COLUMN_USER_PASSWORD + "=" + "'" + getPasswordField() + "'", null);
         //If the data returned from the query is 1 then the account exists.
-            cursor.moveToFirst();
+        cursor.moveToFirst();
         //Get the user ID
 
-            createToastWithText("session manager from create sesh method"+            sessionManager.createSessionForUser(getUserId(),getEmailAddressField()));
+        createToastWithText("session manager from create sesh method" + sessionManager.createSessionForUser(getUserId(), getEmailAddressField()));
 
         cursor.close();
 
+    }
+
+    private boolean checkIfUserHasSuppliedWeightAndHeight() {
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+        boolean userFilledInWeight = false;
+        UsersDBHelper dbHelper = new UsersDBHelper(this);
+        //Makes the database readable.
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor Weightcursor = db.rawQuery("SELECT * FROM " +
+                WeightContract.WeightEntry.TABLE_NAME + " WHERE "
+                + WeightContract.WeightEntry.USER_FK_REF + " = " + "'" + getUserId() + "'", null);
+
+        Weightcursor.moveToFirst();
+
+        Log.v("check wehgiht", DatabaseUtils.dumpCursorToString(Weightcursor));
+        if (Weightcursor.getCount() == 1) {
+            userFilledInWeight = true;
+            createToastWithText("User has filled in weight");
+        } else if (Weightcursor.getCount() == 0) {
+            createToastWithText("No Weight");
+            userFilledInWeight = false;
+        }
+
+        //select all from weight neyy where userID = getUesrId
+        //IF IT RETURNS A NUM then we're good! dd
+//        db.close();
+        Weightcursor.close();
+
+        createToastWithText("User weight + height" + userFilledInWeight);
+        return userFilledInWeight;
     }
 
 

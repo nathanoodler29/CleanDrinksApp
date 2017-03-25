@@ -210,9 +210,7 @@ public class ForgottenPassword extends AppCompatActivity {
         }
 
 
-
-        cursor.close();
-
+        db.close();
 
         //Returns whether the user is logged in i.e false means user doesn't have an account, while true then the user does.
 //        getUserId();]
