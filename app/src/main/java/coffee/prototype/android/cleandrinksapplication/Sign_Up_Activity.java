@@ -6,13 +6,19 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
@@ -22,6 +28,7 @@ import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersE
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
 
 import static coffee.prototype.android.cleandrinksapplication.R.id.password_address_sign_up_field;
+import static coffee.prototype.android.cleandrinksapplication.R.id.passwordstrength;
 
 public class Sign_Up_Activity extends AppCompatActivity {
     private EditText signUpEmailAddressInput;
@@ -35,6 +42,8 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
     private UsersDBHelper usersDBHelper;
 
+    private TextView passwordStrengthIndicator;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,11 @@ public class Sign_Up_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign__up_);
         signUpEmailAddressInput = (EditText) findViewById(R.id.email_address_sign_up_field);
         signUpPasswordInput = (EditText) findViewById(password_address_sign_up_field);
+        passwordStrengthIndicator = (TextView) findViewById(passwordstrength);
+
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
         //performs validation for the email field.
         validateEmailField();
         //performs validation for the password field.
@@ -52,6 +66,28 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.current_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        if (item.getItemId() == R.id.action_addgoal) {
+        //add goal intent here.
+            createToastWithText("Clicked add Goal ");
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     public String getUserEmail() {
         return userEmail;
@@ -180,18 +216,26 @@ public class Sign_Up_Activity extends AppCompatActivity {
                     //Error message is thrown
                     signUpPasswordInput.setError("Password must be longer than four characters");
                     checkNumberPassword = 0;
+                    passwordStrengthIndicator.setText("Password Strength: Weak");
+                    passwordStrengthIndicator.setBackgroundColor(Color.RED);
+
 
                     //Regex used from http://javarevisited.blogspot.co.uk/2012/10/regular-expression-example-in-java-to-check-String-number.html
                     //checks that at least a number is present in the string
                 } else if (!userInput.matches(".*\\d+.*")) {
                     //Error is thrown if the input of at least one number is added.
                     signUpPasswordInput.setError("Password Needs to contain 1 number");
+                    passwordStrengthIndicator.setText("Password Strength: Medium");
+                    passwordStrengthIndicator.setBackgroundColor(Color.YELLOW);
                     checkNumberPassword = 0;
 
+
                     //Regex used from http://javarevisited.blogspot.co.uk/2012/10/regular-expression-example-in-java-to-check-String-number.html
-                } else if (userInput.matches(".*\\d+.*")) {
+                } else if (userInput.matches(".*\\d+.*") ) {
                     //Toast is displayed to show a ps password.
                     createToastWithText("Valid Password");
+                    passwordStrengthIndicator.setText("Password Strength: Strong");
+                    passwordStrengthIndicator.setBackgroundColor(Color.GREEN);
                     //adds 1 to the number password.
                     checkNumberPassword += 1;
                     //removes any spaces in the password.
