@@ -21,6 +21,15 @@ public class Helper {
 
     }
 
+//    http://stackoverflow.com/questions/23780857/updating-an-edittext-with-espresso
+    public void pauseTestFor(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }
