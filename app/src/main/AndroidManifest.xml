@@ -3,6 +3,7 @@
     package="coffee.prototype.android.cleandrinksapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -64,6 +65,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".GoalActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
