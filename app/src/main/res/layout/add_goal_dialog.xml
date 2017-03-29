@@ -32,11 +32,81 @@
 
     </android.support.v7.widget.CardView>
 
+
     <android.support.v7.widget.CardView
         android:layout_width="400dp"
-        android:layout_height="350dp"
+        android:layout_height="450dp"
         android:layout_marginTop="70dp"
         android:foregroundGravity="center_horizontal">
+
+
+        <TextView
+            android:id="@+id/goal_active"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:text="How active are you?"
+            android:textSize="20sp"
+
+            />
+
+
+        <RadioGroup
+            android:id="@+id/radio_group_exercise"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+
+                android:id="@+id/low_radioButton"
+                style="@style/receipt_child_values"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:checked="false"
+
+                android:onClick="onCheckboxClickedDialog"
+                android:text="Low"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/moderate_radioButton"
+                style="@style/receipt_child_values"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:checked="false"
+                android:onClick="onCheckboxClickedDialog"
+                android:text="Moderate"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/high_radioButton"
+                style="@style/receipt_child_values"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+
+                android:layout_weight="2"
+                android:checked="false"
+                android:onClick="onCheckboxClickedDialog"
+                android:text="High"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <View
+            android:id="@+id/divider_between_radio_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="110dp"
+            android:background="@color/black">
+
+        </View>
 
 
         <TextView
@@ -46,12 +116,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="20dp"
-            android:text="How much water today?"
+            android:paddingTop="130dp"
+            android:text="Water target for today?"
             android:textSize="20sp"
 
             />
-
 
         <EditText
             android:id="@+id/numberOfLitres"
@@ -59,65 +128,75 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="160dp"
             android:hint="example 1.5 litres"
             android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:maxLines="1"
             android:textAlignment="center"
-
-
             />
 
-
         <View
-            android:id="@+id/divider"
+            android:id="@+id/divider_for_water_target"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="220dp"
             android:background="@color/black">
 
         </View>
 
+
         <TextView
-            android:id="@+id/time_entry"
+            android:id="@+id/time_entry_title"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="130dp"
+            android:paddingTop="230dp"
             android:text="Duration of goal?"
             android:textSize="20sp"
 
             />
 
         <EditText
-            android:id="@+id/endtime"
+            android:id="@+id/start_time_field"
             style="@style/Heading_font"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="160dp"
-            android:hint="start time: 15:30"
-
-            android:inputType="numberDecimal"
+            android:layout_marginTop="260dp"
+            android:hint="Type now for current time"
+            android:inputType="textNoSuggestions"
             android:textAlignment="center"
+            android:maxLines="1"
+            android:maxLength="5"
 
 
             />
 
         <EditText
-            android:id="@+id/starttime"
+            android:id="@+id/end_time_field"
             style="@style/Heading_font"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="310dp"
             android:hint="end time: 17:30"
-            android:inputType="numberDecimal"
+            android:inputType="textNoSuggestions"
             android:textAlignment="center"
 
 
             />
+
+        <View
+            android:id="@+id/divider_for_button"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="370dp"
+            android:background="@color/black">
+
+        </View>
 
 
         <Button
@@ -128,7 +207,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="275dp"
+            android:layout_marginTop="385dp"
             android:background="@drawable/circle_red_button"
             android:contentDescription="@string/goal_remove_button_content_description"
             android:text="x"
@@ -144,7 +223,7 @@
             android:layout_gravity="right"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="275dp"
+            android:layout_marginTop="385dp"
             android:background="@drawable/circle_green_button"
             android:contentDescription=""
             android:text="√"
