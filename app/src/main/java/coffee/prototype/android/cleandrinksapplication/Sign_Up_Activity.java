@@ -44,6 +44,16 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
     private TextView passwordStrengthIndicator;
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    private int num;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +201,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
             }
 
             //Text watcher, monitors what text is typed by the user
-
+            //ref of password strength code https://www.tutorialspoint.com/android/android_login_screen.htm
             @Override
             public void afterTextChanged(Editable s) {
                 //Converts the input from a user
@@ -261,7 +271,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
     public void createToastWithText(String toastText) {
         Context context = getApplicationContext();
         //Toast only is displayed for a small peroid of time
-        int duration = Toast.LENGTH_SHORT;
+        int duration = Toast.LENGTH_LONG;
         //Creates the toast with the text passed.
         Toast toast = Toast.makeText(context, toastText, duration);
         toast.show();
@@ -364,17 +374,15 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
         //INSERT SESSION HERE
         SessionManager sessionManager = new SessionManager(getApplicationContext());
-//
+
+//        createToastWithText("User id being added to the sesh"+getUserId());
         String session = sessionManager.createSessionForUser(getUserId(),email);
-        createToastWithText("Created session"+session);
-        createToastWithText("Created sesh"+String.valueOf(sessionManager.checkIfUserIsLoggedin()));
+
+        createToastWithText("Session actual  :" +session);
 
 
 
-//        sessionManager.deleteSession();
-//        createToastWithText("deleted sesh"+String.valueOf(sessionManager.checkIfUserIsLoggedin()));
-//
-//        createToastWithText("Deleted session");
+
 
         Log.v("sign up activity", "new row id" + newRowId);
 
@@ -396,23 +404,27 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
         private int getUserId(){
             UsersDBHelper dbHelper = new UsersDBHelper(this);
+             num = 0;
+
             //Makes the database readable.
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             Cursor cursor= db.rawQuery("SELECT "+UsersEntry._ID+" " +"FROM "+
                     UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getUserEmail()+"'"+" AND "+"" +
                     UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getUserPassword()+"'",null);
+            if (cursor.getCount() >= 1) {
+                while (cursor.moveToNext()) {
+                     setNum(Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID))));
 
-            cursor.moveToFirst();
+                    createToastWithText("User ID FROM GET USERid" + num);
+                    Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
 
-            int num = Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID)));
-
-            createToastWithText("User ID" +num);
-            Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
+                }
+            }
 
 
             db.close();
-            return num;
 
+            return num;
 
         }
 }

@@ -8,6 +8,8 @@ buildscript {
 
     repositories {
         jcenter()
+        maven { url 'http://www.joda.org/joda-time/' }
+
 
     }
     dependencies {

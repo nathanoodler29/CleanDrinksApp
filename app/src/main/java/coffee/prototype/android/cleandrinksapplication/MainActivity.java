@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
     //References the facebook login button for SSO.
     private LoginButton loginButton;
 
+
     //handles facebook fragment
     CallbackManager callbackManager;
 
+    // TODO: 28/03/2017 need to use a regex checker that's more summarised as the code is just too much atm;
 
     private UsersDBHelper usersDBHelper;
 
@@ -48,11 +50,13 @@ public class MainActivity extends AppCompatActivity {
     private String passwordFiled;
 
 
-    private EditText emailAddressInput;
     private EditText passwordInput;
+    private EditText emailAddressInput;
 
     private TextView numOfAttempts;
     private int attempts = 3;
+
+    ActivityHelper activityHelper = new ActivityHelper();
 
 
     @Override
@@ -77,11 +81,13 @@ public class MainActivity extends AppCompatActivity {
         createFacebookLoginButton();
         //Allows the single sign on to occur for a user.
         facebookLoginHandler();
+
         validateEmailField();
         validatePasswordField();
 
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -221,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
             checkIfUserHasSuppliedWeightAndHeight();
             Intent changeToDrinksCat = new Intent(this, DrinkCategory.class);
             startActivity(changeToDrinksCat);
-
+        //// FIXME: 30/03/2017 The sign in always goes to weight page!
         } else if (validateIfCreated && !weight) {
 
             Intent changeToAddWeight = new Intent(this, Weight_and_Height_Activity.class);
@@ -285,7 +291,8 @@ public class MainActivity extends AppCompatActivity {
                     emailAddressInput.setError("Special characters can't be used");
 
 //                Regex from Google regex checker
-                } else if (userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
+                }
+                if (userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
                     checkNumberEmail += 1;
                     String validUserEmail = userInput.trim();
                     createToastWithText("Valid Email");
@@ -401,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 num = Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID)));
 
-                createToastWithText("User ID FROM GET USERid" + num);
+//                createToastWithText("User ID FROM GET USERid" + num);
                 Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
 
             }
@@ -435,7 +442,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean checkIfUserHasSuppliedWeightAndHeight() {
-        SessionManager sessionManager = new SessionManager(getApplicationContext());
         boolean userFilledInWeight = false;
         UsersDBHelper dbHelper = new UsersDBHelper(this);
         //Makes the database readable.
@@ -447,11 +453,12 @@ public class MainActivity extends AppCompatActivity {
         Weightcursor.moveToFirst();
 
         Log.v("check wehgiht", DatabaseUtils.dumpCursorToString(Weightcursor));
+        createToastWithText("Weight:"+Weightcursor);
         if (Weightcursor.getCount() == 1) {
             userFilledInWeight = true;
-            createToastWithText("User has filled in weight");
+//            createToastWithText("User has filled in weight");
         } else if (Weightcursor.getCount() == 0) {
-            createToastWithText("No Weight");
+//            createToastWithText("No Weight");
             userFilledInWeight = false;
         }
 
@@ -460,9 +467,10 @@ public class MainActivity extends AppCompatActivity {
 //        db.close();
         Weightcursor.close();
 
-        createToastWithText("User weight + height" + userFilledInWeight);
+//        createToastWithText("User weight + height" + userFilledInWeight);
         return userFilledInWeight;
     }
+
 
 
 }

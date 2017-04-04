@@ -200,8 +200,8 @@ public class ForgottenPassword extends AppCompatActivity {
                     + UsersContract.UsersEntry.COLUMN_USER_PASSWORD + "=" + "'" + getPasswordField() + "'" +
                     " WHERE " + UsersContract.UsersEntry.COLUMN_USER_EMAIL + " =" + "'" + getEmailAddressField() + "'", null);
 
+            createToastWithText("Update password"+DatabaseUtils.dumpCursorToString(updateCursor));
             updateCursor.close();
-
         } else if (cursor.getCount() == 0) {
             createToastWithText("Email doesn't exist, either re-type email or tap remember password");
             userExists = false;
@@ -209,11 +209,11 @@ public class ForgottenPassword extends AppCompatActivity {
 
         }
 
+        cursor.close();
 
         db.close();
 
         //Returns whether the user is logged in i.e false means user doesn't have an account, while true then the user does.
-//        getUserId();]
 
         return userExists;
     }
@@ -224,8 +224,9 @@ public class ForgottenPassword extends AppCompatActivity {
         if (updatePassword()) {
             Intent loginActivity = new Intent(this, MainActivity.class);
             //Switches the activity to sign up.
-            finish();
             startActivity(loginActivity);
+//            finish();
+
             checkData();
 
         } else if (!updatePassword()) {
@@ -252,7 +253,7 @@ public class ForgottenPassword extends AppCompatActivity {
 
         Log.v("data after", DatabaseUtils.dumpCursorToString(cursor));
 
-
+        createToastWithText("check data of user name password"+DatabaseUtils.dumpCursorToString(cursor));
         cursor.close();
 
     }

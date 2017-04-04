@@ -19,4 +19,5 @@ public class DrinksCategoryTypes extends AppCompatActivity {
         //Switches the activity to sign up.
         startActivity(changeToWineCategoryPage);
     }
+
 }

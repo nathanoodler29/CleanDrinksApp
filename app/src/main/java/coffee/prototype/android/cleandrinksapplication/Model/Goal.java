@@ -1,21 +1,36 @@
 package coffee.prototype.android.cleandrinksapplication.Model;
 
+import java.util.Date;
+
 /**
  * created by Noodle on 28/03/2017.
  */
 
 public class Goal {
 
-    private String waterGoal;
+    private double waterGoal;
     private int exerciseLevels;
+    private String endTimeGoal;
     private String startTimeGoal;
 
+    public double getExpectedWaterGoal() {
+        return expectedWaterGoal;
+    }
 
-    public String getWaterGoal() {
+    public double setExpectedWaterGoal(double expectedWaterGoal) {
+        this.expectedWaterGoal = expectedWaterGoal;
+        return expectedWaterGoal;
+    }
+
+    private double expectedWaterGoal;
+
+
+
+    public double getWaterGoal() {
         return waterGoal;
     }
 
-    public void setWaterGoal(String waterGoal) {
+    public void setWaterGoal(double waterGoal) {
         this.waterGoal = waterGoal;
     }
 
@@ -31,8 +46,9 @@ public class Goal {
         return startTimeGoal;
     }
 
-    public void setStartTimeGoal(String startTimeGoal) {
+    public String setStartTimeGoal(String startTimeGoal) {
         this.startTimeGoal = startTimeGoal;
+        return startTimeGoal;
     }
 
     public String getEndTimeGoal() {
@@ -43,7 +59,6 @@ public class Goal {
         this.endTimeGoal = endTimeGoal;
     }
 
-    private String endTimeGoal;
 
 
 
