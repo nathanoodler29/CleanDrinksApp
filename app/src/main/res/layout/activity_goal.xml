@@ -86,47 +86,78 @@
     </android.support.v7.widget.CardView>
 
 
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/goals"-->
-        <!--android:layout_width="400dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_below="@+id/create_a_goal"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:foregroundGravity="center_horizontal"-->
-        <!--&gt;-->
+    <android.support.v7.widget.CardView
+        android:id="@+id/goals"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/create_a_goal"
+        android:layout_marginTop="10dp"
+        android:foregroundGravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        >
 
 
-        <!--<TextView-->
-            <!--android:id="@+id/goal_heading_value"-->
-            <!--style="@style/receipt_child_values"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginTop="12dp"-->
-            <!--android:text="@string/goal_placeholder_text"-->
-            <!--android:textSize="22sp"-->
+        <TextView
+            android:id="@+id/displayrecord"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:layout_marginTop="12dp"
+            android:textSize="22sp"
 
-            <!--/>-->
+            />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/goal_icon"-->
-            <!--android:layout_width="39dp"-->
-            <!--android:layout_height="39dp"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginEnd="70dp"-->
-            <!--android:layout_marginRight="70dp"-->
-            <!--android:layout_marginTop="6dp"-->
-            <!--android:contentDescription="@string/goal_target_image_content_description"-->
-            <!--android:foregroundGravity="center_horizontal"-->
-            <!--android:src="@drawable/goal_icon" />-->
+        <!--android:text="@string/goal_placeholder_text"-->
 
-        <!--<CheckBox-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="end"-->
-            <!--android:layout_marginTop="10dp" />-->
+
+        <ImageView
+            android:id="@+id/goal_icon"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="6dp"
+            android:contentDescription="@string/goal_target_image_content_description"
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/goal_icon" />
+
+        <CheckBox
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp" />
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+    <!--<Button-->
+        <!--android:id="@+id/adddrinkgoal"-->
+        <!--style="@style/receipt_child_values"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginLeft="200dp"-->
+        <!--android:layout_marginStart="200dp"-->
+        <!--android:layout_toEndOf="@+id/remove_drink_goal"-->
+        <!--android:layout_toRightOf="@+id/remove_drink_goal"-->
+        <!--android:background="@drawable/circle_green_button"-->
+        <!--android:contentDescription="@string/goal_add_button_content_description"-->
+        <!--android:text="@string/goal_add_button_icon_text"-->
+        <!--android:textSize="28sp"-->
+
+
+        <!--/>-->
+
+
 
     <!--</android.support.v7.widget.CardView>-->
 
@@ -160,9 +191,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="600dp"
+        android:onClick="closeAddGoalActivity"
 
         />
-    <!--android:drawableTop="@drawable/removetrash"-->
+
+
 
 </RelativeLayout>
 

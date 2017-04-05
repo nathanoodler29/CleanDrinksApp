@@ -309,6 +309,15 @@ public class addgoal extends AppCompatActivity {
 
                 } else if (goal.getWaterGoal() > 0.00 && goal.getStartTimeGoal() != null && goal.getEndTimeGoal() != null) {
                     createToastWithText("Water goal is valid and times are valid:)");
+                    //make it so you can ust do goal new(get,get,get,get);
+
+                    Context context = getApplicationContext();
+                  String userID = String.valueOf(activityHelper.getUserId(context));
+                    activityHelper.addGoalToGoalTable(context,userID,goal.getWaterGoal(),goal.getStartTimeGoal(),goal.getEndTimeGoal());
+
+                    activityHelper.checkIfDataHasBeenAddedToDb(context);
+                    //    public void addGoalToGoalTable(Context context,String userID, double waterGoal, String startTime, String endTime){
+
 
                     if (timeHandler.validateDates(goal.getStartTimeGoal(), goal.getEndTimeGoal())) {
                         createToastWithText("Dates are valid:)");
@@ -338,6 +347,8 @@ public class addgoal extends AppCompatActivity {
             }
         });
     }
+
+
 
 }
 

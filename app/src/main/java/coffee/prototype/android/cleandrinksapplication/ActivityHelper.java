@@ -1,5 +1,6 @@
 package coffee.prototype.android.cleandrinksapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import coffee.prototype.android.cleandrinksapplication.Model.User;
+import coffee.prototype.android.cleandrinksapplication.data.GoalContract;
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract;
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
@@ -152,6 +154,54 @@ public class ActivityHelper {
 
 
     }
+    
+    //// TODO: 04/04/2017  Need to add progress table.
+    public void addGoalToGoalTable(Context context,String userID, double waterGoal, String startTime, String endTime){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(GoalContract.GoalEntry.USER_FK_REF,userID);
+
+        contentValues.put(GoalContract.GoalEntry.COLUMN_Water_Target,waterGoal);
+        contentValues.put(GoalContract.GoalEntry.COLUMN_START_TIME,startTime);
+        contentValues.put(GoalContract.GoalEntry.COLUMN_END_TIME,endTime);
+
+        long newRowId = db.insert(GoalContract.GoalEntry.TABLE_NAME, null, contentValues);
+        //Log cat used to show that a database insertion is occuring.
+        Log.v("Weight up activity", "new row id" + newRowId);
+
+
+
+
+        db.close();
+
+    }
+
+    public String checkIfDataHasBeenAddedToDb(Context context){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        String value = null;
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME, null);
+        createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
+        if (cursor != null) {
+            value = String.valueOf(cursor.getCount());
+
+            cursor.moveToFirst();
+        }
+
+//      String waterTarget = String.valueOf(cursor.getColumnIndex(GoalContract.GoalEntry.COLUMN_Water_Target));
+//
+
+        db.close();
+
+        return value;
+    }
+
+
 
 
 }
