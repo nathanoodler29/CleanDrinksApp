@@ -9,7 +9,7 @@ import coffee.prototype.android.cleandrinksapplication.ActivityHelper;
 
 import static java.lang.String.valueOf;
 
-/**
+/**CFGF
  * created by Noodle on 04/04/2017.
  */
 
@@ -57,11 +57,12 @@ public class TimeHandler {
         start.getYear();
         boolean resultOfDate = start.toLocalDate().isEqual(end.toLocalDate());
 
+        String validateIfNegativeDifference = String.valueOf(hourDifference);
         end.getYear();
 
         getYearAndMonth();
         //add a check for year!
-        if (start.isBefore(end) && !start.isAfter(end) && hourDifference >= 1 && !start.equals(end) && resultOfDate) {
+        if (start.isBefore(end) && !start.isAfter(end) && hourDifference >= 1 && !validateIfNegativeDifference.contains("-") && !start.equals(end) && resultOfDate) {
             activityHelper.createToastWithText("Start time is before end time, whcih is valid");
             dateCheck = true;
         } else if (start.equals(end)) {
@@ -86,6 +87,10 @@ public class TimeHandler {
 
         } else if (!resultOfDate) {
             activityHelper.createToastWithText("Dates don't match");
+        }else if(validateIfNegativeDifference.contains("-")){
+            activityHelper.createToastWithText("Can't have a negative difference");
+            dateCheck = false;
+
         }
 
         return dateCheck;

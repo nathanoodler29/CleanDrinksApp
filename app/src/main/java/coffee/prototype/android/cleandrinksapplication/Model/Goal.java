@@ -1,7 +1,5 @@
 package coffee.prototype.android.cleandrinksapplication.Model;
 
-import java.util.Date;
-
 /**
  * created by Noodle on 28/03/2017.
  */
@@ -12,6 +10,12 @@ public class Goal {
     private int exerciseLevels;
     private String endTimeGoal;
     private String startTimeGoal;
+
+
+    private int userIDFk;
+
+
+    private int goalID;
 
     public double getExpectedWaterGoal() {
         return expectedWaterGoal;
@@ -24,6 +28,18 @@ public class Goal {
 
     private double expectedWaterGoal;
 
+    public Goal() {
+
+    }
+
+
+    public Goal(double waterGoal) {
+//                this.goalID = goalID;
+        this.waterGoal = waterGoal;
+//                this.startTimeGoal = startTimeGoal;
+//                this.endTimeGoal = endTimeGoal;
+
+    }
 
 
     public double getWaterGoal() {
@@ -63,3 +79,6 @@ public class Goal {
 
 
 }
+
+
+
