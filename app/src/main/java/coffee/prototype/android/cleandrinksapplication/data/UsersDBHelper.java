@@ -14,7 +14,7 @@ import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersE
 
 public class UsersDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "userdetails.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     public UsersDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -102,6 +102,24 @@ public class UsersDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_GOAL_PROGRESS_TABLE);
 
 
+        //Drinks Category table
+
+        String SQL_CREATE_DRINKS_CATEGORY_TABLE = "CREATE TABLE " + DrinksContract.DrinksCategoryEntry.TABLE_NAME + "("
+                + DrinksContract.DrinksCategoryEntry.DRINKS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DrinksContract.DrinksCategoryEntry.DRINK_NAME + " TEXT NOT NULL, "
+                + DrinksContract.DrinksCategoryEntry.DRINK_TYPE + " TEXT NOT NULL, "
+                //don't think it makes sense for it to be a double.
+                + DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME + " INTEGER NOT NULL, "
+
+                + DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT + " REAL NOT NULL);";
+
+
+        //Log cat, can check whether the table has been created.
+        Log.v("Creating drinks table", "drinks cat table");
+        //Exectures nq the creation of the user table.
+        db.execSQL(SQL_CREATE_DRINKS_CATEGORY_TABLE);
+
+
     }
 
     /**
@@ -118,6 +136,8 @@ public class UsersDBHelper extends SQLiteOpenHelper {
         String SQL_DROP_WEIGHT_TABLE;
         String SQL_DROP_GOAL_TABLE;
         String SQL_DROP_GOAL_PROGRESS_TABLE;
+        String SQL_DROP_DRINK_CATEGORY_TABLE;
+
 
         SQL_DROP_USER_TABLE = "DROP TABLE IF EXISTS " + UsersEntry.TABLE_NAME;
         Log.v("User table exists", "Dropping table");
@@ -140,6 +160,11 @@ public class UsersDBHelper extends SQLiteOpenHelper {
 
 
         db.execSQL(SQL_DROP_GOAL_PROGRESS_TABLE);
+
+        SQL_DROP_DRINK_CATEGORY_TABLE = "DROP TABLE IF EXISTS " + DrinksContract.DrinksCategoryEntry.TABLE_NAME;
+        Log.v("Drink cat table exists", "Dropping drink table");
+
+        db.execSQL(SQL_DROP_DRINK_CATEGORY_TABLE);
 
         //Creates the entire database.
         onCreate(db);
