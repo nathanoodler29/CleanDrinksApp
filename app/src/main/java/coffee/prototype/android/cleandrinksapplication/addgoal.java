@@ -146,7 +146,7 @@ public class addgoal extends AppCompatActivity {
 
                     numOfLitres.setError("Special characters can't be used");
 
-                } else if (userInput.matches("0(.)[2-9][0-9]") | userInput.matches("[1-5](.)[0-9][0-9]")) {
+                } else if (userInput.matches("0(.)[2-9][0-9]") | userInput.matches("[1-9](.)[0-9][0-9]")) {
                     String waterGoal = userInput.trim();
                     double userWaterGoal = Double.parseDouble(waterGoal);
 
@@ -157,7 +157,7 @@ public class addgoal extends AppCompatActivity {
                         goal.setWaterGoal(userWaterGoal);
                     }
 
-                } else if (!userInput.matches("0(.)[2-9][0-9]") | !userInput.matches("[1-5](.)[0-9][0-9]")) {
+                } else if (!userInput.matches("0(.)[2-9][0-9]") | !userInput.matches("[1-9](.)[0-9][0-9]")) {
                     numOfLitres.setError("Invalid water measurement");
                 }
             }
@@ -322,6 +322,10 @@ public class addgoal extends AppCompatActivity {
                     Context context = getApplicationContext();
                     String userID = String.valueOf(activityHelper.getUserId(context));
                     activityHelper.addGoalToGoalTable(context, userID, goal.getWaterGoal(), goal.getStartTimeGoal(), goal.getEndTimeGoal());
+
+                    Intent changeToGoalMainPage = new Intent(getApplicationContext(), GoalActivity.class);
+                    //Switches the activity to sign up.
+                    startActivity(changeToGoalMainPage);
 //                    ad.setAdatper(goals);
 
 //                    activityHelper.checkIfDataHasBeenAddedToDb(getApplicationContext());
