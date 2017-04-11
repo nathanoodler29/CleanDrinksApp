@@ -13,43 +13,15 @@ import android.view.View;
 
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 
-public class DrinkCategory extends AppCompatActivity {
+public class Drinks_Category_Types_Caffeine extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drink__category);
+        setContentView(R.layout.activity_drinks__category__types__caffeine);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-
     }
-
-
-    public void moveToAlcoholCategory(View view){
-
-        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibe.vibrate(100);
-
-        Intent changeToDrinksCategoryAlcohol = new Intent(this, DrinksCategoryTypes.class);
-        //Switches the activity to sign up.
-        startActivity(changeToDrinksCategoryAlcohol);
-
-
-
-    }
-
-    public void moveToCaffineCategory(View view){
-        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibe.vibrate(100);
-
-        Intent changeToDrinksCategoryAlcohol = new Intent(this,Drinks_Category_Types_Caffeine.class);
-        //Switches the activity to sign up.
-        startActivity(changeToDrinksCategoryAlcohol);
-
-
-
-    }
-
 
 
     @Override
@@ -74,7 +46,13 @@ public class DrinkCategory extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void changeToCaffieneTypePage(View view){
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+
+        Intent changeToCaffineDisplayCat = new Intent(this,Caffine_Activity_Listing_Coffee_Based_Types.class);
+        //Switches the activity to sign up.
+        startActivity(changeToCaffineDisplayCat);
+    }
 }
-
-
-

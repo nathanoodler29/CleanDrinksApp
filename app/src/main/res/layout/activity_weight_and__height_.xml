@@ -97,8 +97,8 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
             android:maxLength="3"
             android:singleLine="true"
             android:imeOptions="actionNext"
-
-
+            android:hint="@string/weight_height_weight_hint_text"
+            android:inputType="number"
             tools:ignore="Deprecated" />
 
         <TextView
@@ -108,8 +108,9 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
             android:layout_marginTop="162dp"
             android:layout_gravity="center_horizontal"
             style="@style/receipt_child_values"
+            android:layout_marginStart="35dp"
             android:layout_marginLeft="35dp"
-            android:text="KG"/>
+            android:text="@string/weight_height_weight_unit"/>
 
 
         <View
@@ -120,8 +121,6 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
             android:background="@color/lightGrey">
 
         </View>
-
-
 
 
         <Button
@@ -142,7 +141,7 @@ tools:context="coffee.prototype.android.cleandrinksapplication.Weight_and_Height
             style="@style/receipt_child_values"
             android:maxLength="4"
             android:maxLines="1"
-            android:hint="Example  Height 5ft11"
+            android:hint="@string/weight_height_example_height_hint"
             android:singleLine="true"
             android:imeOptions="actionDone"
             tools:ignore="Deprecated"

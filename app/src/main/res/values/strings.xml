@@ -200,16 +200,48 @@
 
     <string name="weight_height_activity_sub_heading">Please enter weight and height.</string>
 
+    <string name="weight_height_weight_hint_text">"E.g 25"</string>
+
+    <string name="weight_height_weight_unit">KG"</string>
+
+
     <string name="weight_height_activity_weight_hint"> Weight </string>
 
 
     <string name="weight_height_activity_height_hint"> Height </string>
+
+    <string name="weight_height_example_height_hint">Example  Height 5ft11""</string>
 
     <string name="weight_height_activity_height_image_content_description">Image of a weight lifter</string>
 
     <string name="next_button_text">Next</string>
 
 
+    <string name="add_a_goal_heading">Set a goal</string>
+
+    <string name="add_a_goal_active_heading">How active are you?</string>
+
+    <string name="add_a_goal_active_radio_text_low">Low</string>
+
+    <string name="add_a_goal_active_radio_text_med">Moderate</string>
+
+    <string name="add_a_goal_active_radio_text_high">High</string>
+
+    <string name="add_a_goal_active_water_goal_heading">Water target for today?</string>
+
+    <string name="add_a_goal_duration_water_goal_heading">Duration of goal?</string>
+
+
+    <string name="add_a_goal_start_time_hint_text">Type now for current time</string>
+
+
+    <string name="add_a_goal_end_time_hint_text">end time: 17:30</string>
+
+    <string name="add_a_goal_cancel_cross_icon">x</string>
+
+    <string name="add_a_goal_add_plus_icon">√</string>
+
+    <string name="drinks_cat_red_wine_heading">Red Wine</string>
     <string-array name="weight_units">
         <item>Kg</item>
         <item>Stone</item>

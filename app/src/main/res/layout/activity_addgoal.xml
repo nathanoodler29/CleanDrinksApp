@@ -11,7 +11,7 @@
 
 
     <android.support.v7.widget.CardView
-        android:id="@+id/setagoal"
+        android:id="@+id/setagoal_card_heading"
         android:layout_width="400dp"
         android:layout_height="75dp"
         android:layout_marginLeft="10dp"
@@ -22,14 +22,14 @@
 
 
         <TextView
-            android:id="@+id/goalparentheadingdialog"
+            android:id="@+id/setagoal_card_title"
             style="@style/Heading_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="Set a goal"
+            android:text="@string/add_a_goal_heading"
             android:textSize="25sp"
 
 
@@ -49,14 +49,14 @@
 
 
         <TextView
-            android:id="@+id/goal_active"
+            android:id="@+id/addgoal_active"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="How active are you?"
+            android:text="@string/add_a_goal_active_heading"
             android:textSize="20sp"
 
             />
@@ -80,7 +80,7 @@
                 android:checked="false"
 
                 android:onClick="onCheckboxClickedDialog"
-                android:text="Low"
+                android:text="@string/add_a_goal_active_radio_text_low"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -91,7 +91,7 @@
                 android:layout_weight="2"
                 android:checked="false"
                 android:onClick="onCheckboxClickedDialog"
-                android:text="Moderate"
+                android:text="@string/add_a_goal_active_radio_text_med"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -103,7 +103,7 @@
                 android:layout_weight="2"
                 android:checked="false"
                 android:onClick="onCheckboxClickedDialog"
-                android:text="High"
+                android:text="@string/add_a_goal_active_radio_text_high"
                 android:textSize="20sp" />
         </RadioGroup>
 
@@ -125,7 +125,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="130dp"
-            android:text="Water target for today?"
+            android:text="@string/add_a_goal_active_water_goal_heading"
             android:textSize="20sp"
 
             />
@@ -161,7 +161,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="230dp"
-            android:text="Duration of goal?"
+            android:text="@string/add_a_goal_duration_water_goal_heading"
             android:textSize="20sp"
 
             />
@@ -173,7 +173,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="260dp"
-            android:hint="Type now for current time"
+            android:hint="@string/add_a_goal_start_time_hint_text"
             android:inputType="textNoSuggestions"
             android:maxLines="1"
             android:textAlignment="center"
@@ -188,7 +188,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="310dp"
-            android:hint="end time: 17:30"
+            android:hint="@string/add_a_goal_end_time_hint_text"
             android:inputType="textNoSuggestions"
             android:textAlignment="center"
 
@@ -210,14 +210,18 @@
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
+            android:layout_marginEnd="10dp"
             android:layout_marginLeft="20dp"
+
             android:layout_marginRight="10dp"
+            android:layout_marginStart="20dp"
+
             android:layout_marginTop="385dp"
             android:background="@drawable/circle_red_button"
             android:contentDescription="@string/goal_remove_button_content_description"
             android:onClick="cancelButton"
-            android:text="x"
+            android:text="@string/add_a_goal_cancel_cross_icon"
             android:textSize="28sp"
 
             />
@@ -227,13 +231,18 @@
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
             android:layout_marginLeft="20dp"
+
             android:layout_marginRight="10dp"
+            android:layout_marginStart="20dp"
+
             android:layout_marginTop="385dp"
             android:background="@drawable/circle_green_button"
             android:contentDescription=""
-            android:text="√"
+            android:text="@string/add_a_goal_add_plus_icon"
+
             android:textSize="28sp">
 
         </Button>

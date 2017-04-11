@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="coffee.prototype.android.cleandrinksapplication.Caffine_Activity_Listing_Coffee_Based_Types">
+
+
+    <include
+        android:id="@+id/email_address_card"
+        layout="@layout/toolbargeneric" />
+
+
+    <android.support.v7.widget.CardView
+
+        android:id="@+id/caffeine_sub_cat_espresso"
+        android:layout_width="400dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="90dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/espressoColor"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="ESPRESSO BASED DRINKS"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/invisible_button_to_alcohol_sub_cat_inside_image_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="listDrinks" />
+
+        <ImageView
+            android:id="@+id/tea_card_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:contentDescription=""
+            android:src="@drawable/espresso_based_drinks" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/alcohol_sub_cat_beer"
+        android:layout_width="400dp"
+        android:layout_height="140dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        android:layout_below="@+id/caffeine_sub_cat_espresso"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/coffeeColor">
+
+        <TextView
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="BLACK COFFEE BASED DRINKS"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/beer_card_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:contentDescription=""
+            android:src="@drawable/black_coffee_based_drinks" />
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

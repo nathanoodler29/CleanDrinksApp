@@ -1,8 +1,10 @@
 package coffee.prototype.android.cleandrinksapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -83,13 +85,20 @@ public class GoalActivity extends AppCompatActivity {
 
 
     public void openAddGoalActivity(View view) {
+
         addGoalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //http://stackoverflow.com/questions/20149415/vibrate-onclick
+                Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
                 Intent changeToAddGoalActivity = new Intent(getApplicationContext(), addgoal.class);
                 //Switches the activity to sign up.
                 startActivity(changeToAddGoalActivity);
                 helper.createToastWithText("Add a Goal!");
+                vibe.vibrate(100);
+
+
             }
         });
 

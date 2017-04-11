@@ -60,15 +60,15 @@
     <android.support.v7.widget.CardView
 
         android:id="@+id/water_monitor_logo_banner"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
 
 
         android:layout_width="380dp"
         android:layout_height="430dp"
-        android:layout_below="@+id/goal_heading_card"
         android:foregroundGravity="center_horizontal"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        android:layout_below="@+id/goal_heading_card"
+        android:layout_alignLeft="@+id/goal_heading_card"
+        android:layout_alignStart="@+id/goal_heading_card">
 
 
         <TextView
@@ -151,11 +151,6 @@
             android:textSize="20sp" />
 
 
-
-
-
-
-        <!--https://developers.google.com/identity/sign-in/android/sign-in Implement this properly -->
 
         <Button
             android:id="@+id/sign_up_button"

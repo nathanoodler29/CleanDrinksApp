@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_logout) {
             sessionManager.deleteSession();
             createToastWithText("Successfully logged out");
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -190,13 +192,15 @@ public class MainActivity extends AppCompatActivity {
      * @param view Relates to the current activity view.
      */
     public void openSignUpActivity(View view) {
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+
         //Creates an intent related to the sign up activity.
         SessionManager sessionManager = new SessionManager(getApplicationContext());
 //
         if (sessionManager.checkIfUserIsLoggedin().equals("User is  logged in")) {
             createToastWithText("You're already signed in, please sign out.");
         } else {
-
             Intent changeToSignUpPage = new Intent(this, Sign_Up_Activity.class);
             //Switches the activity to sign up.
             startActivity(changeToSignUpPage);
@@ -212,6 +216,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void openWeightActivityAfterCorrectSignOn(View view) {
 
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
 
         boolean validateIfCreated = validateIfUsersAccountCredentialsAreCorrect();
 
@@ -227,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
             checkIfUserHasSuppliedWeightAndHeight();
             Intent changeToDrinksCat = new Intent(this, DrinkCategory.class);
             startActivity(changeToDrinksCat);
-        //// FIXME: 30/03/2017 The sign in always goes to weight page!
+            //// FIXME: 30/03/2017 The sign in always goes to weight page!
         } else if (validateIfCreated && !weight) {
 
             Intent changeToAddWeight = new Intent(this, Weight_and_Height_Activity.class);
@@ -453,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
         Weightcursor.moveToFirst();
 
         Log.v("check wehgiht", DatabaseUtils.dumpCursorToString(Weightcursor));
-        createToastWithText("Weight:"+Weightcursor);
+        createToastWithText("Weight:" + Weightcursor);
         if (Weightcursor.getCount() == 1) {
             userFilledInWeight = true;
 //            createToastWithText("User has filled in weight");
@@ -470,7 +476,6 @@ public class MainActivity extends AppCompatActivity {
 //        createToastWithText("User weight + height" + userFilledInWeight);
         return userFilledInWeight;
     }
-
 
 
 }

@@ -5,14 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.User;
 import coffee.prototype.android.cleandrinksapplication.data.GoalContract;
+import coffee.prototype.android.cleandrinksapplication.data.GoalProgressContract;
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract;
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
@@ -28,58 +30,65 @@ public class ActivityHelper {
 
 
     //changed type of activity helper to just a generic java class, as otherwise it requries a getCreateMethod, which is useless for a class that's just used for code re-use.
-    private String validatedString;
-
-    public String getValidatedString() {
-        return validatedString;
-    }
-
-    public void setValidatedString(String validatedString) {
-        this.validatedString = validatedString;
-    }
-
-    public void validateField(final EditText element) {
+//    private String validatedString;
 
 
-        element.addTextChangedListener(new TextWatcher() {
+
+    private String goalID;
+    private ArrayList<Goal>goals = new ArrayList<>();
 
 
-            String validated = "";
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            //Text watcher, monitors what text is typed by the user
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                //Converts the input from a user
-                String userInput = element.getText().toString();
-
-                if (userInput.isEmpty()) {
-                    element.setError("No empty input");
-                } else if (userInput.contains("*") | userInput.contains("\0") | userInput.contains("\'")
-                        | userInput.contains("\0")
-                        | userInput.contains("\"") | userInput.contains("\b") | userInput.contains("\n")
-                        | userInput.contains("\r") | userInput.contains("\t") | userInput.contains("\t")
-                        | userInput.contains("\\") | userInput.contains("%")) {
-
-                    element.setError("Special characters can't be used");
-
-//                Regex from Google regex checker
-
-                }
-            }
-        });
-        createToastWithText("RETURNING STRING" + getValidatedString());
-    }
+//    public String getValidatedString() {
+//        return validatedString;
+//    }
+//
+//    public void setValidatedString(String validatedString) {
+//        this.validatedString = validatedString;
+//    }
+//
+//    public void validateField(final EditText element) {
+//
+//
+//        element.addTextChangedListener(new TextWatcher() {
+//
+//
+//            String validated = "";
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            //Text watcher, monitors what text is typed by the user
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//                //Converts the input from a user
+//                String userInput = element.getText().toString();
+//
+//                if (userInput.isEmpty()) {
+//                    element.setError("No empty input");
+//                } else if (userInput.contains("*") | userInput.contains("\0") | userInput.contains("\'")
+//                        | userInput.contains("\0")
+//                        | userInput.contains("\"") | userInput.contains("\b") | userInput.contains("\n")
+//                        | userInput.contains("\r") | userInput.contains("\t") | userInput.contains("\t")
+//                        | userInput.contains("\\") | userInput.contains("%")) {
+//
+//                    element.setError("Special characters can't be used");
+//
+////                Regex from Google regex checker
+//
+//                }
+//            }
+//        });
+//        createToastWithText("RETURNING STRING" + getValidatedString());
+//    }
 
     /**
      * Initialises a Toast object and then displays text.
@@ -156,7 +165,7 @@ public class ActivityHelper {
     }
     
     //// TODO: 04/04/2017  Need to add progress table.
-    public void addGoalToGoalTable(Context context,String userID, double waterGoal, String startTime, String endTime){
+    public void  addGoalToGoalTable(Context context,String userID, double waterGoal, String startTime, String endTime){
         UsersDBHelper dbHelper = new UsersDBHelper(context);
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -170,8 +179,31 @@ public class ActivityHelper {
         contentValues.put(GoalContract.GoalEntry.COLUMN_END_TIME,endTime);
 
         long newRowId = db.insert(GoalContract.GoalEntry.TABLE_NAME, null, contentValues);
+
+        setGoalID(String.valueOf(newRowId));
+
+        createToastWithText("row id of goal id"+newRowId);
         //Log cat used to show that a database insertion is occuring.
-        Log.v("Weight up activity", "new row id" + newRowId);
+        Log.v("goal table  activity", "new row id" + newRowId);
+
+        db.close();
+
+    }
+
+    public void addGoalToGoalProgressTable(Context context){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(GoalProgressContract.GoalProgressEntry.GOAL_FK_REF,getGoalID());
+
+        //I'm assuming that the goal completed value will populate itself.
+
+        long newRowId = db.insert(GoalProgressContract.GoalProgressEntry.TABLE_NAME, null, contentValues);
+        //Log cat used to show that a database insertion is occuring.
+        Log.v("adding progress to gaol", "new row id" + newRowId);
 
 
 
@@ -180,28 +212,91 @@ public class ActivityHelper {
 
     }
 
-    public String checkIfDataHasBeenAddedToDb(Context context){
+//    public ArrayList<Goal> checkIfDataHasBeenAddedToDb(Context context) {
+//        UsersDBHelper dbHelper = new UsersDBHelper(context);
+//
+//        SQLiteDatabase db = dbHelper.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME, null);
+////        createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
+//        goals.clear();
+//
+//
+//        if (cursor.moveToFirst()) {
+//            Goal goal = new Goal();
+//
+//
+//
+//            createToastWithText("Inside do" + cursor.getDouble(cursor.getColumnIndex("water_target")));
+////            Goal goal = new Goal(goal.getWaterGoal(cursor.getDouble(cursor.getColumnIndex("water_target"))));
+//            goals.add(goal);
+//        }
+//        while (cursor.moveToNext()) ;
+//        createToastWithText("before close"+goals);
+//
+//        cursor.close();
+//
+//
+////
+//        createToastWithText("after clsoe"+goals);
+//
+//        return goals;
+//    }
+
+//        createToastWithText("Goal list"+ goalsList);
+
+
+    public List<Goal> checkIfDataHasBeenAddedToDb(Context context) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
-        String value = null;
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME, null);
         createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
-        if (cursor != null) {
-            value = String.valueOf(cursor.getCount());
+        List<Goal> goalsList = new ArrayList<>();
+        goalsList.clear();
 
-            cursor.moveToFirst();
+
+        if (cursor.moveToFirst()) {
+            Goal goal = new Goal();
+
+            goal.setWaterGoal(cursor.getDouble(cursor.getColumnIndex("water_target")));
+
+            createToastWithText("Inside do" + cursor.getDouble(cursor.getColumnIndex("water_target")));
+            do {
+
+
+                double waterGoal = goal.getWaterGoal();
+
+                createToastWithText("water goal in do" + waterGoal);
+
+
+//                createToastWithText("to string on cusor"+cursor.toString());
+                goalsList.add(new Goal(goal.getWaterGoal()));
+
+
+                GoalsAdapter adapter = new GoalsAdapter(getApplicationContext(), goalsList);
+                adapter.notifyDataSetChanged();
+
+            } while (cursor.moveToNext());
+            String waterTarget = String.valueOf(cursor.getColumnIndex(GoalContract.GoalEntry.COLUMN_Water_Target));
+
+
+            cursor.close();
+
         }
 
-//      String waterTarget = String.valueOf(cursor.getColumnIndex(GoalContract.GoalEntry.COLUMN_Water_Target));
-//
-
-        db.close();
-
-        return value;
+        createToastWithText("goals list+"+goalsList);
+        return goalsList;
     }
 
 
+
+    public String getGoalID() {
+        return goalID;
+    }
+
+    public void setGoalID(String goalID) {
+        this.goalID = goalID;
+    }
 
 
 }

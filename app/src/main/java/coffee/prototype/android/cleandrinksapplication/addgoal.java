@@ -3,7 +3,9 @@ package coffee.prototype.android.cleandrinksapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -50,6 +52,8 @@ public class addgoal extends AppCompatActivity {
         startTimeFiledValidation();
         endTimeFiledValidation();
         validateFields();
+
+
 
 
     }
@@ -294,9 +298,13 @@ public class addgoal extends AppCompatActivity {
 
     public void validateFields() {
 
+
         submitGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibe.vibrate(100);
+
 
                 if (goal.getWaterGoal() == 0.00) {
                     createToastWithText("Please ensure you've set a valid water goal");
@@ -307,15 +315,22 @@ public class addgoal extends AppCompatActivity {
                     createToastWithText("End time is  not valid!");
 
 
-                } else if (goal.getWaterGoal() > 0.00 && goal.getStartTimeGoal() != null && goal.getEndTimeGoal() != null) {
+                } else if (goal.getWaterGoal() > 0.00 && goal.getStartTimeGoal() != null && goal.getEndTimeGoal() != null && timeHandler.validateDates(goal.getStartTimeGoal(), goal.getEndTimeGoal())) {
                     createToastWithText("Water goal is valid and times are valid:)");
                     //make it so you can ust do goal new(get,get,get,get);
 
                     Context context = getApplicationContext();
-                  String userID = String.valueOf(activityHelper.getUserId(context));
-                    activityHelper.addGoalToGoalTable(context,userID,goal.getWaterGoal(),goal.getStartTimeGoal(),goal.getEndTimeGoal());
+                    String userID = String.valueOf(activityHelper.getUserId(context));
+                    activityHelper.addGoalToGoalTable(context, userID, goal.getWaterGoal(), goal.getStartTimeGoal(), goal.getEndTimeGoal());
+//                    ad.setAdatper(goals);
 
-                    activityHelper.checkIfDataHasBeenAddedToDb(context);
+//                    activityHelper.checkIfDataHasBeenAddedToDb(getApplicationContext());
+                    //CAN ADD A CHECK TO SEE IF IT'S POPUALTED?
+//                    activityHelper.checkIfDataHasBeenAddedToDb(context);
+
+//                    activityHelper.addGoalToGoalProgressTable(context);
+//                    activityHelper.checkIfDataHasBeenAddedToDbGoalProgres(context);
+
                     //    public void addGoalToGoalTable(Context context,String userID, double waterGoal, String startTime, String endTime){
 
 

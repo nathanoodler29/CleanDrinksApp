@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_drink__category"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="coffee.prototype.android.cleandrinksapplication.DrinkCategory"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    tools:context="coffee.prototype.android.cleandrinksapplication.DrinkCategory">
 
     <include
         android:id="@+id/email_address_card"
@@ -19,29 +18,30 @@
         android:layout_height="160dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="80dp"
         android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        app:cardUseCompatPadding="true"
         card_view:cardBackgroundColor="@color/darkBlue"
-        app:cardUseCompatPadding="true">
-        >
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <Button
             android:id="@+id/invisible_button_to_alcohol_sub_cat_inside_image_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
-            android:onClick="moveToAlcoholCategory"/>
+            android:onClick="moveToAlcoholCategory" />
 
         <ImageView
             android:id="@+id/alcohol_background_category_card"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:contentDescription="@string/accessibility_label_for_alcohol_image"
-
-            android:src="@drawable/beer_category_image"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/accessibility_label_for_alcohol_image"
+            android:src="@drawable/beer_category_image" />
 
     </android.support.v7.widget.CardView>
 
@@ -49,20 +49,19 @@
         android:id="@+id/alcohol_text_below_category"
         android:layout_width="400dp"
         android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
 
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@+id/alcohol_category_card"
         android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/lightGrey"
-        >
+        card_view:cardBackgroundColor="@color/lightGrey">
 
         <Button
             android:id="@+id/invisible_button_to_alcohol_sub_cat_inside_text_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
-            android:onClick="moveToAlcoholCategory"/>
+            android:onClick="moveToAlcoholCategory" />
 
         <TextView
             android:id="@+id/alcohol_heading"
@@ -71,10 +70,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="15dp"
-            android:text="@string/alcohol_category_name"
-            android:onClick="openAlcoholCategory"
+            android:text="@string/alcohol_category_name" />
+        <!--android:onClick="openAlcoholCategory"-->
 
-            />
 
     </android.support.v7.widget.CardView>
 
@@ -83,12 +81,20 @@
         android:id="@+id/caffeine_category_card"
         android:layout_width="400dp"
         android:layout_height="160dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/alcohol_text_below_category"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        card_view:cardBackgroundColor="@color/colorAccent">
+        android:layout_marginTop="49dp"
+        card_view:cardBackgroundColor="@color/colorAccent"
+        android:layout_below="@+id/alcohol_text_below_category"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <Button
+            android:id="@+id/invisible_button_to_caffine_sub_cat_inside_image_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="moveToCaffineCategory" />
 
         <ImageView
             android:id="@+id/caffeine_background_category_card"
@@ -96,7 +102,8 @@
             android:layout_height="96dp"
             android:layout_gravity="center"
             android:contentDescription="@string/accessibility_label_for_caffeine_image"
-            android:src="@drawable/caffine_cup" />
+            android:src="@drawable/caffine_cup"
+            android:onClick="moveToCaffineCategory"/>
 
     </android.support.v7.widget.CardView>
 
@@ -107,10 +114,18 @@
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@+id/caffeine_category_card"
         android:layout_gravity="center"
         card_view:cardBackgroundColor="@color/lightGrey">
+
+        <Button
+            android:id="@+id/invisible_button_to_caffine_sub_cat_inside_text_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="moveToCaffineCategory" />
 
         <TextView
             android:id="@+id/caffeine_heading"

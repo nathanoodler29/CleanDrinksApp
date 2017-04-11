@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract;
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
 
@@ -24,7 +23,7 @@ public class ForgottenPassword extends AppCompatActivity {
 
     private EditText updatingPasswordField;
 
-    private UsersDBHelper usersDBHelper;
+//    private UsersDBHelper usersDBHelper;
 
     private String emailAddressField;
     private String passwordField;
@@ -91,8 +90,6 @@ public class ForgottenPassword extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 //Converts the input from a user
                 String userInput = existingEmailField.getText().toString();
-                int checkNumberEmail = 0;
-
                 if (userInput.isEmpty()) {
                     existingEmailField.setError("Please don't leave blank");
                 } else if (userInput.contains("*") | userInput.contains("\0") | userInput.contains("\'")
@@ -105,7 +102,6 @@ public class ForgottenPassword extends AppCompatActivity {
 
 //                Regex from Google regex checker
                 } else if (userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
-                    checkNumberEmail += 1;
                     String validUserEmail = userInput.trim();
                     createToastWithText("Valid Email");
                     setEmailAddressField(validUserEmail);
@@ -200,7 +196,7 @@ public class ForgottenPassword extends AppCompatActivity {
                     + UsersContract.UsersEntry.COLUMN_USER_PASSWORD + "=" + "'" + getPasswordField() + "'" +
                     " WHERE " + UsersContract.UsersEntry.COLUMN_USER_EMAIL + " =" + "'" + getEmailAddressField() + "'", null);
 
-            createToastWithText("Update password"+DatabaseUtils.dumpCursorToString(updateCursor));
+            createToastWithText("Update password" + DatabaseUtils.dumpCursorToString(updateCursor));
             updateCursor.close();
         } else if (cursor.getCount() == 0) {
             createToastWithText("Email doesn't exist, either re-type email or tap remember password");
@@ -225,7 +221,6 @@ public class ForgottenPassword extends AppCompatActivity {
             Intent loginActivity = new Intent(this, MainActivity.class);
             //Switches the activity to sign up.
             startActivity(loginActivity);
-//            finish();
 
             checkData();
 
@@ -239,7 +234,7 @@ public class ForgottenPassword extends AppCompatActivity {
 
 
     private void checkData() {
-        SessionManager sessionManager = new SessionManager(getApplicationContext());
+//        SessionManager sessionManager = new SessionManager(getApplicationContext());
 
         UsersDBHelper dbHelper = new UsersDBHelper(this);
         //Makes the database readable.
@@ -253,7 +248,7 @@ public class ForgottenPassword extends AppCompatActivity {
 
         Log.v("data after", DatabaseUtils.dumpCursorToString(cursor));
 
-        createToastWithText("check data of user name password"+DatabaseUtils.dumpCursorToString(cursor));
+        createToastWithText("check data of user name password" + DatabaseUtils.dumpCursorToString(cursor));
         cursor.close();
 
     }
