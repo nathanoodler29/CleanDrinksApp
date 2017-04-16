@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import coffee.prototype.android.cleandrinksapplication.Model.User;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersEntry;
 
 /**
@@ -14,7 +15,7 @@ import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersE
 
 public class UsersDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "userdetails.db";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 12;
 
     public UsersDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -119,12 +120,34 @@ public class UsersDBHelper extends SQLiteOpenHelper {
         //Exectures nq the creation of the user table.
         db.execSQL(SQL_CREATE_DRINKS_CATEGORY_TABLE);
 
+        //drinks quanntiy table
+
+        String SQL_CREATE_DRINKS_CATEGORY_QUANITIY_TABLE = "CREATE TABLE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " ("
+                + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk + " INTEGER NOT NULL, "
+                + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk + " TEXT NOT NULL, "
+
+                + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " INTEGER DEFAULT 0, "
+                //STORING date in this format dd/mm/yyyy hence the ser of text.
+                + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE + " TEXT NOT NULL, "
+
+
+                + " FOREIGN KEY(" + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk + ")" + " REFERENCES " + DrinksContract.DrinksCategoryEntry.TABLE_NAME + "(" + DrinksContract.DrinksCategoryEntry.DRINKS_ID + ")  "
+
+                + " FOREIGN KEY(" + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk + ")" + " REFERENCES " + UsersEntry.TABLE_NAME +  "(" + UsersEntry._ID + "));";
+
+        Log.v("Creating drink quanity", "linking table to drink cat table");
+
+
+        db.execSQL(SQL_CREATE_DRINKS_CATEGORY_QUANITIY_TABLE);
+
 
     }
 
     /**
      * This handles when a table already exists when the schema then updates.
      * All tables are then deleted if it already exists on an update?
+     * s
      *
      * @param db         Reference to the database
      * @param oldVersion Relates to the old database
@@ -137,6 +160,7 @@ public class UsersDBHelper extends SQLiteOpenHelper {
         String SQL_DROP_GOAL_TABLE;
         String SQL_DROP_GOAL_PROGRESS_TABLE;
         String SQL_DROP_DRINK_CATEGORY_TABLE;
+        String SQL_DROP_DRINK_QUANTITY_TABLE;
 
 
         SQL_DROP_USER_TABLE = "DROP TABLE IF EXISTS " + UsersEntry.TABLE_NAME;
@@ -164,9 +188,18 @@ public class UsersDBHelper extends SQLiteOpenHelper {
         SQL_DROP_DRINK_CATEGORY_TABLE = "DROP TABLE IF EXISTS " + DrinksContract.DrinksCategoryEntry.TABLE_NAME;
         Log.v("Drink cat table exists", "Dropping drink table");
 
+
         db.execSQL(SQL_DROP_DRINK_CATEGORY_TABLE);
 
+
+        SQL_DROP_DRINK_QUANTITY_TABLE = "DROP TABLE IF EXISTS " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME;
+        Log.v("Drink quantity exists", "Dropping drink quantity linking table");
+
+        db.execSQL(SQL_DROP_DRINK_QUANTITY_TABLE);
+
+
         //Creates the entire database.
+
         onCreate(db);
     }
 }

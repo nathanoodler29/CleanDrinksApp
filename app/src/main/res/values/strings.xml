@@ -100,6 +100,8 @@
     <string name="accessibility_label_for_caffeine_image">Images of different machines for brewing coffee</string>
     <string name="accessibility_label_for_alcohol_image">Images of different bottles of alcohol</string>
     <string name="button_plus_symbol">+</string>
+    <string name="button_minus_symbol">-</string>
+
     <string name="espresso_heading">Espresso</string>
     <string name="moka_pot_heading">Moka Pot</string>
     <string name="french_press_heading">French Press</string>
@@ -252,6 +254,7 @@
         <item>foot</item>
         <item>metres</item>
     </string-array>
+    <string name="espresso_drinks_cat_add_drink_menu_text">Add drink</string>
 
 
 </resources>

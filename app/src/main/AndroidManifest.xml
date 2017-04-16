@@ -98,7 +98,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Caffine_Activity_Listing_Coffee_Based_Types"></activity>
+        <activity android:name=".Caffine_Activity_Listing_Coffee_Based_Types" />
+        <activity android:name=".AddEspressoDrink">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/espresso_card"
+        android:layout_width="325dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        card_view:cardBackgroundColor="@color/darkGrey"
+
+        >
+
+        <TextView
+
+            android:id="@+id/espresso_cat_card_title"
+            style="@style/receipt_child_values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            />
+        <ImageView
+            android:id="@+id/espresso_cat_card__image"
+            android:layout_marginTop="25dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/espresso_card"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/accessibility_label_for_espresso_cup_image"
+        android:src="@drawable/espressocolor" />
+
+        <include
+            android:id="@+id/espresso_button_add"
+            layout="@layout/card_layout_drink_listing_page_plus_button" />
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+
+

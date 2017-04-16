@@ -20,6 +20,8 @@
     <color name="spiritsColour">#EBE5CD</color>
     <color name="coffeeColor">#B28F4F</color>
     <color name="espressoColor">#5A352D</color>
+    <color name="espressoBasedDrinksRecycler">#4E342E</color>
+    <color name="removeDrinkColour">#cc0000</color>
 
 
 

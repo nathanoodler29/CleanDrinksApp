@@ -14,7 +14,7 @@
     >
 
     <android.support.v7.widget.CardView
-        android:id="@+id/espresso_card"
+        android:id="@+id/wine_card"
         android:layout_width="400dp"
         android:layout_height="120dp"
 
@@ -25,13 +25,13 @@
         >
 
         <TextView
-            android:id="@+id/espresso_card_title"
+            android:id="@+id/wine_card_title"
             style="@style/receipt_parent_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="2dp"
-            android:text="Red Wine" />
+            android:text="@string/drinks_cat_red_wine_heading" />
 
         <ImageView
             android:id="@+id/espresso_card_drink_image"

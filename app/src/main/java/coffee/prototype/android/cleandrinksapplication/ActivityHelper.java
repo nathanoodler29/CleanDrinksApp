@@ -2,17 +2,22 @@ package coffee.prototype.android.cleandrinksapplication;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import coffee.prototype.android.cleandrinksapplication.Model.Coffee;
+import coffee.prototype.android.cleandrinksapplication.Model.Drink;
 import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.User;
+import coffee.prototype.android.cleandrinksapplication.data.DrinksContract;
 import coffee.prototype.android.cleandrinksapplication.data.GoalContract;
 import coffee.prototype.android.cleandrinksapplication.data.GoalProgressContract;
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
@@ -33,10 +38,9 @@ public class ActivityHelper {
 //    private String validatedString;
 
 
-
     private String goalID;
-    private ArrayList<Goal>goals = new ArrayList<>();
-
+    private ArrayList<Goal> goals = new ArrayList<>();
+    private ArrayList<Drink> mdrinks = new ArrayList<>();
 
 
 //    public String getValidatedString() {
@@ -163,26 +167,26 @@ public class ActivityHelper {
 
 
     }
-    
+
     //// TODO: 04/04/2017  Need to add progress table.
-    public void  addGoalToGoalTable(Context context,String userID, double waterGoal, String startTime, String endTime){
+    public void addGoalToGoalTable(Context context, String userID, double waterGoal, String startTime, String endTime) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(GoalContract.GoalEntry.USER_FK_REF,userID);
+        contentValues.put(GoalContract.GoalEntry.USER_FK_REF, userID);
 
-        contentValues.put(GoalContract.GoalEntry.COLUMN_Water_Target,waterGoal);
-        contentValues.put(GoalContract.GoalEntry.COLUMN_START_TIME,startTime);
-        contentValues.put(GoalContract.GoalEntry.COLUMN_END_TIME,endTime);
+        contentValues.put(GoalContract.GoalEntry.COLUMN_Water_Target, waterGoal);
+        contentValues.put(GoalContract.GoalEntry.COLUMN_START_TIME, startTime);
+        contentValues.put(GoalContract.GoalEntry.COLUMN_END_TIME, endTime);
 
         long newRowId = db.insert(GoalContract.GoalEntry.TABLE_NAME, null, contentValues);
 
         setGoalID(String.valueOf(newRowId));
 
-        createToastWithText("row id of goal id"+newRowId);
+        createToastWithText("row id of goal id" + newRowId);
         //Log cat used to show that a database insertion is occuring.
         Log.v("goal table  activity", "new row id" + newRowId);
 
@@ -190,14 +194,14 @@ public class ActivityHelper {
 
     }
 
-    public void addGoalToGoalProgressTable(Context context){
+    public void addGoalToGoalProgressTable(Context context) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(GoalProgressContract.GoalProgressEntry.GOAL_FK_REF,getGoalID());
+        contentValues.put(GoalProgressContract.GoalProgressEntry.GOAL_FK_REF, getGoalID());
 
         //I'm assuming that the goal completed value will populate itself.
 
@@ -206,10 +210,16 @@ public class ActivityHelper {
         Log.v("adding progress to gaol", "new row id" + newRowId);
 
 
-
-
         db.close();
 
+    }
+
+    public String getGoalID() {
+        return goalID;
+    }
+
+    public void setGoalID(String goalID) {
+        this.goalID = goalID;
     }
 
 //    public ArrayList<Goal> checkIfDataHasBeenAddedToDb(Context context) {
@@ -284,20 +294,140 @@ public class ActivityHelper {
 
         }
 
-        createToastWithText("goals list+"+goalsList);
+        createToastWithText("goals list+" + goalsList);
         return goalsList;
     }
 
 
 
-    public String getGoalID() {
-        return goalID;
+    public void insertValuesIntoDB(Context context){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        int espressoCup = context.getResources().getIdentifier("espresso", "drawable", context.getPackageName());
+
+        Coffee singleEspresso = new Coffee("Single Espresso", 30, "Coffee", 92);
+        singleEspresso.setDrinkName("Single Espresso");
+        singleEspresso.setDrinkVolume(30);
+        singleEspresso.setDrinkType("Coffee");
+        singleEspresso.setCaffineContent(92);
+
+//        //http://stackoverflow.com/questions/3476430/how-to-get-a-resource-id-with-a-known-resource-name
+//        int doubleEspressoCup = context.getResources().getIdentifier("espresso", "drawable", context.getPackageName());
+//        doubleEspresso.setImagePath(espressoCup);
+
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, singleEspresso.getDrinkName());
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, singleEspresso.getDrinkType());
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, singleEspresso.getDrinkVolume());
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, singleEspresso.getCaffineContent());
+
+//
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
+
     }
 
-    public void setGoalID(String goalID) {
-        this.goalID = goalID;
+
+    public ArrayList<Drink> populateDrinksArrayFromDataBase(Context context){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksContract.DrinksCategoryEntry.TABLE_NAME, null);
+
+
+        String wholeCoffeeObject="";
+
+        createToastWithText("curosr value"+cursor.getCount());
+
+        while(cursor.moveToNext()){
+
+            wholeCoffeeObject = "cursor . get id" + cursor.getString(0) + "cursor . get string" + cursor.getString(1) + cursor.getString(3) + "cursor . get string" + cursor.getString(4);
+
+            Coffee coffee = new Coffee(cursor.getString(0),cursor.getDouble(1),cursor.getString(2),cursor.getDouble(3));
+            coffee.setDrinkName(cursor.getString(1));
+            createToastWithText(wholeCoffeeObject);
+
+            mdrinks.add(coffee);
+
+
+
+        }
+        cursor.close();
+
+        return mdrinks;
+    }
+
+
+    public void insertIntoDB(Context context,String drinkName,String drinkType,double drinkVolume, double drinkCaffine){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+//
+//        Coffee doubleEspresso = new Coffee("on the fly Espresso", 30, "Coffee", 92);
+//        doubleEspresso.setDrinkName("on the fly Espresso");
+//        doubleEspresso.setDrinkVolume(30);
+//        doubleEspresso.setDrinkType("Coffee");
+//        doubleEspresso.setCaffineContent(92);
+//
+//        //http://stackoverflow.com/questions/3476430/how-to-get-a-resource-id-with-a-known-resource-name
+
+
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, drinkName);
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, drinkType);
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, drinkVolume);
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, drinkCaffine);
+
+
+
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
+
+
+        createToastWithText("added new record to db");
+//                createToastWithText("curosr dump"+ DatabaseUtils.dumpCursorToString(cursor));
+
+    }
+
+
+
+    public String checkDrinksCatTableIsPopulated(Context context) {
+
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksContract.DrinksCategoryEntry.TABLE_NAME, null);
+
+        String wholeCoffeeObject="";
+        if (cursor.moveToFirst()) {
+
+
+             wholeCoffeeObject = "cursor . get id" + cursor.getString(0) + "cursor . get string" + cursor.getString(1) + cursor.getString(3) + "cursor . get string" + cursor.getString(4);
+
+
+
+
+            cursor.close();
+
+        }
+
+
+
+         createToastWithText("number of elements in db" + cursor.getCount());
+        createToastWithText("coFFEE"+wholeCoffeeObject);
+
+        return wholeCoffeeObject;
+
     }
 
 
 }
+
+
+
 
