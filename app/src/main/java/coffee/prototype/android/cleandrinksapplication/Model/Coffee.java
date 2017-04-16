@@ -10,6 +10,8 @@ public class Coffee extends Drink implements GenericCaffineDrink {
     private String drinkName;
     private double drinkVolume;
     private String drinkType;
+    private int imagePath;
+
 
 
 
@@ -23,13 +25,14 @@ public class Coffee extends Drink implements GenericCaffineDrink {
     // THen this gets added to a database.
     //then we display it.
 
-    public Coffee(String drinkName, double drinkVolume, String drinkType, double caffine) {
+    public Coffee(String drinkName, double drinkVolume, String drinkType, double caffine,int imagePath) {
         super();
         //I think this will probabbly be better, can just pass the setters in the constructor.
         this.drinkName = drinkName;
         this.drinkVolume = drinkVolume;
         this.caffine = caffine;
         this.drinkType = drinkType;
+        this.imagePath = imagePath;
 
 
     }

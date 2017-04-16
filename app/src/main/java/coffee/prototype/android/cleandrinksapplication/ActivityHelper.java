@@ -304,19 +304,48 @@ public class ActivityHelper {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        ContentValues contentValuestwo = new ContentValues();
+        ContentValues contentValuesthree = new ContentValues();
+        ContentValues contentValuesfour = new ContentValues();
 
         int espressoCup = context.getResources().getIdentifier("espresso", "drawable", context.getPackageName());
 
-        Coffee singleEspresso = new Coffee("Single Espresso", 30, "Coffee", 92);
+        Coffee singleEspresso = new Coffee("Single Espresso", 30, "Coffee", 92,espressoCup);
         singleEspresso.setDrinkName("Single Espresso");
         singleEspresso.setDrinkVolume(30);
         singleEspresso.setDrinkType("Coffee");
         singleEspresso.setCaffineContent(92);
-
+        singleEspresso.setImagePath(espressoCup);
 //        //http://stackoverflow.com/questions/3476430/how-to-get-a-resource-id-with-a-known-resource-name
 //        int doubleEspressoCup = context.getResources().getIdentifier("espresso", "drawable", context.getPackageName());
 //        doubleEspresso.setImagePath(espressoCup);
 
+        int cappucinoImage = context.getResources().getIdentifier("cappuccino", "drawable", context.getPackageName());
+
+        Coffee cappucino = new Coffee("Small Double shot Cappucino", 236, "Coffee", 184,cappucinoImage);
+        cappucino.setDrinkName("Small Double shot Cappucino");
+        cappucino.setDrinkVolume(236);
+        cappucino.setDrinkType("Coffee");
+        cappucino.setCaffineContent(184);
+        cappucino.setImagePath(cappucinoImage);
+
+        int flatWhiteImage = context.getResources().getIdentifier("gibraltar", "drawable", context.getPackageName());
+
+        Coffee flatWhite = new Coffee("Flat white", 236, "Coffee", 184,flatWhiteImage);
+        flatWhite.setDrinkName("Flat white");
+        flatWhite.setDrinkVolume(236);
+        flatWhite.setDrinkType("Coffee");
+        flatWhite.setCaffineContent(184);
+        flatWhite.setImagePath(flatWhiteImage);
+
+        int latteImage = context.getResources().getIdentifier("latte", "drawable", context.getPackageName());
+////https://www.caffeineinformer.com/caffeine-content/costa-coffee
+        Coffee latte = new Coffee("Single shot latte", 350, "Coffee", 92,latteImage);
+        latte.setDrinkName("Single shot latte");
+        latte.setDrinkVolume(350);
+        latte.setDrinkType("Coffee");
+        latte.setCaffineContent(92);
+        latte.setImagePath(latteImage);
 
         contentValues.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, singleEspresso.getDrinkName());
 
@@ -324,11 +353,51 @@ public class ActivityHelper {
 
         contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, singleEspresso.getDrinkVolume());
 
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, singleEspresso.getImagePath());
+
         contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, singleEspresso.getCaffineContent());
 
 //
-        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
 
+
+        contentValuestwo.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, cappucino.getDrinkName());
+
+        contentValuestwo.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, cappucino.getDrinkType());
+
+        contentValuestwo.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, cappucino.getDrinkVolume());
+
+        contentValuestwo.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, cappucino.getImagePath());
+
+        contentValuestwo.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, cappucino.getCaffineContent());
+
+
+        contentValuesthree.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, flatWhite.getDrinkName());
+
+        contentValuesthree.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, flatWhite.getDrinkType());
+
+        contentValuesthree.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, flatWhite.getDrinkVolume());
+
+        contentValuesthree.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, flatWhite.getImagePath());
+
+        contentValuesthree.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, flatWhite.getCaffineContent());
+
+
+
+        contentValuesfour.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, latte.getDrinkName());
+
+        contentValuesfour.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, latte.getDrinkType());
+
+        contentValuesfour.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, latte.getDrinkVolume());
+
+        contentValuesfour.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, latte.getImagePath());
+
+        contentValuesfour.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, latte.getCaffineContent());
+
+
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValuestwo);
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValuesthree);
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValuesfour);
     }
 
 
@@ -344,10 +413,9 @@ public class ActivityHelper {
 
         while(cursor.moveToNext()){
 
-            wholeCoffeeObject = "cursor . get id" + cursor.getString(0) + "cursor . get string" + cursor.getString(1) + cursor.getString(3) + "cursor . get string" + cursor.getString(4);
-
-            Coffee coffee = new Coffee(cursor.getString(0),cursor.getDouble(1),cursor.getString(2),cursor.getDouble(3));
+            Coffee coffee = new Coffee(cursor.getString(1),cursor.getDouble(3),cursor.getString(2),cursor.getDouble(5),cursor.getInt(4));
             coffee.setDrinkName(cursor.getString(1));
+            coffee.setImagePath(cursor.getInt(4));
             createToastWithText(wholeCoffeeObject);
 
             mdrinks.add(coffee);
@@ -356,8 +424,40 @@ public class ActivityHelper {
 
         }
         cursor.close();
-
         return mdrinks;
+    }
+
+    public String printAllFromDb(Context context){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksContract.DrinksCategoryEntry.TABLE_NAME, null);
+
+
+        String wholeCoffeeObject="";
+
+        createToastWithText("number of items in db value"+cursor.getCount());
+
+        cursor.moveToFirst();
+        while(cursor.moveToNext()){
+
+//    public Coffee(String drinkName, double drinkVolume, String drinkType, double caffine,int imagePath) {
+
+            Coffee coffee = new Coffee(cursor.getString(1),cursor.getDouble(3),cursor.getString(2),cursor.getDouble(5),cursor.getInt(4));
+            coffee.setDrinkName(cursor.getString(1));
+            coffee.setImagePath(cursor.getInt(4));
+            createToastWithText("whole obect"+wholeCoffeeObject);
+
+            mdrinks.add(coffee);
+
+            createToastWithText("coffee objects "+wholeCoffeeObject);
+
+        }
+        createToastWithText("size of arraylist"+mdrinks);
+
+        cursor.close();
+
+        return wholeCoffeeObject;
+
     }
 
 
@@ -366,15 +466,7 @@ public class ActivityHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-//
-//        Coffee doubleEspresso = new Coffee("on the fly Espresso", 30, "Coffee", 92);
-//        doubleEspresso.setDrinkName("on the fly Espresso");
-//        doubleEspresso.setDrinkVolume(30);
-//        doubleEspresso.setDrinkType("Coffee");
-//        doubleEspresso.setCaffineContent(92);
-//
-//        //http://stackoverflow.com/questions/3476430/how-to-get-a-resource-id-with-a-known-resource-name
-
+        int defaultImage = context.getResources().getIdentifier("caffine_cup", "drawable", context.getPackageName());
 
 
         contentValues.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, drinkName);
@@ -383,7 +475,11 @@ public class ActivityHelper {
 
         contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, drinkVolume);
 
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, defaultImage);
+
+
         contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, drinkCaffine);
+
 
 
 

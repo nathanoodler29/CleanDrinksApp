@@ -18,6 +18,6 @@ public class DrinksContract {
         public final static String DRINK_TYPE = "drinks_type";
         public final static String DRINKS_VOLUME = "drinks_volume";
         public final static String DRINKS_AMOUNT = "drinks_amount";
-
+        public final static String DRINKS_IMAGE = "drinks_image";
     }
 }

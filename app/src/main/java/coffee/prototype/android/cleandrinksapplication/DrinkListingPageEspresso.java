@@ -32,15 +32,19 @@ public class DrinkListingPageEspresso extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+
+
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.espresso_recycler);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new MainAdapter(this, activityHelper.populateDrinksArrayFromDataBase(getApplicationContext()));
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount() == 0) {
-            mAdapter.notifyDataSetChanged();
             activityHelper.insertValuesIntoDB(getApplicationContext());
-
+            finish();
+            startActivity(getIntent());
+            mAdapter.notifyDataSetChanged();
         }
 
 
@@ -61,6 +65,7 @@ public class DrinkListingPageEspresso extends AppCompatActivity {
             finish();
             Intent changeToWeightPage = new Intent(this, AddEspressoDrink.class);
             startActivity(changeToWeightPage);
+
 
         }
         return super.onOptionsItemSelected(item);
