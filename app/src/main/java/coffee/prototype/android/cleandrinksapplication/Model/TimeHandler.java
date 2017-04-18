@@ -25,6 +25,15 @@ public class TimeHandler {
         return formatter.print(date);
     }
 
+    public String getTotalDateWithTime() {
+
+        DateTime date = new DateTime();
+
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-MM-dd:kk:mm");
+
+        return formatter.print(date);
+    }
+
     public String getHourAndMin() {
 
         DateTime time = new DateTime();
