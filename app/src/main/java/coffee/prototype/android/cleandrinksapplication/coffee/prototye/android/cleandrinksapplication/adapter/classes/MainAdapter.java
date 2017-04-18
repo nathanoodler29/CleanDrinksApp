@@ -64,6 +64,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         viewHolder.addDrink = (Button) v.findViewById(R.id.add_button_template);
 
+        viewHolder.cancelDrink = (Button) v.findViewById(R.id.remove_button_template);
 
         return viewHolder;
     }
@@ -107,6 +108,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
             }
         });
+      holder.cancelDrink.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              Context context = mContext.getApplicationContext();
+
+              Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+              vibrator.vibrate(100);
+            helper.createToastWithText("Clicked cancel");
+
+              helper.getLastAddedDrinksQuanitiy(context);
+
+
+
+          }
+      });
 
 
     }

@@ -516,6 +516,8 @@ public class ActivityHelper {
         createToastWithText("added to drinks quanitiy db");
     long lastRowAdded = db.insert(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME, null, contentValues);
 
+
+
     return lastRowAdded;
 
 
@@ -559,24 +561,96 @@ public class ActivityHelper {
 
 
         //Performs the sql query on the email a user has passed, to check if present in the DB.
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk + "=" + "'" + drinkID + "'", null);
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk + "=" + "'" + drinkID + "'", null);
         //If a column number exists related to the query, then the user is sent back to the login screen.
-        cursor.moveToFirst();
+//        cursor.moveToFirst();
 
-        if (cursor.getCount() == 1) {
+//        if (cursor.getCount() == 1) {
+int one = 1;
+        int zero=0;
+
+        Cursor checkQuantitycusor =db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " ="+"'"+zero+"'", null);
+
+        createToastWithText("count of the query"+checkQuantitycusor.getCount());
+        if (checkQuantitycusor.getCount()>0){
 
             Cursor updateCursor = db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
                     +     DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" "+"= "
-                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" +1"+ " WHERE "
-                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk+" ="
-                    +"'" + drinkID + "'", null);
+                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" + 1"+ " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " ="+"'"+zero+"'", null);
 
 
             createToastWithText("Update quanitiy" + DatabaseUtils.dumpCursorToString(updateCursor));
             createToastWithText("roW NUMBER"+updateCursor.getCount());
             updateCursor.close();
+
+        }else{
+            createToastWithText("Already ypdated");
+
+            checkQuantitycusor.close();
+//
         }
+//            createToastWithText("alreayd around");
+//        }else if (checkQuantitycusor.getCount()==0){
+//            checkQuantitycusor.moveToFirst();
+//            Cursor updateCursor = db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
+//                    +     DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" "+"= "
+//                    +DrinksCategoryDrinkQuanitiy.DrinksQusantityEntry.quantity_of_drink+" + 1", null);
+//
+//
+//            createToastWithText("Update quanitiy" + DatabaseUtils.dumpCursorToString(updateCursor));
+//            createToastWithText("roW NUMBER"+updateCursor.getCount());
+//
+//            checkQuantitycusor.close();
+//            updateCursor.close();
+//
+//        }
+
+
+
+//        }
+
         db.close();
+
+    }
+
+
+
+    public int getLastAddedDrinksQuanitiy(Context context){
+
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        //Makes the database readable.
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //Performs the sql query on the email a user has passed, to check if present in the DB.
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME, null);
+        //If a column number exists related to the query, then the user is sent back to the login screen.
+
+        if(cursor.moveToLast()){
+
+            String drinksLast="";
+            drinksLast="pk "+cursor.getString(0);
+
+            createToastWithText("drink"+drinksLast);
+
+            String drinksLastbeforeafterUpdate="pk "+cursor.getString(0)+ cursor.getString(1)+cursor.getString(2) + cursor.getString(3) + cursor.getString(4);
+
+            createToastWithText("before update"+drinksLastbeforeafterUpdate);
+
+            cursor = db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
+                    +     DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" "+"= "
+                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+ " - 1"+ " WHERE "
+                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID+" ="
+                    +"'" + drinksLast + "'", null);
+//            String drinksLastFullafterUpdate="pk "+cursor.getString(0)+ cursor.getString(1)+cursor.getString(2) + cursor.getString(3) + cursor.getString(4);
+
+//            createToastWithText("after update"+drinksLastFullafterUpdate);
+
+
+            createToastWithText("decrease quanitiy" + DatabaseUtils.dumpCursorToString(cursor));
+            cursor.close();
+
+
+        }
+        return 0;
 
     }
 
