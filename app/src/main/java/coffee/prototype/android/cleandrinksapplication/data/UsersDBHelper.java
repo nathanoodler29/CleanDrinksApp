@@ -15,7 +15,8 @@ import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersE
 
 public class UsersDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "userdetails.db";
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 15;
+
 
     public UsersDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

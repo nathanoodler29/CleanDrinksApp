@@ -2,11 +2,9 @@ package coffee.prototype.android.cleandrinksapplication;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -46,6 +44,16 @@ public class ActivityHelper {
 
 
     private String drinksID;
+
+    public String getLastAddedID() {
+        return LastAddedID;
+    }
+
+    public void setLastAddedID(String lastAddedID) {
+        LastAddedID = lastAddedID;
+    }
+
+    private String LastAddedID;
 
 
 //    public String getValidatedString() {
@@ -315,8 +323,7 @@ public class ActivityHelper {
     }
 
 
-
-    public void insertValuesIntoDB(Context context){
+    public void insertValuesIntoDB(Context context) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -326,7 +333,7 @@ public class ActivityHelper {
 
         int espressoCup = context.getResources().getIdentifier("espresso", "drawable", context.getPackageName());
 
-        Coffee singleEspresso = new Coffee("Single Espresso", 30, "Coffee", 92,espressoCup);
+        Coffee singleEspresso = new Coffee("Single Espresso", 30, "Coffee", 92, espressoCup);
         singleEspresso.setDrinkName("Single Espresso");
         singleEspresso.setDrinkVolume(30);
         singleEspresso.setDrinkType("Coffee");
@@ -338,7 +345,7 @@ public class ActivityHelper {
 
         int cappucinoImage = context.getResources().getIdentifier("cappuccino", "drawable", context.getPackageName());
 
-        Coffee cappucino = new Coffee("Small Double shot Cappucino", 236, "Coffee", 184,cappucinoImage);
+        Coffee cappucino = new Coffee("Small Double shot Cappucino", 236, "Coffee", 184, cappucinoImage);
         cappucino.setDrinkName("Small Double shot Cappucino");
         cappucino.setDrinkVolume(236);
         cappucino.setDrinkType("Coffee");
@@ -347,7 +354,7 @@ public class ActivityHelper {
 
         int flatWhiteImage = context.getResources().getIdentifier("gibraltar", "drawable", context.getPackageName());
 
-        Coffee flatWhite = new Coffee("Flat white", 236, "Coffee", 184,flatWhiteImage);
+        Coffee flatWhite = new Coffee("Flat white", 236, "Coffee", 184, flatWhiteImage);
         flatWhite.setDrinkName("Flat white");
         flatWhite.setDrinkVolume(236);
         flatWhite.setDrinkType("Coffee");
@@ -356,7 +363,7 @@ public class ActivityHelper {
 
         int latteImage = context.getResources().getIdentifier("latte", "drawable", context.getPackageName());
 ////https://www.caffeineinformer.com/caffeine-content/costa-coffee
-        Coffee latte = new Coffee("Single shot latte", 350, "Coffee", 92,latteImage);
+        Coffee latte = new Coffee("Single shot latte", 350, "Coffee", 92, latteImage);
         latte.setDrinkName("Single shot latte");
         latte.setDrinkVolume(350);
         latte.setDrinkType("Coffee");
@@ -398,7 +405,6 @@ public class ActivityHelper {
         contentValuesthree.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, flatWhite.getCaffineContent());
 
 
-
         contentValuesfour.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, latte.getDrinkName());
 
         contentValuesfour.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, latte.getDrinkType());
@@ -417,19 +423,19 @@ public class ActivityHelper {
     }
 
 
-    public ArrayList<Drink> populateDrinksArrayFromDataBase(Context context){
+    public ArrayList<Drink> populateDrinksArrayFromDataBase(Context context) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksContract.DrinksCategoryEntry.TABLE_NAME, null);
 
 
-        String wholeCoffeeObject="";
+        String wholeCoffeeObject = "";
 
-        createToastWithText("curosr value"+cursor.getCount());
+        createToastWithText("curosr value" + cursor.getCount());
 
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
 
-            Coffee coffee = new Coffee(cursor.getString(1),cursor.getDouble(3),cursor.getString(2),cursor.getDouble(5),cursor.getInt(4));
+            Coffee coffee = new Coffee(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             coffee.setDrinkName(cursor.getString(1));
             coffee.setImagePath(cursor.getInt(4));
             createToastWithText(wholeCoffeeObject);
@@ -437,36 +443,35 @@ public class ActivityHelper {
             mdrinks.add(coffee);
 
 
-
         }
         cursor.close();
         return mdrinks;
     }
 
-    public String printAllFromDb(Context context,String nameOfDrink){
+    public String printAllFromDb(Context context, String nameOfDrink) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ DrinksContract.DrinksCategoryEntry.TABLE_NAME+" "+ "WHERE "+ DrinksContract.DrinksCategoryEntry.DRINK_NAME+"=" + "'" + nameOfDrink + "'"+" ",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksContract.DrinksCategoryEntry.TABLE_NAME + " " + "WHERE " + DrinksContract.DrinksCategoryEntry.DRINK_NAME + "=" + "'" + nameOfDrink + "'" + " ", null);
 
 
-        String wholeCoffeeObject="";
+        String wholeCoffeeObject = "";
 
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             createToastWithText("Found a drink");
-            createToastWithText("drink id"+cursor.getString(0)+"drink name"+cursor.getString(1));
+            createToastWithText("drink id" + cursor.getString(0) + "drink name" + cursor.getString(1));
             setDrinksID(cursor.getString(0));
 
         }
 
         cursor.close();
-        createToastWithText("drinks id from print all from db"+getDrinksID());
-        return getDrinksID() ;
+        createToastWithText("drinks id from print all from db" + getDrinksID());
+        return getDrinksID();
 
     }
 
 
-    public void insertIntoDB(Context context,String drinkName,String drinkType,double drinkVolume, double drinkCaffine){
+    public void insertIntoDB(Context context, String drinkName, String drinkType, double drinkVolume, double drinkCaffine) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -486,8 +491,6 @@ public class ActivityHelper {
         contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, drinkCaffine);
 
 
-
-
         db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
 
 
@@ -497,12 +500,11 @@ public class ActivityHelper {
     }
 
 
-    public long addDrinkQuanitiyValues(Context context,String drinksID,String userID){
+    public long addDrinkQuanitiyValues(Context context, String drinksID, String userID) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         TimeHandler timeHandler = new TimeHandler();
-
 
 
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk, drinksID);
@@ -510,36 +512,34 @@ public class ActivityHelper {
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk, userID);
 
 
-
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE, timeHandler.getTotalDateWithTime());
 
         createToastWithText("added to drinks quanitiy db");
-    long lastRowAdded = db.insert(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME, null, contentValues);
+        long lastRowAdded = db.insert(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME, null, contentValues);
 
 
-
-    return lastRowAdded;
+        return lastRowAdded;
 
 
     }
 
 
-    public int checkDrinksQuantiiyValuesExist(Context context){
+    public int checkDrinksQuantiiyValuesExist(Context context) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME,null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME, null);
 
         String drinksQuant = "";
 
 
-        createToastWithText("number of items in db value"+cursor.getCount());
+        createToastWithText("number of items in db value" + cursor.getCount());
 
-        if(cursor.moveToFirst()){
-                        while (cursor.moveToNext()){
+        if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
 
-            drinksQuant="pk "+cursor.getString(0)+"drink key"+cursor.getString(1)+"user key"+cursor.getString(2)+"drink quantity:"+
-                        cursor.getString(3)+"drink date: "+cursor.getString(4);
-                createToastWithText("drink"+drinksQuant);
+                drinksQuant = "pk " + cursor.getString(0) + "drink key" + cursor.getString(1) + "user key" + cursor.getString(2) + "drink quantity:" +
+                        cursor.getString(3) + "drink date: " + cursor.getString(4);
+                createToastWithText("drink" + drinksQuant);
             }
 
         }
@@ -547,12 +547,12 @@ public class ActivityHelper {
         cursor.close();
 
 
-        return cursor.getCount() ;
+        return cursor.getCount();
 
     }
 
 
-    public void updateUsingCursor(Context context, String drinkID){
+    public void updateUsingCursor(Context context, String drinkID) {
 
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         //Makes the database readable.
@@ -566,24 +566,24 @@ public class ActivityHelper {
 //        cursor.moveToFirst();
 
 //        if (cursor.getCount() == 1) {
-int one = 1;
-        int zero=0;
+        int one = 1;
+        int zero = 0;
 
-        Cursor checkQuantitycusor =db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " ="+"'"+zero+"'", null);
+        Cursor checkQuantitycusor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " =" + "'" + zero + "'", null);
 
-        createToastWithText("count of the query"+checkQuantitycusor.getCount());
-        if (checkQuantitycusor.getCount()>0){
+        createToastWithText("count of the query" + checkQuantitycusor.getCount());
+        if (checkQuantitycusor.getCount() > 0) {
 
             Cursor updateCursor = db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
-                    +     DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" "+"= "
-                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" + 1"+ " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " ="+"'"+zero+"'", null);
+                    + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " " + "= "
+                    + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " + 1" + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " =" + "'" + zero + "'", null);
 
 
             createToastWithText("Update quanitiy" + DatabaseUtils.dumpCursorToString(updateCursor));
-            createToastWithText("roW NUMBER"+updateCursor.getCount());
+            createToastWithText("roW NUMBER" + updateCursor.getCount());
             updateCursor.close();
 
-        }else{
+        } else {
             createToastWithText("Already ypdated");
 
             checkQuantitycusor.close();
@@ -606,7 +606,6 @@ int one = 1;
 //        }
 
 
-
 //        }
 
         db.close();
@@ -614,53 +613,87 @@ int one = 1;
     }
 
 
-
-    public int getLastAddedDrinksQuanitiy(Context context){
+    public String getLastAddedDrinksQuanitiy(Context context, String drinkID) {
 
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         //Makes the database readable.
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         //Performs the sql query on the email a user has passed, to check if present in the DB.
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME, null);
-        //If a column number exists related to the query, then the user is sent back to the login screen.
 
-        if(cursor.moveToLast()){
+        Cursor cursor = db.rawQuery("SELECT * from " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " " + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk + " =" + "'" + drinkID + "'" + " " + " ORDER BY " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE + " ASC ", null);
 
-            String drinksLast="";
-            drinksLast="pk "+cursor.getString(0);
-
-            createToastWithText("drink"+drinksLast);
-
-            String drinksLastbeforeafterUpdate="pk "+cursor.getString(0)+ cursor.getString(1)+cursor.getString(2) + cursor.getString(3) + cursor.getString(4);
-
-            createToastWithText("before update"+drinksLastbeforeafterUpdate);
-
-            cursor = db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
-                    +     DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" "+"= "
-                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+ " - 1"+ " WHERE "
-                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID+" ="
-                    +"'" + drinksLast + "'", null);
-//            String drinksLastFullafterUpdate="pk "+cursor.getString(0)+ cursor.getString(1)+cursor.getString(2) + cursor.getString(3) + cursor.getString(4);
-
-//            createToastWithText("after update"+drinksLastFullafterUpdate);
+        int one = 1;
+        String lastAddedID = " ";
 
 
-            createToastWithText("decrease quanitiy" + DatabaseUtils.dumpCursorToString(cursor));
+
+        if (cursor.moveToFirst()) {
+
+            lastAddedID = "id" + cursor.getString(0)+"id"+cursor.getString(1)+" "+cursor.getString(2)+" "+cursor.getString(3)+" "+cursor.getString(4);
+
+            String lastAddedIDActual = cursor.getString(0);
+
+            setLastAddedID(lastAddedID);
+//            db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
+//                    +     DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" "+"= "
+//                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" + 1"+ " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " ="+"'"+lastAddedID+"'", null);
             cursor.close();
+//            updateCursor.close();
 
 
         }
-        return 0;
+        createToastWithText("last added id before return"+lastAddedID);
+        return getLastAddedID();
 
     }
 
 
+    public void getIDcHEC(Context context, String id) {
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        //Makes the database readable.
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        createToastWithText("getidchec method");
+        String num = "1";
+        Cursor cursor = db.rawQuery("SELECT * from " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + id + "'", null);
+
+        if (cursor.moveToFirst()) {
+            String drinkDetialsFromID = "pk " + cursor.getString(0) + "drink key" + cursor.getString(1) + "user key" + cursor.getString(2) + "drink quantity:" +
+                    cursor.getString(3) + "drink date: " + cursor.getString(4);
 
 
+            createToastWithText("drink from the getIDchec methid"+drinkDetialsFromID);
+        }
+        cursor.close();
 
+    }
+
+    public void upateIDToHave0Value(Context context,String drinksID){
+
+        createToastWithText("drimks id from inside update method");
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        //Makes the database readable.
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'", null);
+
+        if (cursor.moveToFirst()){
+            createToastWithText("DELETED");
+
+            String sql = "DELETE FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME +
+                    " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'"+"";
+
+
+            cursor.close();
+            db.execSQL(sql);
+        }
+
+
+    }
 
 
 }
+
+
 
 
 

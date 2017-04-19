@@ -88,7 +88,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 Context context = mContext.getApplicationContext();
 
                 Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(100);
+                vibrator.vibrate(400);
 
 //
 //                helper.createToastWithText("clicked Plus icon");
@@ -116,8 +116,20 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
               Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
               vibrator.vibrate(100);
             helper.createToastWithText("Clicked cancel");
+              String drinkID =  helper.printAllFromDb(mContext.getApplicationContext(),mdrinks.get(position).getDrinkName());
 
-              helper.getLastAddedDrinksQuanitiy(context);
+              String lastAddedId = helper.getLastAddedDrinksQuanitiy(context,drinkID);
+              helper.createToastWithText("after last added id method");
+              helper.getIDcHEC(context,lastAddedId);
+              helper.upateIDToHave0Value(context,lastAddedId);
+//              helper.getIDcHEC(context,lastAddedId);
+              helper.checkDrinksQuantiiyValuesExist(context);
+
+
+//              helper.createToastWithText("cheking update after cancel");
+//
+//
+//              helper.checkDrinksQuantiiyValuesExist(context);
 
 
 
