@@ -11,6 +11,9 @@ public class Coffee extends Drink implements GenericCaffineDrink {
     private double drinkVolume;
     private String drinkType;
     private int imagePath;
+    private int drinkQuanitiy;
+    private String date;
+
 
 
 
@@ -35,6 +38,11 @@ public class Coffee extends Drink implements GenericCaffineDrink {
         this.imagePath = imagePath;
 
 
+    }
+
+    public Coffee(String drinkName, String date){
+        this.drinkName = drinkName;
+        this.date = date;
     }
 
     @Override

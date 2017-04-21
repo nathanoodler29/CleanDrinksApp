@@ -41,6 +41,12 @@ public class Goal {
 
     }
 
+    public Goal(String startTime,String endTime){
+        this.startTimeGoal = startTime;
+        this.endTimeGoal = endTime;
+
+    }
+
 
     public double getWaterGoal() {
         return waterGoal;

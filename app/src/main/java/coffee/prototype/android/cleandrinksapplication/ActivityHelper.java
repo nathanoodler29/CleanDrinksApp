@@ -16,6 +16,7 @@ import coffee.prototype.android.cleandrinksapplication.Model.Drink;
 import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.TimeHandler;
 import coffee.prototype.android.cleandrinksapplication.Model.User;
+import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.GoalsAdapter;
 import coffee.prototype.android.cleandrinksapplication.data.DrinksCategoryDrinkQuanitiy;
 import coffee.prototype.android.cleandrinksapplication.data.DrinksContract;
 import coffee.prototype.android.cleandrinksapplication.data.GoalContract;
@@ -41,6 +42,8 @@ public class ActivityHelper {
     private String goalID;
     private ArrayList<Goal> goals = new ArrayList<>();
     private ArrayList<Drink> mdrinks = new ArrayList<>();
+    private ArrayList<Drink> drinksRecipt = new ArrayList<Drink>();
+
 
 
     private String drinksID;
@@ -279,39 +282,64 @@ public class ActivityHelper {
 //        createToastWithText("Goal list"+ goalsList);
 
 
-    public List<Goal> checkIfDataHasBeenAddedToDb(Context context) {
+    public ArrayList<Goal> checkIfDataHasBeenAddedToDb(Context context) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME+" WHERE "+GoalContract.GoalEntry.USER_FK_REF+"= "+getUserId(getApplicationContext()), null);
         createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
-        List<Goal> goalsList = new ArrayList<>();
+        ArrayList<Goal> goalsList = new ArrayList<Goal>();
         goalsList.clear();
 
 
         if (cursor.moveToFirst()) {
-            Goal goal = new Goal();
 
-            goal.setWaterGoal(cursor.getDouble(cursor.getColumnIndex("water_target")));
 
-            createToastWithText("Inside do" + cursor.getDouble(cursor.getColumnIndex("water_target")));
+//            createToastWithText("Inside do" + cursor.getDouble(cursor.getColumnIndex("water_target")));
             do {
 
 
-                double waterGoal = goal.getWaterGoal();
+//                double waterGoal = goal.getWaterGoal();
 
-                createToastWithText("water goal in do" + waterGoal);
+//                createToastWithText("water goal in do" + waterGoal);
 
 
 //                createToastWithText("to string on cusor"+cursor.toString());
-                goalsList.add(new Goal(goal.getWaterGoal()));
+//                goal.setWaterGoal(waterGoal);
+//                goal.setStartTimeGoal(goal.getStartTimeGoal());]
+                //2 = water goal
+//                Goal goal = new Goal(cursor.getString(2));
+
+//                goal.setStartTimeGoal(cursor.getString(2));
+
+//                goalsList.add(new Goal(goal.getStartTimeGoal()));
+
+//                String SQL_CREATE_GOAL_TABLE = "CREATE TABLE " + GoalContract.GoalEntry.TABLE_NAME + " ("
+//                        + GoalContract.GoalEntry.USER_FK_REF + " INTEGER  NOT NULL, "
+//
+//                        + GoalContract.GoalEntry.GOAL_ID + " INTEGER PRIMARY KEY  NOT NULL, "
+//                        + GoalContract.GoalEntry.COLUMN_Water_Target + " REAL NOT NULL," + " "
+//                        //real represnts georigon calander
+//                        + GoalContract.GoalEntry.COLUMN_START_TIME + " REAL NOT NULL," + " "
+//                        //real represnts georigon calander
+//                        + GoalContract.GoalEntry.COLUMN_END_TIME + " REAL NOT NULL," +
+
+                                String startTime = String.valueOf(cursor.getInt(2));
+                              String endTime = String.valueOf(cursor.getInt(3));
 
 
-                GoalsAdapter adapter = new GoalsAdapter(getApplicationContext(), goalsList);
-                adapter.notifyDataSetChanged();
+                Goal goal = new Goal(startTime,endTime);
+                goal.setStartTimeGoal(startTime);
+                goal.setEndTimeGoal(endTime);
+
+                goalsList.add(goal);
+
+
+
+//                GoalsAdapter adapter = new GoalsAdapter(getApplicationContext(), goalsList);
+//                adapter.notifyDataSetChanged();
 
             } while (cursor.moveToNext());
-            String waterTarget = String.valueOf(cursor.getColumnIndex(GoalContract.GoalEntry.COLUMN_Water_Target));
 
 
             cursor.close();
@@ -647,6 +675,73 @@ public class ActivityHelper {
 
     }
 
+    public ArrayList<Drink> populateDrinksReciptAdatper(Context context) {
+
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+
+        Cursor cursor = db.rawQuery("SELECT * FROM "+
+           DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME +" WHERE " +
+                ""+DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk+" = "+"'"+getUserId(getApplicationContext())+"'"
+
+                +" ORDER BY " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE + " ASC ",null);
+//
+
+
+
+
+        createToastWithText("number of items in db value" + cursor.getCount());
+
+        drinksRecipt.clear();
+        if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
+
+        createToastWithText("found user sesh");
+
+
+
+//                createToastWithText("user id related drinks"+drinksQuant);
+
+//
+                Coffee coffee = new Coffee(test(getApplicationContext(),cursor.getString(1)), cursor.getString(4));
+                coffee.setDrinkName(test(getApplicationContext(),cursor.getString(1)));
+                coffee.setDate(cursor.getString(4));
+
+                drinksRecipt.add(coffee);
+
+
+
+
+            }
+
+
+        }
+
+        cursor.close();
+
+
+        createToastWithText("size of recipt"+drinksRecipt.size());
+
+        return drinksRecipt;
+
+    }
+
+    public String test(Context context,String drinksID){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor newCursor = db.rawQuery("SELECT * FROM "+
+                DrinksContract.DrinksCategoryEntry.TABLE_NAME +" WHERE " +
+                ""+DrinksContract.DrinksCategoryEntry.DRINKS_ID +" = "+"'"+drinksID+"'",null);
+        if (newCursor.moveToFirst()){
+                String newCursorStr = newCursor.getString(0)+newCursor.getString(1)+newCursor.getString(2)+newCursor.getString(3)+newCursor.getString(4);
+
+                createToastWithText("new cursor str"+newCursorStr);
+            }
+
+
+        return newCursor.getString(1);
+    }
 
     public void getIDcHEC(Context context, String id) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
@@ -674,7 +769,8 @@ public class ActivityHelper {
         //Makes the database readable.
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'"+
+                " ORDER BY " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE + " ASC ", null);
 
         if (cursor.moveToFirst()){
             createToastWithText("DELETED");
@@ -683,8 +779,12 @@ public class ActivityHelper {
                     " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'"+"";
 
 
-            cursor.close();
+
             db.execSQL(sql);
+
+
+            cursor.close();
+//            db.execSQL(sql);
         }
 
 

@@ -9,8 +9,18 @@ public class Drink {
     public String testing;
     private String drinkName;
     private double drinkVolume;
-    private double totalDrink;
+    private int drinkQuantity;
     private String drinkType;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    private String date;
 
 
 
@@ -39,10 +49,13 @@ public class Drink {
 
 
 
-    public double getTotalDrink() {
-        return totalDrink;
+    public int getDrinkQuantity() {
+        return drinkQuantity;
     }
 
+    public void setDrinkQuantity(int drinkQuantity) {
+        this.drinkQuantity = drinkQuantity;
+    }
 
     public String getDrinkType() {
         return drinkType;
