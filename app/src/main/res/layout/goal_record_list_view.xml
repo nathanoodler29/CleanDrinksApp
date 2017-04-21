@@ -18,13 +18,25 @@
 
 
         <TextView
-            android:id="@+id/displayrecord"
+            android:id="@+id/water_goal_record"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
-            android:text="Water goal:  "
+            android:textSize="22sp"
+
+            />
+
+
+        <TextView
+            android:id="@+id/end_time_record"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="50dp"
             android:textSize="22sp"
 
             />

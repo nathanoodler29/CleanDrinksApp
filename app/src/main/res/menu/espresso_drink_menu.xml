@@ -10,6 +10,13 @@
 
         />
 
+    <item
+        android:id="@+id/action_drinks_recipt"
+        android:title="drink recipt"
+        app:showAsAction="ifRoom"
+
+        />
+
 
 
 </menu>

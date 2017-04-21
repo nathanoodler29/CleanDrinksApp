@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/drinks_recipt_card"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="7dp"
+        card_view:cardBackgroundColor="@color/brightOrange">
+
+        <TextView
+
+            android:id="@+id/drinks_recipt_row_drink_name"
+            style="@style/receipt_child_values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/drinks_date_card"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-7dp"
+
+        card_view:cardBackgroundColor="@color/grey">
+
+        <ImageView
+            android:id="@+id/drinks_recipt_date_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription=""
+            android:src="@drawable/calandernewstyle">
+
+        </ImageView>
+
+        <TextView
+
+            android:id="@+id/drinks_recipt_row_drink_time"
+            style="@style/receipt_child_values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>
+
+
+
+
+
+

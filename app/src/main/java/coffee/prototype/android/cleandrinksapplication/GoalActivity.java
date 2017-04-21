@@ -17,6 +17,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import coffee.prototype.android.cleandrinksapplication.Model.Goal;
+import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.DrinkReciptAdapter;
+import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.GoalsAdapter;
 
 
 public class GoalActivity extends AppCompatActivity {
@@ -34,7 +36,7 @@ public class GoalActivity extends AppCompatActivity {
     private TextView noGoalsText;
     private TextView goalHeading;
     private TextView paragraphText;
-
+    private GoalsAdapter mAdapter;
 //    List<Goal> goals = new ArrayList<>();
 //    GoalsAdapter adapter;
 
@@ -57,28 +59,49 @@ public class GoalActivity extends AppCompatActivity {
         paragraphText = (TextView) findViewById(R.id.goal_paragraph_text);
 
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goal_recycle);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goal_recycle);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        mAdapter = new GoalsAdapter(this, helper.checkIfDataHasBeenAddedToDb(getApplicationContext()));
+        recyclerView.setAdapter(mAdapter);
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
-
-        GoalsAdapter adapter = new GoalsAdapter(this, helper.checkIfDataHasBeenAddedToDb(getApplicationContext()));
-        adapter.setAdapter(helper.checkIfDataHasBeenAddedToDb(getApplicationContext()));
-        recyclerView.setAdapter(adapter);
-        recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
-        if (adapter.getItemCount() == 0) {
+        if (mAdapter.getItemCount() == 0) {
 
             //http://stackoverflow.com/questions/4249237/can-i-hide-an-image-button-on-a-layout-dimensions-and-background-until-a-call
             cardView.setVisibility(View.VISIBLE);
             noGoalsText.setVisibility(View.VISIBLE);
-        } else if (adapter.getItemCount() >= 0) {
+        } else if (mAdapter.getItemCount() >= 0) {
             cardView.setVisibility(View.GONE);
             noGoalsText.setVisibility(View.GONE);
             goalHeading.setText("View your goals");
             paragraphText.setText("Review your goals");
+//        }
         }
+//
+
+//
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goal_recycle);
+//
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//        recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
+//
+//        GoalsAdapter adapter = new GoalsAdapter(this, helper.checkIfDataHasBeenAddedToDb(getApplicationContext()));
+//        adapter.setAdapter(helper.checkIfDataHasBeenAddedToDb(getApplicationContext()));
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
+//        if (adapter.getItemCount() == 0) {
+//
+//            //http://stackoverflow.com/questions/4249237/can-i-hide-an-image-button-on-a-layout-dimensions-and-background-until-a-call
+//            cardView.setVisibility(View.VISIBLE);
+//            noGoalsText.setVisibility(View.VISIBLE);
+//        } else if (adapter.getItemCount() >= 0) {
+//            cardView.setVisibility(View.GONE);
+//            noGoalsText.setVisibility(View.GONE);
+//            goalHeading.setText("View your goals");
+//            paragraphText.setText("Review your goals");
+//        }
 
 
     }
