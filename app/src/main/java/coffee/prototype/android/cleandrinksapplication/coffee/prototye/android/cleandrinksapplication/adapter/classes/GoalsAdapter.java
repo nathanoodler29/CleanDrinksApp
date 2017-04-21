@@ -17,7 +17,7 @@ import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.R;
 
 /**
- * Created by Noodle on 09/04/2017.
+ * created by Noodle on 09/04/2017.
  */
 
 
@@ -32,6 +32,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
             RecyclerView.ViewHolder {
 
         public TextView waterGoal;
+        public TextView startTime;
         public TextView endTime;
 
 
@@ -58,18 +59,20 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
         final GoalsAdapter.ViewHolder viewHolder = new GoalsAdapter.ViewHolder(v);
 
         viewHolder.waterGoal = (TextView) v.findViewById(R.id.water_goal_record);
-//        viewHolder.waterGoal = (TextView) v.findViewById(R.id.end_time_field);
 
+        viewHolder.startTime = (TextView) v.findViewById(R.id.start_time_record);
 
+        viewHolder.endTime = (TextView) v.findViewById(R.id.end_time_record);
 
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.waterGoal.setText("Water Target"+goals.get(position).getStartTimeGoal());
+        holder.waterGoal.setText("Water Goal: "+goals.get(position).getWaterGoalStr()+" litres");
+        holder.startTime.setText("Duration: "+goals.get(position).getStartTimeGoal()+" - ");
+        holder.endTime.setText(goals.get(position).getEndTimeGoal());
 
-//        holder.waterGoal.setText("Water Target"+goals.get(position).getEndTimeGoal());
 
 
     }

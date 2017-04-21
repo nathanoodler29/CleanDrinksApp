@@ -3,21 +3,15 @@ package coffee.prototype.android.cleandrinksapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.List;
-
-import coffee.prototype.android.cleandrinksapplication.Model.Goal;
-import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.DrinkReciptAdapter;
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.GoalsAdapter;
 
 
@@ -27,18 +21,11 @@ public class GoalActivity extends AppCompatActivity {
     private Button addGoalButton;
     private Button removeGoalbutton;
     private ActivityHelper helper = new ActivityHelper();
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private List<Goal> goals;
-    private Goal goalClass;
-    private Parcelable recyclerViewState;
     private CardView cardView;
     private TextView noGoalsText;
     private TextView goalHeading;
     private TextView paragraphText;
     private GoalsAdapter mAdapter;
-//    List<Goal> goals = new ArrayList<>();
-//    GoalsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +49,7 @@ public class GoalActivity extends AppCompatActivity {
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goal_recycle);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GoalsAdapter(this, helper.checkIfDataHasBeenAddedToDb(getApplicationContext()));
+        mAdapter = new GoalsAdapter(this, helper.populateGoalAdapter(getApplicationContext()));
         recyclerView.setAdapter(mAdapter);
 
         if (mAdapter.getItemCount() == 0) {
@@ -75,34 +62,7 @@ public class GoalActivity extends AppCompatActivity {
             noGoalsText.setVisibility(View.GONE);
             goalHeading.setText("View your goals");
             paragraphText.setText("Review your goals");
-//        }
         }
-//
-
-//
-//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goal_recycle);
-//
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
-//
-//        GoalsAdapter adapter = new GoalsAdapter(this, helper.checkIfDataHasBeenAddedToDb(getApplicationContext()));
-//        adapter.setAdapter(helper.checkIfDataHasBeenAddedToDb(getApplicationContext()));
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
-//        if (adapter.getItemCount() == 0) {
-//
-//            //http://stackoverflow.com/questions/4249237/can-i-hide-an-image-button-on-a-layout-dimensions-and-background-until-a-call
-//            cardView.setVisibility(View.VISIBLE);
-//            noGoalsText.setVisibility(View.VISIBLE);
-//        } else if (adapter.getItemCount() >= 0) {
-//            cardView.setVisibility(View.GONE);
-//            noGoalsText.setVisibility(View.GONE);
-//            goalHeading.setText("View your goals");
-//            paragraphText.setText("Review your goals");
-//        }
-
 
     }
 

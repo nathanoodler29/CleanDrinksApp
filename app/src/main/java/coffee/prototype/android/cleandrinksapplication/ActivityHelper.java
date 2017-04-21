@@ -9,14 +9,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import coffee.prototype.android.cleandrinksapplication.Model.Coffee;
 import coffee.prototype.android.cleandrinksapplication.Model.Drink;
 import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.TimeHandler;
 import coffee.prototype.android.cleandrinksapplication.Model.User;
-import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.GoalsAdapter;
 import coffee.prototype.android.cleandrinksapplication.data.DrinksCategoryDrinkQuanitiy;
 import coffee.prototype.android.cleandrinksapplication.data.DrinksContract;
 import coffee.prototype.android.cleandrinksapplication.data.GoalContract;
@@ -249,7 +247,7 @@ public class ActivityHelper {
         this.goalID = goalID;
     }
 
-//    public ArrayList<Goal> checkIfDataHasBeenAddedToDb(Context context) {
+//    public ArrayList<Goal> populateGoalAdapter(Context context) {
 //        UsersDBHelper dbHelper = new UsersDBHelper(context);
 //
 //        SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -282,11 +280,11 @@ public class ActivityHelper {
 //        createToastWithText("Goal list"+ goalsList);
 
 
-    public ArrayList<Goal> checkIfDataHasBeenAddedToDb(Context context) {
+    public ArrayList<Goal> populateGoalAdapter(Context context) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME+" WHERE "+GoalContract.GoalEntry.USER_FK_REF+"= "+getUserId(getApplicationContext()), null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME + " WHERE " + GoalContract.GoalEntry.USER_FK_REF + "= " + getUserId(getApplicationContext()), null);
         createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
         ArrayList<Goal> goalsList = new ArrayList<Goal>();
         goalsList.clear();
@@ -295,49 +293,20 @@ public class ActivityHelper {
         if (cursor.moveToFirst()) {
 
 
-//            createToastWithText("Inside do" + cursor.getDouble(cursor.getColumnIndex("water_target")));
             do {
 
-
-//                double waterGoal = goal.getWaterGoal();
-
-//                createToastWithText("water goal in do" + waterGoal);
-
-
-//                createToastWithText("to string on cusor"+cursor.toString());
-//                goal.setWaterGoal(waterGoal);
-//                goal.setStartTimeGoal(goal.getStartTimeGoal());]
-                //2 = water goal
-//                Goal goal = new Goal(cursor.getString(2));
-
-//                goal.setStartTimeGoal(cursor.getString(2));
-
-//                goalsList.add(new Goal(goal.getStartTimeGoal()));
-
-//                String SQL_CREATE_GOAL_TABLE = "CREATE TABLE " + GoalContract.GoalEntry.TABLE_NAME + " ("
-//                        + GoalContract.GoalEntry.USER_FK_REF + " INTEGER  NOT NULL, "
-//
-//                        + GoalContract.GoalEntry.GOAL_ID + " INTEGER PRIMARY KEY  NOT NULL, "
-//                        + GoalContract.GoalEntry.COLUMN_Water_Target + " REAL NOT NULL," + " "
-//                        //real represnts georigon calander
-//                        + GoalContract.GoalEntry.COLUMN_START_TIME + " REAL NOT NULL," + " "
-//                        //real represnts georigon calander
-//                        + GoalContract.GoalEntry.COLUMN_END_TIME + " REAL NOT NULL," +
-
-                                String startTime = String.valueOf(cursor.getInt(2));
-                              String endTime = String.valueOf(cursor.getInt(3));
+                String waterGoal = cursor.getString(2);
+                String startTime = cursor.getString(3);
+                String endTime = cursor.getString(4);
 
 
-                Goal goal = new Goal(startTime,endTime);
+                Goal goal = new Goal(waterGoal,startTime, endTime);
+
+                goal.setWaterGoalStr(waterGoal);
                 goal.setStartTimeGoal(startTime);
                 goal.setEndTimeGoal(endTime);
 
                 goalsList.add(goal);
-
-
-
-//                GoalsAdapter adapter = new GoalsAdapter(getApplicationContext(), goalsList);
-//                adapter.notifyDataSetChanged();
 
             } while (cursor.moveToNext());
 
