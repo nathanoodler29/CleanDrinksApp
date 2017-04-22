@@ -10,11 +10,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import coffee.prototype.android.cleandrinksapplication.Model.Achievement;
 import coffee.prototype.android.cleandrinksapplication.Model.Coffee;
 import coffee.prototype.android.cleandrinksapplication.Model.Drink;
 import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.TimeHandler;
 import coffee.prototype.android.cleandrinksapplication.Model.User;
+import coffee.prototype.android.cleandrinksapplication.data.AchievementContract;
 import coffee.prototype.android.cleandrinksapplication.data.DrinksCategoryDrinkQuanitiy;
 import coffee.prototype.android.cleandrinksapplication.data.DrinksContract;
 import coffee.prototype.android.cleandrinksapplication.data.GoalContract;
@@ -41,6 +43,11 @@ public class ActivityHelper {
     private ArrayList<Goal> goals = new ArrayList<>();
     private ArrayList<Drink> mdrinks = new ArrayList<>();
     private ArrayList<Drink> drinksRecipt = new ArrayList<Drink>();
+    private ArrayList<Achievement> achivements = new ArrayList<Achievement>();
+
+    private String numOfAchivementsInDB;
+
+
 
 
 
@@ -758,6 +765,118 @@ public class ActivityHelper {
 
 
     }
+
+
+    public void populateAchievementsDatabase(Context context){
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        ContentValues contentValuesTwo = new ContentValues();
+        ContentValues contentValuesThree= new ContentValues();
+
+        ContentValues contentValuesFour= new ContentValues();
+
+        int achivementImage = context.getResources().getIdentifier("locked_achievement", "drawable", context.getPackageName());
+
+        Achievement achievement = new Achievement("Rookie","Created your first water goal.",achivementImage);
+        achievement.setName("Rookie");
+        achievement.setDescription("Created your first water goal.");
+
+        achievement.setAchievementAvater(achivementImage);
+
+
+        Achievement achievementTwo = new Achievement("Water goals","Completed 3 water goals!",achivementImage);
+        achievementTwo.setName("Water goals");
+        achievementTwo.setDescription("Completed 3 water goals!");
+
+        int achivementTwoImage = context.getResources().getIdentifier("three_streak_grey", "drawable", context.getPackageName());
+
+        achievementTwo.setAchievementAvater(achivementTwoImage);
+
+        int achievementThreeImage = context.getResources().getIdentifier("coffee_killer", "drawable", context.getPackageName());
+
+        Achievement achievementThree= new Achievement("Coffee Killer","Drank enough water to combat caffeine.",achievementThreeImage);
+
+        achievementThree.setName("Coffee Killer");
+        achievementThree.setDescription("Drank enough water to combat caffeine.");
+
+
+        int achievementFourImage = context.getResources().getIdentifier("alcohol_killer", "drawable", context.getPackageName());
+
+        Achievement achievementFour= new Achievement("Alcohol Killer","Drank water to combat Alcohol.",achievementThreeImage);
+
+        achievementFour.setName("Alcohol Killer");
+        achievementFour.setDescription("Drank water to combat Alcohol.");
+
+        achievementFour.setAchievementAvater(achievementFourImage);
+
+
+        contentValues.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_NAME, achievement.getName());
+        contentValues.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_DESCRIPTION, achievement.getDescription());
+        contentValues.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_IMAGE, achievement.getAchievementAvater());
+
+
+        contentValuesTwo.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_NAME, achievementTwo.getName());
+        contentValuesTwo.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_DESCRIPTION, achievementTwo.getDescription());
+        contentValuesTwo.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_IMAGE, achievementTwo.getAchievementAvater());
+
+        contentValuesThree.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_NAME, achievementThree.getName());
+        contentValuesThree.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_DESCRIPTION, achievementThree.getDescription());
+        contentValuesThree.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_IMAGE, achievementThree.getAchievementAvater());
+
+
+        contentValuesFour.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_NAME, achievementFour.getName());
+        contentValuesFour.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_DESCRIPTION, achievementFour.getDescription());
+        contentValuesFour.put(AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_IMAGE, achievementFour.getAchievementAvater());
+
+
+
+        db.insert(AchievementContract.AchievementEntry.TABLE_NAME, null, contentValues);
+        db.insert(AchievementContract.AchievementEntry.TABLE_NAME, null, contentValuesTwo);
+        db.insert(AchievementContract.AchievementEntry.TABLE_NAME, null, contentValuesThree);
+        db.insert(AchievementContract.AchievementEntry.TABLE_NAME, null, contentValuesFour);
+
+    }
+
+    public ArrayList<Achievement> populateAchivementsFromDataBase(Context context) {
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + AchievementContract.AchievementEntry.TABLE_NAME, null);
+
+
+        String wholeCoffeeObject = "";
+
+        createToastWithText("cursor value" + cursor.getCount());
+
+        setNumOfAchivementsInDB(String.valueOf(cursor.getCount()));
+
+        while (cursor.moveToNext()) {
+
+            Achievement achievement = new Achievement(cursor.getString(0), cursor.getString(1),cursor.getInt(2));
+            achievement.setName(cursor.getString(1));
+            achievement.setDescription(cursor.getString(2));
+            achievement.setAchievementAvater(cursor.getInt(3));
+            createToastWithText(wholeCoffeeObject);
+
+            achivements.add(achievement);
+
+
+        }
+        cursor.close();
+        return achivements;
+    }
+
+
+    public String getNumOfAchivementsInDB() {
+        return numOfAchivementsInDB;
+    }
+
+    public void setNumOfAchivementsInDB(String numOfAchivementsInDB) {
+        this.numOfAchivementsInDB = numOfAchivementsInDB;
+    }
+
+
+
 
 
 }
