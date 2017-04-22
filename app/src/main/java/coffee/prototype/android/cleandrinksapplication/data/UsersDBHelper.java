@@ -15,7 +15,7 @@ import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersE
 
 public class UsersDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "userdetails.db";
-    private static final int DATABASE_VERSION = 15;
+    private static final int DATABASE_VERSION = 18;
 
 
     public UsersDBHelper(Context context) {
@@ -148,6 +148,34 @@ public class UsersDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_DRINKS_CATEGORY_QUANITIY_TABLE);
 
 
+        String SQL_CREATE_ACHIEVEMENTS_TABLE = " CREATE TABLE " + AchievementContract.AchievementEntry.TABLE_NAME + "("
+                + AchievementContract.AchievementEntry.ACHIEVEMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_NAME + " TEXT NOT NULL, "
+                + AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_DESCRIPTION + " TEXT NOT NULL, "
+
+                + AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_IMAGE  + " INTEGER NOT NULL);";
+        //Log cat, can check whether the table has been created.
+        Log.v("Creating users table", "users table");
+        //Exectures nq the creation of the user table.
+        db.execSQL(SQL_CREATE_ACHIEVEMENTS_TABLE);
+
+        //achievement  table
+
+
+//          String SQL_CREATE_ACHIEVEMENTS_TABLE = "CREATE TABLE " + AchievementContract.AchievementEntry.TABLE_NAME + " ("
+//        + AchievementContract.AchievementEntry.ACHIEVEMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+//                + AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_NAME+ " TEXT NOT NULL, "
+//                + AchievementContract.AchievementEntry.COLUMN_ACHIEVEMENT_DESCRIPTION + " TEXT NOT NULL, "
+//
+//                + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " INTEGER NOT NULL";";
+//
+//
+//        Log.v("Creating achievements", "For displaying achievements");
+//
+//
+//        db.execSQL(SQL_CREATE_ACHIEVEMENTS_TABLE);
+
+
     }
 
     /**
@@ -167,7 +195,7 @@ public class UsersDBHelper extends SQLiteOpenHelper {
         String SQL_DROP_GOAL_PROGRESS_TABLE;
         String SQL_DROP_DRINK_CATEGORY_TABLE;
         String SQL_DROP_DRINK_QUANTITY_TABLE;
-
+        String SQL_DROP_ACHIEVEMENTS_TABLE;
 
         SQL_DROP_USER_TABLE = "DROP TABLE IF EXISTS " + UsersEntry.TABLE_NAME;
         Log.v("User table exists", "Dropping table");
@@ -202,6 +230,12 @@ public class UsersDBHelper extends SQLiteOpenHelper {
         Log.v("Drink quantity exists", "Dropping drink quantity linking table");
 
         db.execSQL(SQL_DROP_DRINK_QUANTITY_TABLE);
+
+        SQL_DROP_ACHIEVEMENTS_TABLE = "DROP TABLE IF EXISTS " + AchievementContract.AchievementEntry.TABLE_NAME;
+        Log.v("Achievement exists", "Dropping table");
+
+        db.execSQL(SQL_DROP_ACHIEVEMENTS_TABLE);
+
 
 
         //Creates the entire database.
