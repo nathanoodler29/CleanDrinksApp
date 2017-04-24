@@ -122,14 +122,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
               helper.createToastWithText("after last added id method");
               helper.getIDcHEC(context,lastAddedId);
               helper.upateIDToHave0Value(context,lastAddedId);
-//              helper.getIDcHEC(context,lastAddedId);
               helper.checkDrinksQuantiiyValuesExist(context);
+              notifyDataSetChanged();
 
-
-//              helper.createToastWithText("cheking update after cancel");
-//
-//
-//              helper.checkDrinksQuantiiyValuesExist(context);
 
 
 
