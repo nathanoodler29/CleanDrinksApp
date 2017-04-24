@@ -23,6 +23,8 @@ public class GoalContract {
         public final static String COLUMN_START_TIME = "start_time";
         public final static String COLUMN_END_TIME = "end_time";
 
+        public final static String COLUMN_DATE = "goal_date";
+
 
 
     }

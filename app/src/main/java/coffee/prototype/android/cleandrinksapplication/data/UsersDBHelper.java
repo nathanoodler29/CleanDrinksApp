@@ -15,7 +15,7 @@ import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersE
 
 public class UsersDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "userdetails.db";
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 19;
 
 
     public UsersDBHelper(Context context) {
@@ -76,6 +76,10 @@ public class UsersDBHelper extends SQLiteOpenHelper {
                 + GoalContract.GoalEntry.COLUMN_START_TIME + " REAL NOT NULL," + " "
                 //real represnts georigon calander
                 + GoalContract.GoalEntry.COLUMN_END_TIME + " REAL NOT NULL," +
+
+                 GoalContract.GoalEntry.COLUMN_DATE + " REAL NOT NULL," +
+
+
 
 
                 " FOREIGN KEY(" + GoalContract.GoalEntry.USER_FK_REF + ")" + " REFERENCES " + UsersEntry.TABLE_NAME + "(" + UsersEntry._ID + "));";

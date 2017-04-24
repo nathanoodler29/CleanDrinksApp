@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.GoalsAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.GoalDBQueries;
 
 
 public class GoalActivity extends AppCompatActivity {
@@ -26,6 +27,8 @@ public class GoalActivity extends AppCompatActivity {
     private TextView goalHeading;
     private TextView paragraphText;
     private GoalsAdapter mAdapter;
+    private GoalDBQueries goalDBQueries = new GoalDBQueries();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +77,16 @@ public class GoalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //http://stackoverflow.com/questions/20149415/vibrate-onclick
                 Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-                Intent changeToAddGoalActivity = new Intent(getApplicationContext(), addgoal.class);
-                //Switches the activity to sign up.
-                startActivity(changeToAddGoalActivity);
-                helper.createToastWithText("Add a Goal!");
                 vibe.vibrate(100);
 
+                Intent changeToAddGoalActivity = new Intent(getApplicationContext(), addgoal.class);
+                if (goalDBQueries.checkIfGoalHasAlreadyBeenSet(getApplicationContext())){
+                    helper.createToastWithText("Sorry you've already set a goal, One goal a day can only be set.");
+                }else if(!goalDBQueries.checkIfGoalHasAlreadyBeenSet(getApplicationContext())){
+                    startActivity(changeToAddGoalActivity);
+                    helper.createToastWithText("Add a Goal!");
+
+                }
 
             }
         });
