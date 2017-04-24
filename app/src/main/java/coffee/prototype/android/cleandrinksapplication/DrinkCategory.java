@@ -29,7 +29,7 @@ public class DrinkCategory extends AppCompatActivity {
 
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
-        Intent changeToDrinksCategoryAlcohol = new Intent(this, DrinksCategoryTypes.class);
+        Intent changeToDrinksCategoryAlcohol = new Intent(this, DrinksCategoryAlcoholTypes.class);
         //Switches the activity to sign up.
         startActivity(changeToDrinksCategoryAlcohol);
 
@@ -67,6 +67,11 @@ public class DrinkCategory extends AppCompatActivity {
             Intent changeToGoal = new Intent(this, GoalActivity.class);
             //Switches the activity to sign up.
             startActivity(changeToGoal);
+        }else if(item.getItemId()==R.id.action_view_achivements){
+            Intent achivements = new Intent(this, achievement_gallery.class);
+            startActivity(achivements);
+
+
         }
         return super.onOptionsItemSelected(item);
     }

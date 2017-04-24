@@ -24,5 +24,14 @@ public class Caffine_Activity_Listing_Coffee_Based_Types extends AppCompatActivi
             //Switches the activity to sign up.
             startActivity(drinkListingPageEspresso);
         }
+
+    public void listBlackCoffeeBasedDrinks(View view){
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+
+        Intent drinkListingBlackCoffee = new Intent(this,BlackCoffeeBasedDrinksListing.class);
+        //Switches the activity to sign up.
+        startActivity(drinkListingBlackCoffee);
+    }
     }
 

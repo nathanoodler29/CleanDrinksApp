@@ -14,6 +14,14 @@
         android:title="Add goal"
         app:showAsAction="never"
 
+
+        />
+
+    <item
+        android:id="@+id/action_view_achivements"
+        android:title="View Achievements"
+        app:showAsAction="never"
+
         />
 
 

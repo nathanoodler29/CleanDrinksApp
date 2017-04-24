@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="coffee.prototype.android.cleandrinksapplication.DrinksCategoryTypes"
+    tools:context="coffee.prototype.android.cleandrinksapplication.DrinksCategoryAlcoholTypes"
 
     >
 
@@ -33,17 +33,19 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/receipt_child_values"
+            style="@style/Heading_font"
             android:text="@string/title_for_category_types_wine"
+            android:textColor="@color/white"
          />
 
         <ImageView
             android:id="@+id/wine_card_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
             android:layout_gravity="center"
+            android:layout_marginTop="4dp"
             android:contentDescription="@string/accessibility_label_for_caffeine_image"
-            android:src="@drawable/winebottle" />
+            android:src="@drawable/wine_bottle_cat" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -52,26 +54,29 @@
         android:layout_width="400dp"
         android:layout_height="120dp"
         card_view:cardBackgroundColor="@color/beerBottleBrown"
+        android:background="?android:attr/selectableItemBackground"
         android:layout_below="@+id/alcohol_sub_cat_wine"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-
+        android:onClick="goToBeerCat"
         >
         <TextView
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/receipt_child_values"
+            style="@style/Heading_font"
             android:text="@string/title_for_category_types_beer"
+            android:textColor="@color/white"
             />
 
         <ImageView
             android:id="@+id/beer_card_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginLeft="5dp"
             android:layout_gravity="center"
             android:contentDescription="@string/accessibility_label_for_caffeine_image"
-            android:src="@drawable/beer_tap" />
+            android:src="@drawable/pinttwo" />
     </android.support.v7.widget.CardView>
 
 
@@ -81,8 +86,8 @@
         android:id="@+id/alcohol_sub_cat_spirits"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/spiritsColour"
-
+        card_view:cardBackgroundColor="@color/lightBlue"
+        android:onClick="goToSpiritsCat"
         android:layout_below="@+id/alcohol_sub_cat_beer"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
@@ -91,52 +96,24 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/receipt_child_values"
+            style="@style/Heading_font"
             android:text="@string/title_for_category_types_spirit"
+            android:textColor="@color/white"
             />
 
         <ImageView
             android:id="@+id/spirit_card_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
             android:layout_gravity="center"
             android:contentDescription="@string/accessibility_label_for_caffeine_image"
-            android:src="@drawable/spiritbarrel" />
+            android:src="@drawable/spirits_cat" />
 
     </android.support.v7.widget.CardView>
 
 
-    <android.support.v7.widget.CardView
-        android:foregroundGravity="center_horizontal"
-        android:id="@+id/alcohol_sub_cat_vodka"
-        android:layout_width="400dp"
-        android:layout_height="120dp"
-        card_view:cardBackgroundColor="@color/darkBlue"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-
-        android:layout_below="@+id/alcohol_sub_cat_spirits"
->
-
-        <TextView
-            android:layout_gravity="center_horizontal"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/receipt_child_values"
-            android:text="@string/title_for_category_types_liquors"
-            />
 
 
-        <ImageView
-            android:id="@+id/liquor_card_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/accessibility_label_for_caffeine_image"
-            android:src="@drawable/liquor_cup" />
-
-    </android.support.v7.widget.CardView>
 
 
 </RelativeLayout>

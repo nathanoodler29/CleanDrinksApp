@@ -25,7 +25,6 @@
         android:background="?android:attr/selectableItemBackground"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:onClick=""
 
         >
         <TextView
@@ -34,6 +33,8 @@
             android:layout_height="wrap_content"
             style="@style/receipt_child_values"
             android:text="TEA"
+            android:textColor="@color/white"
+
             />
 
         <Button
@@ -41,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
-            android:onClick="" />
+            android:onClick="changeToTeaListingPage" />
 
         <ImageView
             android:id="@+id/tea_card_image"
@@ -79,6 +80,7 @@
             android:layout_height="wrap_content"
             style="@style/receipt_child_values"
             android:text="COFFEE"
+            android:textColor="@color/white"
             />
 
         <ImageView

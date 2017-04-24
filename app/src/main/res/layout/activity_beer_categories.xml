@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    tools:context="coffee.prototype.android.cleandrinksapplication.BeerCategories">
+
+    <include
+        android:id="@+id/email_address_card"
+        layout="@layout/toolbargeneric" />
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="80dp"
+
+        android:foregroundGravity="center_horizontal"
+        android:id="@+id/alcohol_sub_cat_wine"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        card_view:cardBackgroundColor="@color/beerBottleBrown"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="goToLagerPage"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        >
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Heading_font"
+            android:text="Lager"
+            android:textColor="@color/white"
+            />
+
+        <ImageView
+            android:id="@+id/lager_card_image"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:contentDescription=""
+            android:src="@drawable/lager" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:foregroundGravity="center_horizontal"
+        android:id="@+id/alcohol_sub_cat_craft_beer"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        card_view:cardBackgroundColor="@color/orange"
+        android:layout_below="@+id/alcohol_sub_cat_wine"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:onClick="goToCraftBeerPage"
+
+        >
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Heading_font"
+            android:text="Craft beer"
+            android:textColor="@color/white"
+            />
+
+        <ImageView
+            android:id="@+id/white_wine_image"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:contentDescription=""
+            android:src="@drawable/craftbeer" />
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:foregroundGravity="center_horizontal"
+        android:id="@+id/real_alecard"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        card_view:cardBackgroundColor="@color/brightOrange"
+        android:layout_below="@+id/alcohol_sub_cat_craft_beer"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:onClick="goToRealAleBeerPage"
+
+        >
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Heading_font"
+            android:text="Real Ale beer"
+            android:textColor="@color/white"
+            />
+
+        <ImageView
+            android:id="@+id/realale"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:contentDescription=""
+            android:src="@drawable/real_ale" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:foregroundGravity="center_horizontal"
+        android:id="@+id/alcohol_sub_cat_stout"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        card_view:cardBackgroundColor="@color/espressoColor"
+        android:layout_below="@+id/real_alecard"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:onClick="goToStoutPage"
+
+        >
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Heading_font"
+            android:text="Stout"
+            android:textColor="@color/white"
+            />
+
+        <ImageView
+            android:id="@+id/stout_image"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:contentDescription=""
+            android:src="@drawable/stout" />
+    </android.support.v7.widget.CardView>
+
+
+
+
+</RelativeLayout>

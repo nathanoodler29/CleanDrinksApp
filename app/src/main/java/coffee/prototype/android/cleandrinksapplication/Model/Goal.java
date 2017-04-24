@@ -11,6 +11,16 @@ public class Goal {
     private String endTimeGoal;
     private String startTimeGoal;
 
+    public String getWaterGoalStr() {
+        return waterGoalStr;
+    }
+
+    public void setWaterGoalStr(String waterGoalStr) {
+        this.waterGoalStr = waterGoalStr;
+    }
+
+    private String waterGoalStr;
+
 
     private int userIDFk;
 
@@ -41,10 +51,10 @@ public class Goal {
 
     }
 
-    public Goal(String startTime,String endTime){
+    public Goal(String waterGoalStr, String startTime,String endTime){
         this.startTimeGoal = startTime;
         this.endTimeGoal = endTime;
-
+        this.waterGoalStr = waterGoalStr;
     }
 
 

@@ -63,6 +63,12 @@
         android:layout_below="@+id/caffeine_sub_cat_espresso"
         android:foregroundGravity="center_horizontal"
         card_view:cardBackgroundColor="@color/coffeeColor">
+        <Button
+            android:id="@+id/invisible_button_to_black_coffee_based_drinks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="listBlackCoffeeBasedDrinks" />
 
         <TextView
             style="@style/receipt_child_values"

@@ -55,4 +55,15 @@ public class Drinks_Category_Types_Caffeine extends AppCompatActivity {
         //Switches the activity to sign up.
         startActivity(changeToCaffineDisplayCat);
     }
+
+    public void changeToTeaListingPage(View view){
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+
+
+        Intent changeToTeaListing = new Intent(this, DrinkListingPageTea.class);
+        //Switches the activity to sign up.
+        startActivity(changeToTeaListing);
+    }
+
 }

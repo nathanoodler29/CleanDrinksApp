@@ -11,22 +11,35 @@ import android.view.View;
 
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 
-public class DrinksCategoryTypes extends AppCompatActivity {
+public class DrinksCategoryAlcoholTypes extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drinks_category_types);
+        setContentView(R.layout.activity_drinks_alcohol_category_types);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
     }
 
 
     public void goToWineCategory(View view){
-        Intent changeToWineCategoryPage = new Intent(this, WineCategory.class);
+        Intent changeToWineCategoryPage = new Intent(this, WineCategories.class);
         //Switches the activity to sign up.
         startActivity(changeToWineCategoryPage);
     }
+
+    public void goToBeerCat(View view){
+        Intent changeToBeerCategoryPage = new Intent(this, BeerCategories.class);
+        //Switches the activity to sign up.
+        startActivity(changeToBeerCategoryPage);
+    }
+
+    public void goToSpiritsCat(View view){
+        Intent changeToSpiritsCategoryPage = new Intent(this, SpiritsCategories.class);
+        //Switches the activity to sign up.
+        startActivity(changeToSpiritsCategoryPage);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,6 +63,8 @@ public class DrinksCategoryTypes extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }
