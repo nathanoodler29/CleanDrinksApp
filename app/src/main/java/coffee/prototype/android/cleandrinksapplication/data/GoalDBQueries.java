@@ -2,19 +2,15 @@ package coffee.prototype.android.cleandrinksapplication.data;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
+
 import android.database.sqlite.SQLiteDatabase;
-
-import java.util.ArrayList;
-
 import coffee.prototype.android.cleandrinksapplication.ActivityHelper;
-import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.TimeHandler;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
- * Created by Noodle on 24/04/2017.
+ * created by Noodle on 24/04/2017.
  */
 
 
@@ -49,6 +45,28 @@ public class GoalDBQueries {
         }
 
         return goalExistingToday;
+
+    }
+
+    public int numOfGoalsCreatedForAUser(Context context) {
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        int numOfGoals = 0;
+
+        Cursor cursor = db.rawQuery("SELECT count(*) FROM " + GoalContract.GoalEntry.TABLE_NAME + " WHERE " + GoalContract.GoalEntry.USER_FK_REF, null);
+
+
+        if (cursor.moveToFirst()) {
+
+            numOfGoals = cursor.getInt(0);
+            cursor.close();
+
+
+
+        }
+
+        return numOfGoals;
 
     }
 }

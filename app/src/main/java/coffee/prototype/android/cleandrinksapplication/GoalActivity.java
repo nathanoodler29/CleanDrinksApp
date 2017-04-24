@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.GoalsAdapter;
 import coffee.prototype.android.cleandrinksapplication.data.GoalDBQueries;
 
@@ -26,7 +28,9 @@ public class GoalActivity extends AppCompatActivity {
     private TextView noGoalsText;
     private TextView goalHeading;
     private TextView paragraphText;
+    private TextView totalNumOfGoals;
     private GoalsAdapter mAdapter;
+
     private GoalDBQueries goalDBQueries = new GoalDBQueries();
 
 
@@ -48,6 +52,9 @@ public class GoalActivity extends AppCompatActivity {
         goalHeading = (TextView) findViewById(R.id.goal_parent_heading);
         paragraphText = (TextView) findViewById(R.id.goal_paragraph_text);
 
+        totalNumOfGoals = (TextView)findViewById(R.id.total_num_of_goals);
+
+
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goal_recycle);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -60,11 +67,16 @@ public class GoalActivity extends AppCompatActivity {
             //http://stackoverflow.com/questions/4249237/can-i-hide-an-image-button-on-a-layout-dimensions-and-background-until-a-call
             cardView.setVisibility(View.VISIBLE);
             noGoalsText.setVisibility(View.VISIBLE);
+            totalNumOfGoals.setVisibility(View.GONE);
+
         } else if (mAdapter.getItemCount() >= 0) {
             cardView.setVisibility(View.GONE);
             noGoalsText.setVisibility(View.GONE);
             goalHeading.setText("View your goals");
             paragraphText.setText("Review your goals");
+            totalNumOfGoals.setVisibility(View.VISIBLE);
+            totalNumOfGoals.setText("Total num of goals "+goalDBQueries.numOfGoalsCreatedForAUser(getApplicationContext()));
+            // total_num_of_goals
         }
 
     }
