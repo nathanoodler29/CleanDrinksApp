@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="coffee.prototype.android.cleandrinksapplication.DrinkListingPageVodka">
-
+    tools:context="coffee.prototype.android.cleandrinksapplication.DrinkListingPageGin">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/vodka_toolbar"
+        android:id="@+id/gin_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -20,13 +19,12 @@
         app:logo="@drawable/logowaterbottle">
     </android.support.v7.widget.Toolbar>
 
-
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="55dp"
-        android:id="@+id/vodka_recycler"
+        android:id="@+id/gin_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical">
-        </android.support.v7.widget.RecyclerView>
+    </android.support.v7.widget.RecyclerView>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

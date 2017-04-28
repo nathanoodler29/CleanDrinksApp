@@ -25,6 +25,15 @@ public class TimeHandler {
         return formatter.print(date);
     }
 
+    public String getDayAndMonth() {
+
+        DateTime date = new DateTime();
+
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MM");
+
+        return formatter.print(date);
+    }
+
     public String getTotalDateWithTime() {
 
         DateTime date = new DateTime();
@@ -41,6 +50,16 @@ public class TimeHandler {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("kk:mm");
 
         return formatter.print(time);
+    }
+
+    public String dayName(){
+        DateTime dateName = new DateTime();
+
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("EEEE");
+
+        String dayName = formatter.print(dateName);
+
+        return dayName;
     }
 
 

@@ -18,6 +18,7 @@ import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.Tea;
 import coffee.prototype.android.cleandrinksapplication.Model.TimeHandler;
 import coffee.prototype.android.cleandrinksapplication.Model.User;
+import coffee.prototype.android.cleandrinksapplication.Model.Water;
 import coffee.prototype.android.cleandrinksapplication.data.AchievementContract;
 import coffee.prototype.android.cleandrinksapplication.data.DrinksCategoryDrinkQuanitiy;
 import coffee.prototype.android.cleandrinksapplication.data.DrinksContract;
@@ -47,6 +48,16 @@ public class ActivityHelper {
     private ArrayList<Drink> mdrinks = new ArrayList<>();
     private ArrayList<Drink> drinksRecipt = new ArrayList<Drink>();
     private ArrayList<Achievement> achivements = new ArrayList<Achievement>();
+
+    public double getTotalForProgres() {
+        return totalForProgres;
+    }
+
+    public void setTotalForProgres(double totalForProgres) {
+        this.totalForProgres = totalForProgres;
+    }
+
+    private double totalForProgres;
 
 
     private String numOfAchivementsInDB;
@@ -195,7 +206,7 @@ public class ActivityHelper {
     }
 
     //// TODO: 04/04/2017  Need to add progress table.
-    public void addGoalToGoalTable(Context context, String userID, double waterGoal, String startTime, String endTime) {
+    public void addGoalToGoalTable(Context context, String userID, double waterGoal, String startTime, String endTime,String date) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -207,6 +218,9 @@ public class ActivityHelper {
         contentValues.put(GoalContract.GoalEntry.COLUMN_Water_Target, waterGoal);
         contentValues.put(GoalContract.GoalEntry.COLUMN_START_TIME, startTime);
         contentValues.put(GoalContract.GoalEntry.COLUMN_END_TIME, endTime);
+
+
+        contentValues.put(GoalContract.GoalEntry.COLUMN_DATE, date);
 
         long newRowId = db.insert(GoalContract.GoalEntry.TABLE_NAME, null, contentValues);
 
@@ -309,8 +323,8 @@ public class ActivityHelper {
 
         int espressoCup = context.getResources().getIdentifier("espresso", "drawable", context.getPackageName());
 
-        Coffee singleEspresso = new Coffee("Single Espresso", 30, "Coffee", 92, espressoCup);
-        singleEspresso.setDrinkName("Single Espresso");
+        Coffee singleEspresso = new Coffee("Single Espresso caffeine:92mg", 30, "Coffee", 92, espressoCup);
+        singleEspresso.setDrinkName("Single Espresso caffeine:92mg");
         singleEspresso.setDrinkVolume(30);
         singleEspresso.setDrinkType("Coffee");
         singleEspresso.setCaffineContent(92);
@@ -321,8 +335,8 @@ public class ActivityHelper {
 
         int cappucinoImage = context.getResources().getIdentifier("cappuccino", "drawable", context.getPackageName());
 
-        Coffee cappucino = new Coffee("Small Double shot Cappucino", 236, "Coffee", 184, cappucinoImage);
-        cappucino.setDrinkName("Small Double shot Cappucino");
+        Coffee cappucino = new Coffee("x2 shot Cappucino caffeine:184mg", 236, "Coffee", 184, cappucinoImage);
+        cappucino.setDrinkName("x2 shot Cappucino caffeine:184mg");
         cappucino.setDrinkVolume(236);
         cappucino.setDrinkType("Coffee");
         cappucino.setCaffineContent(184);
@@ -330,8 +344,8 @@ public class ActivityHelper {
 
         int flatWhiteImage = context.getResources().getIdentifier("gibraltar", "drawable", context.getPackageName());
 
-        Coffee flatWhite = new Coffee("Flat white", 236, "Coffee", 184, flatWhiteImage);
-        flatWhite.setDrinkName("Flat white");
+        Coffee flatWhite = new Coffee("Flat white caffeine:184mg", 236, "Coffee", 184, flatWhiteImage);
+        flatWhite.setDrinkName("Flat white caffeine:184mg");
         flatWhite.setDrinkVolume(236);
         flatWhite.setDrinkType("Coffee");
         flatWhite.setCaffineContent(184);
@@ -339,8 +353,8 @@ public class ActivityHelper {
 
         int latteImage = context.getResources().getIdentifier("latte", "drawable", context.getPackageName());
 ////https://www.caffeineinformer.com/caffeine-content/costa-coffee
-        Coffee latte = new Coffee("Single shot latte", 350, "Coffee", 92, latteImage);
-        latte.setDrinkName("Single shot latte");
+        Coffee latte = new Coffee("Single shot latte caffeine:92mg", 350, "Coffee", 92, latteImage);
+        latte.setDrinkName("Single shot latte caffeine:92mg");
         latte.setDrinkVolume(350);
         latte.setDrinkType("Coffee");
         latte.setCaffineContent(92);
@@ -411,8 +425,8 @@ public class ActivityHelper {
         int filterCoffeeImage = context.getResources().getIdentifier("filter_coffee", "drawable", context.getPackageName());
 
 
-        Coffee filterCoffee = new Coffee("Filter Coffee", 236, "Black Coffee", 145, filterCoffeeImage);
-        filterCoffee.setDrinkName("Filter Coffee");
+        Coffee filterCoffee = new Coffee("Filter Coffee caffeine:236", 236, "Black Coffee", 145, filterCoffeeImage);
+        filterCoffee.setDrinkName("Filter Coffee caffeine:236");
         filterCoffee.setDrinkVolume(236);
         filterCoffee.setDrinkType("Black Coffee");
         filterCoffee.setCaffineContent(145);
@@ -421,8 +435,8 @@ public class ActivityHelper {
         int frenchPressImage = context.getResources().getIdentifier("frenchpress", "drawable", context.getPackageName());
 
 
-        Coffee frenchPress = new Coffee("French press Coffee", 236, "Black Coffee", 163, frenchPressImage);
-        frenchPress.setDrinkName("French press Coffee");
+        Coffee frenchPress = new Coffee("French press caffeine:163mg", 236, "Black Coffee", 163, frenchPressImage);
+        frenchPress.setDrinkName("French press caffeine:163mg");
         frenchPress.setDrinkVolume(236);
         frenchPress.setDrinkType("Black Coffee");
         frenchPress.setCaffineContent(145);
@@ -432,18 +446,18 @@ public class ActivityHelper {
 
 
 
-        Coffee mokaPotCoffee = new Coffee("Moka Pot Coffee", 236, "Black Coffee", 5, mokaPotImage);
-        mokaPotCoffee.setDrinkName("Moka Pot Coffee");
+        Coffee mokaPotCoffee = new Coffee("Moka Pot caffeine:90mg ", 236, "Black Coffee", 90, mokaPotImage);
+        mokaPotCoffee.setDrinkName("Moka Pot caffine:90mg");
         mokaPotCoffee.setDrinkVolume(236);
         mokaPotCoffee.setDrinkType("Black Coffee");
-        mokaPotCoffee.setCaffineContent(5);
+        mokaPotCoffee.setCaffineContent(90);
         mokaPotCoffee.setImagePath(mokaPotImage);
 
         int instantCoffeeImage = context.getResources().getIdentifier("instant_coffee", "drawable", context.getPackageName());
 
 
-        Coffee instantCoffee = new Coffee("Instant  Coffee", 236, "Black Coffee", 57, instantCoffeeImage);
-        instantCoffee.setDrinkName("Instant  Coffee");
+        Coffee instantCoffee = new Coffee("Instant Coffee caffeine:57mg", 236, "Black Coffee ", 57, instantCoffeeImage);
+        instantCoffee.setDrinkName("Instant Coffee caffeine:57mg");
         instantCoffee.setDrinkVolume(236);
         instantCoffee.setDrinkType("Black Coffee");
         instantCoffee.setCaffineContent(57);
@@ -518,8 +532,8 @@ public class ActivityHelper {
 
         int teaImage = context.getResources().getIdentifier("english_breakfast", "drawable", context.getPackageName());
 
-        Tea englishBreakFast = new Tea("3 Min steep English breakfast tea", 170, "Tea", 22, teaImage);
-        englishBreakFast.setDrinkName("3 Min steep English breakfast tea");
+        Tea englishBreakFast = new Tea("3 Min steep breakfast caffeine:22mg", 170, "Tea", 22, teaImage);
+        englishBreakFast.setDrinkName("3 Min steep breakfast caffeine:22mg");
         englishBreakFast.setDrinkVolume(170);
         englishBreakFast.setDrinkType("Tea");
         englishBreakFast.setCaffineContent(22);
@@ -527,8 +541,8 @@ public class ActivityHelper {
 
         int blackTeaImage = context.getResources().getIdentifier("black_tea_cup", "drawable", context.getPackageName());
 
-        Tea blackTea = new Tea("3 Min Steep Black Tea", 236, "Tea", 42, blackTeaImage);
-        blackTea.setDrinkName("3 Min Steep Black Tea");
+        Tea blackTea = new Tea("3 Min Steep Black Tea caffeine:42mg", 236, "Tea", 42, blackTeaImage);
+        blackTea.setDrinkName("3 Min Steep Black Tea caffeine:42mg");
         blackTea.setDrinkVolume(236);
         blackTea.setDrinkType("Tea");
         blackTea.setCaffineContent(42);
@@ -537,8 +551,8 @@ public class ActivityHelper {
         int greenTeaImage = context.getResources().getIdentifier("green_tea", "drawable", context.getPackageName());
 
 
-        Tea greenTea = new Tea("Green Tea", 236, "Tea", 25, greenTeaImage);
-        greenTea.setDrinkName("Green Tea");
+        Tea greenTea = new Tea("Green Tea caffeine:25mg", 236, "Tea", 25, greenTeaImage);
+        greenTea.setDrinkName("Green Tea caffeine:25mg");
         greenTea.setDrinkVolume(236);
         greenTea.setDrinkType("Tea");
         greenTea.setCaffineContent(25);
@@ -546,8 +560,8 @@ public class ActivityHelper {
 
         int decafTeaImage = context.getResources().getIdentifier("decaf_tea", "drawable", context.getPackageName());
 
-        Tea decafTea = new Tea("Decaf Tea", 236, "Tea", 5, blackTeaImage);
-        decafTea.setDrinkName("Decaf Tea");
+        Tea decafTea = new Tea("Decaf Tea caffeine:5mg", 236, "Tea", 5, blackTeaImage);
+        decafTea.setDrinkName("Decaf Tea caffeine:5mg");
         decafTea.setDrinkVolume(236);
         decafTea.setDrinkType("Tea");
         decafTea.setCaffineContent(5);
@@ -624,23 +638,23 @@ public class ActivityHelper {
 
         int redWineImage = context.getResources().getIdentifier("red_wine_item", "drawable", context.getPackageName());
 
-        AlcoholicDrink redWine = new AlcoholicDrink("125ml Glass of Red wine", 125, "Red wine", 2.3, redWineImage);
-        redWine.setDrinkName("125ml Glass of Red wine");
+        AlcoholicDrink redWine = new AlcoholicDrink("Glass of Red wine units:2.3", 125, "Red wine", 2.3, redWineImage);
+        redWine.setDrinkName("Glass of Red wine units:2.3");
         redWine.setDrinkVolume(125);
         redWine.setDrinkType("Red Wine");
         redWine.setUnitContent(2.3);
         redWine.setImagePath(redWineImage);
 
-        AlcoholicDrink sangioveseRedWine = new AlcoholicDrink(" 13% 125ml Sangiovese Red wine", 125, "Red wine", 1.6, redWineImage);
-        sangioveseRedWine.setDrinkName("125ml Sangiovese Red wine");
+        AlcoholicDrink sangioveseRedWine = new AlcoholicDrink("Sangiovese Red wine units:1.6", 125, "Red wine", 1.6, redWineImage);
+        sangioveseRedWine.setDrinkName("Sangiovese Red wine units:1.6");
         sangioveseRedWine.setDrinkVolume(125);
         sangioveseRedWine.setDrinkType("Red Wine");
         sangioveseRedWine.setUnitContent(1.6);
         sangioveseRedWine.setImagePath(redWineImage);
 
 
-        AlcoholicDrink merlotRedWine = new AlcoholicDrink("13% 125ml Merlot Red wine", 125, "Red wine", 1.6, redWineImage);
-        merlotRedWine.setDrinkName("125ml Merlot Red wine");
+        AlcoholicDrink merlotRedWine = new AlcoholicDrink("Merlot Red wine units:1.6", 125, "Red wine", 1.6, redWineImage);
+        merlotRedWine.setDrinkName("Merlot Red wine units:1.6");
         merlotRedWine.setDrinkVolume(125);
         merlotRedWine.setDrinkType("Red Wine");
         merlotRedWine.setUnitContent(1.6);
@@ -706,23 +720,23 @@ public class ActivityHelper {
 
         int whiteWineImage = context.getResources().getIdentifier("white_wine_item", "drawable", context.getPackageName());
 
-        AlcoholicDrink whiteWine = new AlcoholicDrink("125ml Glass of White wine", 125, "White Wine", 2.3, whiteWineImage);
-        whiteWine.setDrinkName("125ml Glass of White wine");
+        AlcoholicDrink whiteWine = new AlcoholicDrink("White wine units:2.3", 125, "White Wine", 2.3, whiteWineImage);
+        whiteWine.setDrinkName("White wine units:2.3");
         whiteWine.setDrinkVolume(125);
         whiteWine.setDrinkType("White Wine");
         whiteWine.setUnitContent(2.3);
         whiteWine.setImagePath(whiteWineImage);
 
 
-        AlcoholicDrink sauvignoBlanc = new AlcoholicDrink("13% 125ml sauvigno Blanc", 125, "White Wine", 1.6, whiteWineImage);
-        sauvignoBlanc.setDrinkName("13% 125ml sauvigno Blanc");
+        AlcoholicDrink sauvignoBlanc = new AlcoholicDrink("Sauvigno Blanc units:1.6", 125, "White Wine", 1.6, whiteWineImage);
+        sauvignoBlanc.setDrinkName("Sauvigno Blanc units:1.6");
         sauvignoBlanc.setDrinkVolume(125);
         sauvignoBlanc.setDrinkType("White Wine");
         sauvignoBlanc.setUnitContent(1.6);
         sauvignoBlanc.setImagePath(whiteWineImage);
 
-        AlcoholicDrink biancoMoncaroWhiteWine = new AlcoholicDrink("11% 125ml Bianco Moncaro", 125, "White Wine", 1.4, whiteWineImage);
-        biancoMoncaroWhiteWine.setDrinkName("11% 125ml Bianco Moncaro");
+        AlcoholicDrink biancoMoncaroWhiteWine = new AlcoholicDrink("Bianco Moncaro units:1.4", 125, "White Wine", 1.4, whiteWineImage);
+        biancoMoncaroWhiteWine.setDrinkName("Bianco Moncaro units:1.4");
         biancoMoncaroWhiteWine.setDrinkVolume(125);
         biancoMoncaroWhiteWine.setDrinkType("White Wine");
         biancoMoncaroWhiteWine.setUnitContent(1.6);
@@ -780,16 +794,16 @@ public class ActivityHelper {
 
         int beerImage = context.getResources().getIdentifier("beerbottle", "drawable", context.getPackageName());
 
-        AlcoholicDrink stellaPint = new AlcoholicDrink("5% Pint Stella Atoris ", 568, "Lager", 2.8, beerImage);
-        stellaPint.setDrinkName("5% Pint Stella Atoris");
+        AlcoholicDrink stellaPint = new AlcoholicDrink("Pint Stella Atoris units:2.8", 568, "Lager", 2.8, beerImage);
+        stellaPint.setDrinkName("Pint Stella Atoris units:2.8");
         stellaPint.setDrinkVolume(568);
         stellaPint.setDrinkType("Lager");
         stellaPint.setUnitContent(2.8);
         stellaPint.setImagePath(beerImage);
 
 
-        AlcoholicDrink bottleBud = new AlcoholicDrink("5% BudWeiser Bottle ", 355, "Lager", 1.55, beerImage);
-        bottleBud.setDrinkName("5% BudWeiser Bottle");
+        AlcoholicDrink bottleBud = new AlcoholicDrink("BudWeiser Bottle units:2.8", 355, "Lager", 1.55, beerImage);
+        bottleBud.setDrinkName("BudWeiser Bottle units:2.8");
         bottleBud.setDrinkVolume(355);
         bottleBud.setDrinkType("Lager");
         bottleBud.setUnitContent(1.55);
@@ -839,16 +853,16 @@ public class ActivityHelper {
 
         int beerImage = context.getResources().getIdentifier("craft_beer_bottle", "drawable", context.getPackageName());
 
-        AlcoholicDrink brewDogDeadPony= new AlcoholicDrink("Bottle Brewdog Dead Pony Club", 330, "CraftBeer", 1.25, beerImage);
-        brewDogDeadPony.setDrinkName("Bottle Brewdog Dead Pony Club");
+        AlcoholicDrink brewDogDeadPony= new AlcoholicDrink("Brewdog Dead Pony units:1.25", 330, "CraftBeer", 1.25, beerImage);
+        brewDogDeadPony.setDrinkName("Brewdog Dead Pony units:1.25");
         brewDogDeadPony.setDrinkVolume(330);
         brewDogDeadPony.setDrinkType("CraftBeer");
         brewDogDeadPony.setUnitContent(1.25);
         brewDogDeadPony.setImagePath(beerImage);
 
 
-        AlcoholicDrink blueMoon = new AlcoholicDrink("5.4% Blue Moon Bottle", 330, "Lager", 1.8, beerImage);
-        blueMoon.setDrinkName("5.4% Blue Moon Bottle");
+        AlcoholicDrink blueMoon = new AlcoholicDrink("Blue Moon Bottle units: 1.8", 330, "Lager", 1.8, beerImage);
+        blueMoon.setDrinkName("Blue Moon Bottle units:1.8");
         blueMoon.setDrinkVolume(355);
         blueMoon.setDrinkType("CraftBeer");
         blueMoon.setUnitContent(1.55);
@@ -897,16 +911,16 @@ public class ActivityHelper {
 
         int beerImage = context.getResources().getIdentifier("real_ale_listing", "drawable", context.getPackageName());
 
-        AlcoholicDrink newcastleBrown= new AlcoholicDrink("4.7% Pint Newcastle Brown ale", 550, "RealAle", 2.6, beerImage);
-        newcastleBrown.setDrinkName("4.7% Pint Newcastle Brown ale");
+        AlcoholicDrink newcastleBrown= new AlcoholicDrink("Newcastle Brown ale units:2.6" , 550, "RealAle", 2.6, beerImage);
+        newcastleBrown.setDrinkName("Newcastle Brown ale units:2.6");
         newcastleBrown.setDrinkVolume(550);
         newcastleBrown.setDrinkType("RealAle");
         newcastleBrown.setUnitContent(2.6);
         newcastleBrown.setImagePath(beerImage);
 
 
-        AlcoholicDrink londonPride = new AlcoholicDrink("500ml 4.7% Fullers London Pride", 500, "RealAle", 2.35, beerImage);
-        londonPride.setDrinkName("4.7% 500ml Fullers London Pride");
+        AlcoholicDrink londonPride = new AlcoholicDrink("Fullers London Pride units:2.35", 500, "RealAle", 2.35, beerImage);
+        londonPride.setDrinkName("Fullers London Pride units:2.35");
         londonPride.setDrinkVolume(500);
         londonPride.setDrinkType("RealAle");
         londonPride.setUnitContent(2.35);
@@ -954,16 +968,16 @@ public class ActivityHelper {
 
         int beerImage = context.getResources().getIdentifier("stout_listing", "drawable", context.getPackageName());
 
-        AlcoholicDrink guinnessOriginal= new AlcoholicDrink("500ml Guinness Original", 500, "Stout", 2.1, beerImage);
-        guinnessOriginal.setDrinkName("500ml Guinness Original");
+        AlcoholicDrink guinnessOriginal= new AlcoholicDrink("Guinness Original units:2.1", 500, "Stout", 2.1, beerImage);
+        guinnessOriginal.setDrinkName("Guinness Original units:2.1");
         guinnessOriginal.setDrinkVolume(500);
         guinnessOriginal.setDrinkType("Stout");
         guinnessOriginal.setUnitContent(2.1);
         guinnessOriginal.setImagePath(beerImage);
 
 
-        AlcoholicDrink brewdogBlackHeart = new AlcoholicDrink("330ml Brewdog Blackheart Stout", 330, "Stout", 1.55, beerImage);
-        brewdogBlackHeart.setDrinkName("330ml Brewdog Blackheart Stout");
+        AlcoholicDrink brewdogBlackHeart = new AlcoholicDrink("Brewdog Blackheart Stout units:1.55", 330, "Stout", 1.55, beerImage);
+        brewdogBlackHeart.setDrinkName("Brewdog Blackheart Stout units:1.55");
         brewdogBlackHeart.setDrinkVolume(330);
         brewdogBlackHeart.setDrinkType("Stout");
         brewdogBlackHeart.setUnitContent(1.55);
@@ -1012,16 +1026,16 @@ public class ActivityHelper {
 
         int whiskeyImage = context.getResources().getIdentifier("whiskey_listing", "drawable", context.getPackageName());
 
-        AlcoholicDrink jackDanielsHoney= new AlcoholicDrink("One Shot Jack Daniels Tennessee Honey", 25, "Whiskey", 1, whiskeyImage);
-        jackDanielsHoney.setDrinkName("One Shot Jack Daniels Tennessee Honey");
+        AlcoholicDrink jackDanielsHoney= new AlcoholicDrink("A shot Jack Daniels Honey units:1", 25, "Whiskey", 1, whiskeyImage);
+        jackDanielsHoney.setDrinkName("A shot Jack Daniels Honey units:1");
         jackDanielsHoney.setDrinkVolume(25);
         jackDanielsHoney.setDrinkType("Whiskey");
         jackDanielsHoney.setUnitContent(1);
         jackDanielsHoney.setImagePath(whiskeyImage);
 
 
-        AlcoholicDrink jamesonsWhiskey = new AlcoholicDrink("One shot Jameson Whiskey", 25, "Whiskey", 1, whiskeyImage);
-        jamesonsWhiskey.setDrinkName("One shot Jameson Whiskey");
+        AlcoholicDrink jamesonsWhiskey = new AlcoholicDrink("A shot Jameson Whiskey units:1", 25, "Whiskey", 1, whiskeyImage);
+        jamesonsWhiskey.setDrinkName("A shot Jameson Whiskey units: 1");
         jamesonsWhiskey.setDrinkVolume(25);
         jamesonsWhiskey.setDrinkType("Whiskey");
         jamesonsWhiskey.setUnitContent(1);
@@ -1068,18 +1082,18 @@ public class ActivityHelper {
         ContentValues russianStanardContentValue = new ContentValues();
 
 
-        int vodkaImage = context.getResources().getIdentifier("vodka", "drawable", context.getPackageName());
+        int vodkaImage = context.getResources().getIdentifier("gin", "drawable", context.getPackageName());
 
-        AlcoholicDrink smirnoffRedLabel= new AlcoholicDrink("One Shot Smirnoff Red Label Vodka", 25, "Vodka", 1, vodkaImage);
-        smirnoffRedLabel.setDrinkName("One Shot Smirnoff Red Label Vodka");
+        AlcoholicDrink smirnoffRedLabel= new AlcoholicDrink("One Shot Smirnoff Red Label units:1", 25, "Vodka", 1, vodkaImage);
+        smirnoffRedLabel.setDrinkName("One Shot Smirnoff Red Label units:1");
         smirnoffRedLabel.setDrinkVolume(25);
         smirnoffRedLabel.setDrinkType("Vodka");
         smirnoffRedLabel.setUnitContent(1);
         smirnoffRedLabel.setImagePath(vodkaImage);
 
 
-        AlcoholicDrink russianStandard = new AlcoholicDrink("One shot Russian Standard Vodka", 25, "Vodka", 1, vodkaImage);
-        russianStandard.setDrinkName("One shot Russian Standard Vodka");
+        AlcoholicDrink russianStandard = new AlcoholicDrink("A shot Russian Standard units:1", 25, "Vodka", 1, vodkaImage);
+        russianStandard.setDrinkName("A shot Russian Standard Vodka units:1");
         russianStandard.setDrinkVolume(25);
         russianStandard.setDrinkType("Vodka");
         russianStandard.setUnitContent(1);
@@ -1126,18 +1140,18 @@ public class ActivityHelper {
         ContentValues hendricksContentValue = new ContentValues();
 
 
-        int ginImage = context.getResources().getIdentifier("gin", "drawable", context.getPackageName());
+        int ginImage = context.getResources().getIdentifier("vodka", "drawable", context.getPackageName());
 
-        AlcoholicDrink bombayGin= new AlcoholicDrink("One shot Bombay Sapphire", 25, "Gin", 1, ginImage);
-        bombayGin.setDrinkName("One shot Bombay Sapphire");
+        AlcoholicDrink bombayGin= new AlcoholicDrink("A shot Bombay Sapphire units:1", 25, "Gin", 1, ginImage);
+        bombayGin.setDrinkName("A shot Bombay Sapphire units: 1");
         bombayGin.setDrinkVolume(25);
         bombayGin.setDrinkType("Gin");
         bombayGin.setUnitContent(1);
         bombayGin.setImagePath(ginImage);
 
 
-        AlcoholicDrink hendricksGin = new AlcoholicDrink("One shot Hendricks Gin", 25, "Gin", 1, ginImage);
-        hendricksGin.setDrinkName("One shot Hendricks Gin");
+        AlcoholicDrink hendricksGin = new AlcoholicDrink("A shot Hendricks Gin units:1", 25, "Gin", 1, ginImage);
+        hendricksGin.setDrinkName("A shot Hendricks Gin units: 1");
         hendricksGin.setDrinkVolume(25);
         hendricksGin.setDrinkType("Gin");
         hendricksGin.setUnitContent(1);
@@ -1175,6 +1189,80 @@ public class ActivityHelper {
 
 
     }
+
+    public void insertWaterIntoDatabase(Context context) {
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues quaterOfLitreWaterContentValue = new ContentValues();
+        ContentValues halfALitreOfWaterContentValue = new ContentValues();
+        ContentValues litreOfWaterContentValue = new ContentValues();
+
+        int waterImage = context.getResources().getIdentifier("bottleofwater", "drawable", context.getPackageName());
+
+
+        Water water = new Water("250ml Water", 250, "Water", 0, waterImage);
+        water.setDrinkName("250ml Water");
+        water.setDrinkVolume(250);
+        water.setDrinkType("Water");
+        water.setDrinkQuantity(0);
+        water.setImagePath(waterImage);
+
+        Water halfLitrewater = new Water("500ml Water", 500, "Water", 0, waterImage);
+        halfLitrewater.setDrinkName("500ml Water");
+        halfLitrewater.setDrinkVolume(500);
+        halfLitrewater.setDrinkType("Water");
+        halfLitrewater.setDrinkQuantity(0);
+        halfLitrewater.setImagePath(waterImage);
+
+        Water litreWater = new Water("1000ml Water", 1000, "Water", 0, waterImage);
+        litreWater.setDrinkName("1000ml Water");
+        litreWater.setDrinkVolume(1000);
+        litreWater.setDrinkType("Water");
+        litreWater.setDrinkQuantity(0);
+        litreWater.setImagePath(waterImage);
+
+        quaterOfLitreWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME,  water.getDrinkName());
+
+        quaterOfLitreWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, water.getDrinkType());
+
+        quaterOfLitreWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, water.getDrinkVolume());
+
+        quaterOfLitreWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, water.getImagePath());
+
+        quaterOfLitreWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, water.getDrinkQuantity());
+
+
+        halfALitreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, halfLitrewater.getDrinkName());
+
+        halfALitreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, halfLitrewater.getDrinkType());
+
+        halfALitreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, halfLitrewater.getDrinkVolume());
+
+        halfALitreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, halfLitrewater.getImagePath());
+
+        halfALitreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, halfLitrewater.getDrinkQuantity());
+
+
+
+        litreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, litreWater.getDrinkName());
+
+        litreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, litreWater.getDrinkType());
+
+        litreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, litreWater.getDrinkVolume());
+
+        litreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, litreWater.getImagePath());
+
+        litreOfWaterContentValue.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, litreWater.getDrinkQuantity());
+
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, quaterOfLitreWaterContentValue);
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, halfALitreOfWaterContentValue);
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, litreOfWaterContentValue);
+
+
+
+
+    }
+
     public ArrayList<Drink> populateDrinksArrayFromDataBaseGeneric(Context context,String typeOfDrink) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -1190,6 +1278,7 @@ public class ActivityHelper {
 
             Coffee coffee = new Coffee(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             coffee.setDrinkName(cursor.getString(1));
+            coffee.setDrinkType(cursor.getString(2));
             coffee.setImagePath(cursor.getInt(4));
             createToastWithText(wholeCoffeeObject);
 
@@ -1202,7 +1291,101 @@ public class ActivityHelper {
         return mdrinks;
     }
 
-    public ArrayList<Drink> populateDrinksArrayFromDataBase(Context context) {
+    public double returnTotalAmountOfWaterConsumedContext (Context context) {
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String drinkType = "Water";
+        Cursor cursor = db.rawQuery("SELECT "+ DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME+" FROM " + DrinksContract.DrinksCategoryEntry.TABLE_NAME + " WHERE " + DrinksContract.DrinksCategoryEntry.DRINK_TYPE+ " ="+"'"+drinkType+"'", null);
+
+        double total = 0;
+        String wholeCoffeeObject = "";
+
+        createToastWithText("curosr value" + cursor.getCount());
+
+        while (cursor.moveToNext()) {
+
+                cursor.getInt(0);
+             total = cursor.getInt(0) + cursor.getInt(0);
+            setTotalForProgres(total);
+
+
+//            createToastWithText("Total in while+"+total);
+
+
+        }
+
+        cursor.close();
+        db.close();
+        double percentage = ((getTotalForProgres()*100)/3000);
+        createToastWithText("total after while"+getTotalForProgres());
+        createToastWithText("apparent percentage"+percentage);
+        int percentageInt = (int) percentage;
+        return percentageInt;
+    }
+
+    public double returnTotalAmountOfWaterConsumedContextFromDb (Context context) {
+
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String water= "Water";
+
+
+        Cursor cursor = db.rawQuery("SELECT * FROM "+
+                DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME+","+ DrinksContract.DrinksCategoryEntry.TABLE_NAME+" WHERE " +
+                ""+DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk+ " = "+"'"+getUserId(getApplicationContext())+"'"
+                + " AND "+ DrinksContract.DrinksCategoryEntry.DRINK_TYPE +"= "+"'"+water+"'",null);
+//
+//
+////        //        String name = "water total";
+////        Cursor cursor = db.rawQuery("SELECT sum(DISTINCT "+ DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME+") AS "+"'"+name+"'"+
+////                " FROM "+
+////                DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME+","+ DrinksContract.DrinksCategoryEntry.TABLE_NAME+" WHERE " +
+////                ""+DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk+ " = "+"'"+getUserId(getApplicationContext())+"'"
+////                + " AND "+ DrinksContract.DrinksCategoryEntry.DRINK_TYPE +"= "+"'"+water+"'",null);
+////
+////
+//
+//        //S
+//
+////        String name = "water total";
+////        Cursor cursor = db.rawQuery("SELECT * FROM "+
+////                DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME+","+ DrinksContract.DrinksCategoryEntry.TABLE_NAME+" WHERE " +
+////                ""+DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk+ " = "+"'"+getUserId(getApplicationContext())+"'"
+////                + " AND "+ DrinksContract.DrinksCategoryEntry.DRINK_TYPE +"= "+"'"+water+"'",null);
+//
+//        Cursor cursor = db.rawQuery("SELECT * FROM "+
+//               DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME +" WHERE " +
+//                ""+ "drinksCat."+DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk+" = "+"'"+getUserId(getApplicationContext())+"'",null);
+//
+        if (cursor.moveToFirst()) {
+
+
+            while (cursor.moveToNext()) {
+
+                String value =
+                        "Type" + cursor.getString(7) + "Volume" + cursor.getString(8);
+
+                createToastWithText("values" + value);
+
+//            createToastWithText("progress of total in if"+getTotalForProgres());
+
+            }
+//        }
+        }
+        createToastWithText("progress of total"+getTotalForProgres());
+//
+        double percentage = ((getTotalForProgres()*100)/3000);
+        createToastWithText("total after while"+getTotalForProgres());
+        createToastWithText("apparent percentage"+percentage);
+        int percentageInt = (int) percentage;
+        cursor.close();
+        db.close();
+        return 10;
+    }
+
+
+
+        public ArrayList<Drink> populateDrinksArrayFromDataBase(Context context) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String coffeeQuery = "Coffee";
@@ -1218,6 +1401,8 @@ public class ActivityHelper {
 
             Coffee coffee = new Coffee(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             coffee.setDrinkName(cursor.getString(1));
+            createToastWithText("drink type"+cursor.getString(2));
+            coffee.setDrinkType(cursor.getString(2));
             coffee.setImagePath(cursor.getInt(4));
             createToastWithText(wholeCoffeeObject);
 
@@ -1246,6 +1431,9 @@ public class ActivityHelper {
 
             Coffee coffee = new Coffee(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             coffee.setDrinkName(cursor.getString(1));
+            coffee.setDrinkType(cursor.getString(2));
+            createToastWithText("drink type"+cursor.getString(2));
+
             coffee.setImagePath(cursor.getInt(4));
             createToastWithText(wholeCoffeeObject);
 
@@ -1275,6 +1463,9 @@ public class ActivityHelper {
 
             AlcoholicDrink alcoholicDrink = new AlcoholicDrink(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             alcoholicDrink.setDrinkName(cursor.getString(1));
+            alcoholicDrink.setDrinkType(cursor.getString(2));
+            createToastWithText("drink type"+cursor.getString(2));
+
             alcoholicDrink.setImagePath(cursor.getInt(4));
             createToastWithText(wholeCoffeeObject);
 
@@ -1303,6 +1494,8 @@ public class ActivityHelper {
 
                 Coffee coffee = new Coffee(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
                 coffee.setDrinkName(cursor.getString(1));
+                coffee.setDrinkType(cursor.getString(2));
+
                 coffee.setImagePath(cursor.getInt(4));
                 createToastWithText(wholeCoffeeObject);
 
@@ -1334,6 +1527,8 @@ public class ActivityHelper {
 
             AlcoholicDrink alcoholicDrink = new AlcoholicDrink(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             alcoholicDrink.setDrinkName(cursor.getString(1));
+            alcoholicDrink.setDrinkType(cursor.getString(2));
+
             alcoholicDrink.setImagePath(cursor.getInt(4));
             createToastWithText(wholeCoffeeObject);
 
@@ -1396,13 +1591,11 @@ public class ActivityHelper {
 
 
         createToastWithText("added new record to db");
-//                createToastWithText("curosr dump"+ DatabaseUtils.dumpCursorToString(cursor))
-// ;
+
         db.close();
 
 
     }
-
 
     public long addDrinkQuanitiyValues(Context context, String drinksID, String userID) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
@@ -1414,7 +1607,9 @@ public class ActivityHelper {
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk, drinksID);
 
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk, userID);
-
+        //need to add another here for the date.
+        //@// FIXME: 28/04/2017  Need to store the day name in here, to stop the values being changed after 12.00pm
+        //        contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE, timeHandler.dayName());
 
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE, timeHandler.getTotalDateWithTime());
 
@@ -1566,7 +1761,8 @@ public class ActivityHelper {
                 ""+DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk+" = "+"'"+getUserId(getApplicationContext())+"'"
 
                 +" ORDER BY " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE + " ASC ",null);
-//
+
+
 
 
 
@@ -1657,10 +1853,15 @@ public class ActivityHelper {
         if (cursor.moveToFirst()){
             createToastWithText("DELETED");
 
-            String sql = "DELETE FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME +
-                    " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'"+"";
+//            String sql = "DELETE FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME +
+//                    " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'"+"";
+//
 
 
+           String sql =  "UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
+                    + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " " + "= "
+                    + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " - 1" + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'"+
+            " ORDER BY " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE + " ASC ";
 
             db.execSQL(sql);
 
@@ -1786,6 +1987,66 @@ public class ActivityHelper {
     }
 
 
+
+    public int returnImage(String drinkType,Context context){
+        int defaultImage = 1;
+
+        //change to swithc?
+        if(drinkType.equals("Red Wine")){
+            defaultImage = context.getResources().getIdentifier("red_wine_item", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("Coffee")){
+            defaultImage = context.getResources().getIdentifier("caffine_cup", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("Gin")){
+            defaultImage = context.getResources().getIdentifier("vodka", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("Lager")){
+            defaultImage = context.getResources().getIdentifier("beerbottle", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("RealAle")){
+            defaultImage = context.getResources().getIdentifier("real_ale_listing", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("Stout")){
+            defaultImage = context.getResources().getIdentifier("stout_listing", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("Vodka")){
+            defaultImage = context.getResources().getIdentifier("gin", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("Whiskey")){
+            defaultImage = context.getResources().getIdentifier("whiskey_listing", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("White Wine")){
+            defaultImage = context.getResources().getIdentifier("white_wine_item", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("CraftBeer")){
+            defaultImage = context.getResources().getIdentifier("craft_beer_bottle", "drawable", context.getPackageName());
+
+        }else if(drinkType.equals("Tea")){
+            defaultImage = context.getResources().getIdentifier("tea_new", "drawable", context.getPackageName());
+
+        } else if(drinkType.equals("Water")){
+            defaultImage = context.getResources().getIdentifier("logowaterbottle", "drawable", context.getPackageName());
+
+        }
+        else if(drinkType.equals("Americano")){
+            defaultImage = context.getResources().getIdentifier("americano", "drawable", context.getPackageName());
+
+        }
+        else if(drinkType.equals("filter coffee")){
+            defaultImage = context.getResources().getIdentifier("filter_coffee", "drawable", context.getPackageName());
+
+        }
+        else if(drinkType.equals("Instant coffee")){
+            defaultImage = context.getResources().getIdentifier("instant_coffee", "drawable", context.getPackageName());
+
+        }else{
+            //need to add dfeault drink in here
+            defaultImage = context.getResources().getIdentifier("wine_bottle", "drawable", context.getPackageName());
+
+        }
+        return defaultImage;
+    }
 
 
 

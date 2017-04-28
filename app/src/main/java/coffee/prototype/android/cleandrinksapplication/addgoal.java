@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -19,6 +18,7 @@ import android.widget.Toast;
 import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.TimeHandler;
 import coffee.prototype.android.cleandrinksapplication.Model.Water;
+import coffee.prototype.android.cleandrinksapplication.data.GoalDBQueries;
 
 
 public class addgoal extends AppCompatActivity {
@@ -34,6 +34,7 @@ public class addgoal extends AppCompatActivity {
     private EditText endTime;
     private TimeHandler timeHandler = new TimeHandler();
 
+    private GoalDBQueries goalQuery = new GoalDBQueries();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +55,8 @@ public class addgoal extends AppCompatActivity {
         validateFields();
 
 
-
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.current_menu, menu);
-        return true;
-    }
 
 
     ///https://developer.android.com/guide/topics/ui/controls/radiobutton.html
@@ -315,27 +308,18 @@ public class addgoal extends AppCompatActivity {
                     createToastWithText("End time is  not valid!");
 
 
-                } else if (goal.getWaterGoal() > 0.00 && goal.getStartTimeGoal() != null && goal.getEndTimeGoal() != null && timeHandler.validateDates(goal.getStartTimeGoal(), goal.getEndTimeGoal())) {
+                } else if (goal.getWaterGoal() > 0.00 && !goalQuery.checkIfGoalHasAlreadyBeenSet(getApplicationContext()) && goal.getStartTimeGoal() != null && goal.getEndTimeGoal() != null && timeHandler.validateDates(goal.getStartTimeGoal(), goal.getEndTimeGoal())) {
                     createToastWithText("Water goal is valid and times are valid:)");
                     //make it so you can ust do goal new(get,get,get,get);
 
                     Context context = getApplicationContext();
                     String userID = String.valueOf(activityHelper.getUserId(context));
-                    activityHelper.addGoalToGoalTable(context, userID, goal.getWaterGoal(), goal.getStartTimeGoal(), goal.getEndTimeGoal());
+                    activityHelper.addGoalToGoalTable(context, userID, goal.getWaterGoal(), goal.getStartTimeGoal(), goal.getEndTimeGoal(),timeHandler.getYearAndMonth());
 
                     Intent changeToGoalMainPage = new Intent(getApplicationContext(), GoalActivity.class);
                     //Switches the activity to sign up.
                     startActivity(changeToGoalMainPage);
-//                    ad.setAdatper(goals);
-
-//                    activityHelper.checkIfDataHasBeenAddedToDb(getApplicationContext());
-                    //CAN ADD A CHECK TO SEE IF IT'S POPUALTED?
-//                    activityHelper.checkIfDataHasBeenAddedToDb(context);
-
-//                    activityHelper.addGoalToGoalProgressTable(context);
-//                    activityHelper.checkIfDataHasBeenAddedToDbGoalProgres(context);
-
-                    //    public void addGoalToGoalTable(Context context,String userID, double waterGoal, String startTime, String endTime){
+                    finish();
 
 
                     if (timeHandler.validateDates(goal.getStartTimeGoal(), goal.getEndTimeGoal())) {
@@ -366,7 +350,6 @@ public class addgoal extends AppCompatActivity {
             }
         });
     }
-
 
 
 }

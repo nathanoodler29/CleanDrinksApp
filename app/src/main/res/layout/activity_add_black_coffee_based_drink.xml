@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    tools:context="coffee.prototype.android.cleandrinksapplication.AddBlackCoffeeBasedDrink">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbargeneric" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/add_espresso_drink_heading"
+        android:layout_width="400dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="70dp"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/espressoBasedDrinksRecycler">
+
+
+        <TextView
+            android:id="@+id/add_black_coffee_card_title"
+            style="@style/Heading_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:text="Add Black Coffee"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+
+
+            />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/add_espresso_drink_heading"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:foregroundGravity="center_horizontal"
+
+        >
+
+
+        <TextView
+            android:id="@+id/add_drink_title"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:text="Name your drink"
+            android:textSize="20sp"
+
+            />
+
+
+        <EditText
+            android:id="@+id/black_coffee_drink_name"
+            style="@style/Heading_font"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/add_drink_title"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:hint="Example: Espresso"
+            android:inputType="textAutoComplete"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textAlignment="center" />
+
+
+        <TextView
+            android:id="@+id/drink_type_checkboxes"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="110dp"
+            android:text="Select drink type"
+            android:textSize="20sp"
+
+            />
+
+        <View
+            android:id="@+id/divider_for_select_drink"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/black">
+
+        </View>
+        <RadioGroup
+            android:id="@+id/radio_coffee_type"
+            android:layout_width="290dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:orientation="horizontal"
+            android:layout_below="@+id/add_drink_strength"
+            >
+
+
+
+        <RadioButton
+
+            android:id="@+id/americano"
+            style="@style/receipt_child_values"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:checked="false"
+            android:layout_weight="15"
+
+
+            android:onClick="onCheckCoffeeDrinkType"
+            android:text="Americano"
+            android:textSize="20sp" />
+
+            <RadioButton
+
+                android:id="@+id/filter_coffee"
+                style="@style/receipt_child_values"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_gravity="center_horizontal"
+                android:checked="false"
+
+
+                android:onClick="onCheckCoffeeDrinkType"
+                android:text="Filter"
+                android:textSize="20sp" />
+
+
+            <RadioButton
+
+                android:id="@+id/instant_coffee"
+                style="@style/receipt_child_values"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:layout_gravity="center_horizontal"
+
+                android:checked="false"
+
+
+                android:onClick="onCheckCoffeeDrinkType"
+                android:text="Instant"
+                android:layout_marginTop="-50dp"
+                android:textSize="20sp" />
+
+
+
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/textview"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="210dp"
+            android:text="Drink size based on S/M/L starbucks"
+            android:textSize="20sp"
+
+            />
+
+
+
+        <View
+            android:id="@+id/divider_between_radio_buttons_size"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="200dp"
+            android:background="@color/black">
+
+        </View>
+
+        <RadioGroup
+            android:id="@+id/volume_of_coffee_group"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="250dp"
+            android:orientation="horizontal"
+            android:layout_below="@+id/add_drink_strength"
+            >
+
+
+            <RadioButton
+
+                android:id="@+id/small_coffee"
+                style="@style/receipt_child_values"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:checked="false"
+
+
+                android:onClick="onCheckCoffeeDrinkSize"
+                android:text="236ml"
+                android:textSize="20sp" />
+
+            <RadioButton
+
+                android:id="@+id/medium_coffee"
+                style="@style/receipt_child_values"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:checked="false"
+
+
+                android:onClick="onCheckCoffeeDrinkSize"
+                android:text="254ml"
+                android:textSize="20sp" />
+
+            <RadioButton
+
+                android:id="@+id/large_coffee"
+                style="@style/receipt_child_values"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:checked="false"
+
+
+                android:onClick="onCheckCoffeeDrinkSize"
+                android:text="473ml"
+                android:textSize="20sp" />
+
+
+
+        </RadioGroup>
+
+
+        <View
+            android:id="@+id/divider_for_button"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="300dp"
+            android:background="@color/black">
+
+        </View>
+
+
+
+
+        <Button
+            android:id="@+id/cancel_espresso_drink"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="20dp"
+
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="20dp"
+
+            android:layout_marginTop="335dp"
+            android:background="@drawable/circle_red_button"
+            android:contentDescription="@string/goal_remove_button_content_description"
+            android:onClick="onClickCancelDrink"
+            android:text="@string/add_a_goal_cancel_cross_icon"
+            android:textSize="28sp"
+
+            />
+
+        <Button
+            android:id="@+id/add_black_coffee_drink"
+            style="@style/receipt_child_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="20dp"
+
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="335dp"
+            android:background="@drawable/circle_green_button"
+            android:contentDescription=""
+            android:text="@string/add_a_goal_add_plus_icon"
+            android:onClick="addBlackCoffeeBasedDrink"
+
+
+            android:textSize="28sp">
+
+        </Button>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

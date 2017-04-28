@@ -144,7 +144,16 @@
         <activity android:name=".DrinkListingPageStout" />
         <activity android:name=".DrinkListingPageWhiskey" />
         <activity android:name=".DrinkListingPageGin" />
-        <activity android:name=".DrinkListingPageVodka"></activity>
+        <activity android:name=".DrinkListingPageVodka" />
+        <activity android:name=".coffee.prototye.android.cleandrinksapplication.adapter.classes.DrinkListingPageWater" />
+        <activity android:name=".AddTeaBasedDrink">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AddWaterBasedDrink" />
+        <activity android:name=".AddAlcholicDrink" />
+        <activity android:name=".AddBlackCoffeeBasedDrink"></activity>
     </application>
 
 </manifest>

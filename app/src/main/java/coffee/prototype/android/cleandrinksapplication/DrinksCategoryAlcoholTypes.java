@@ -1,6 +1,8 @@
 package coffee.prototype.android.cleandrinksapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,18 +25,24 @@ public class DrinksCategoryAlcoholTypes extends AppCompatActivity {
 
 
     public void goToWineCategory(View view){
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
         Intent changeToWineCategoryPage = new Intent(this, WineCategories.class);
         //Switches the activity to sign up.
         startActivity(changeToWineCategoryPage);
     }
 
     public void goToBeerCat(View view){
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
         Intent changeToBeerCategoryPage = new Intent(this, BeerCategories.class);
         //Switches the activity to sign up.
         startActivity(changeToBeerCategoryPage);
     }
 
     public void goToSpiritsCat(View view){
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
         Intent changeToSpiritsCategoryPage = new Intent(this, SpiritsCategories.class);
         //Switches the activity to sign up.
         startActivity(changeToSpiritsCategoryPage);
@@ -43,6 +51,7 @@ public class DrinksCategoryAlcoholTypes extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.current_menu, menu);
         return true;

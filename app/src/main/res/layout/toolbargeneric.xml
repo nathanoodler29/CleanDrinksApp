@@ -16,7 +16,7 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:title="DrinkClean!"
         app:titleTextAppearance="@style/tool_bar_text"
-        app:logo="@drawable/logowaterbottle"
-        />
+        app:logo="@drawable/logowaterbottle">
+    </android.support.v7.widget.Toolbar>
 
 </LinearLayout>

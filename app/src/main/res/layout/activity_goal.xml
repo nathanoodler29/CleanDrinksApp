@@ -8,7 +8,7 @@
 
 
     <include
-        android:id="@+id/email_address_card"
+        android:id="@+id/goal_toolbar"
         layout="@layout/toolbargeneric" />
 
     <android.support.v7.widget.CardView

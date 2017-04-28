@@ -1,10 +1,10 @@
 package coffee.prototype.android.cleandrinksapplication.Model;
 
 /**
- * created by Noodle on 23/04/2017.
+ * created by Noodle on 25/04/2017.
  */
 
-public class AlcoholicDrink extends Drink implements GenericAlcoholicDrink {
+public class UserAddedAlcholicDrink extends Drink implements CustomAlcholicDrink {
 
     private double alcoholUnits;
     private String drinkName;
@@ -14,25 +14,16 @@ public class AlcoholicDrink extends Drink implements GenericAlcoholicDrink {
     private int drinkQuanitiy;
     private String date;
 
-    public double getAlcoholPercentage() {
-        return alcoholPercentage;
-    }
-
-    public void setAlcoholPercentage(double alcoholPercentage) {
-        this.alcoholPercentage = alcoholPercentage;
-    }
-
     private double alcoholPercentage;
 
 
 
-
-    public AlcoholicDrink(){
+    public UserAddedAlcholicDrink(){
         super();
 
     }
 
-    public AlcoholicDrink(String drinkName, double drinkVolume, String drinkType, double units,int imagePath) {
+    public UserAddedAlcholicDrink(String drinkName, double drinkVolume, String drinkType, double units,int imagePath) {
         super();
         //I think this will probabbly be better, can just pass the setters in the constructor.
         this.drinkName = drinkName;
@@ -44,7 +35,8 @@ public class AlcoholicDrink extends Drink implements GenericAlcoholicDrink {
 
     }
 
-
+    //http://www.nhs.uk/Livewell/alcohol/Pages/alcohol-units.aspx
+    @Override
     public Double calculateUnitTotal(double volume, double strength) {
         double units = (volume * strength / 1000);
 
@@ -52,13 +44,13 @@ public class AlcoholicDrink extends Drink implements GenericAlcoholicDrink {
 
     }
 
-    @Override
-    public void setUnitContent(double alcoholUnits) {
 
+    public double getAlcoholPercentage() {
+        return alcoholPercentage;
     }
 
-    @Override
-    public double getUnitContent() {
-        return 0;
+    public void setAlcoholPercentage(double alcoholPercentage) {
+        this.alcoholPercentage = alcoholPercentage;
     }
+
 }

@@ -6,7 +6,35 @@ import java.text.DecimalFormat;
  * created by Noodle on 28/03/2017.
  */
 
-public class Water {
+public class Water  extends Drink{
+
+    private double caffine;
+    private String drinkName;
+    private double drinkVolume;
+    private String drinkType;
+    private int imagePath;
+    private int drinkQuanitiy;
+    private String date;
+
+
+    public Water() {
+        super();
+
+    }
+
+
+    public Water(String drinkName, double drinkVolume, String drinkType, double caffine,int imagePath) {
+        super();
+        //I think this will probabbly be better, can just pass the setters in the constructor.
+        this.drinkName = drinkName;
+        this.drinkVolume = drinkVolume;
+        this.caffine = caffine;
+        this.drinkType = drinkType;
+        this.imagePath = imagePath;
+
+
+    }
+
 
 
     //http://www.indiatimes.com/health/tips-tricks/this-formula-will-help-you-figure-out-how-much-water-you-need-to-drink-every-day-249824.html

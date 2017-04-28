@@ -1,9 +1,14 @@
 package coffee.prototype.android.cleandrinksapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
 
@@ -16,7 +21,8 @@ public class BlackCoffeeBasedDrinksListing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_black_coffee_based_drinks_listing);
-
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.black_coffee_tool_bar);
+        setSupportActionBar(myToolbar);
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.black_coffee_recycler);
@@ -33,4 +39,30 @@ public class BlackCoffeeBasedDrinksListing extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.espresso_drink_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+
+        if (item.getItemId() == R.id.action_add_drink) {
+            finish();
+            Intent changeToWeightPage = new Intent(this, AddBlackCoffeeBasedDrink.class);
+            startActivity(changeToWeightPage);
+
+
+        } else if (item.getItemId() == R.id.action_drinks_recipt) {
+            finish();
+            Intent changeToDrinksRecipt = new Intent(this, DrinkRecipt.class);
+            startActivity(changeToDrinksRecipt);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

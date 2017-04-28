@@ -31,7 +31,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/receipt_child_values"
+            style="@style/Heading_font"
             android:text="TEA"
             android:textColor="@color/white"
 
@@ -78,7 +78,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/receipt_child_values"
+            style="@style/Heading_font"
             android:text="COFFEE"
             android:textColor="@color/white"
             />

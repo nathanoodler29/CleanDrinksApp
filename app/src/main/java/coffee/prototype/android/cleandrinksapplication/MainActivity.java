@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
             checkIfUserHasSuppliedWeightAndHeight();
             Intent changeToDrinksCat = new Intent(this, DrinkCategory.class);
             startActivity(changeToDrinksCat);
+            finish();
             //// FIXME: 30/03/2017 The sign in always goes to weight page!
         } else if (validateIfCreated && !weight) {
 

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    android:layout_height="match_parent"
+    tools:context="coffee.prototype.android.cleandrinksapplication.AddAlcholicDrink">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbargeneric" />
+
+<android.support.v7.widget.CardView
+    android:id="@+id/add_espresso_drink_heading"
+    android:layout_width="400dp"
+    android:layout_height="75dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="70dp"
+    android:foregroundGravity="center_horizontal"
+    card_view:cardBackgroundColor="@color/colorPrimaryDark">
+
+
+    <TextView
+        android:id="@+id/set_alcoholic_drink_heading"
+        style="@style/Heading_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="20dp"
+        android:text="Add an Alcoholic drink"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+
+
+        />
+
+</android.support.v7.widget.CardView>
+
+<android.support.v7.widget.CardView
+    android:layout_width="400dp"
+    android:layout_height="450dp"
+    android:foregroundGravity="center_horizontal"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_below="@+id/add_espresso_drink_heading"
+    >
+
+
+    <TextView
+        android:id="@+id/name_your_drink"
+        style="@style/receipt_child_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_text"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:text="Name your drink"
+        android:textSize="20sp"
+
+        />
+
+
+    <EditText
+        android:id="@+id/name_your_drink_edit"
+        style="@style/Heading_font"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_drink_title"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:hint="Example: Sambucca"
+        android:inputType="textAutoComplete"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:textAlignment="center" />
+
+
+    <View
+        android:id="@+id/divider_between_drink_name_drink_type"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/black">
+
+    </View>
+
+    <TextView
+        android:id="@+id/drink_volume_text"
+        style="@style/receipt_child_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_text"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="110dp"
+        android:text="Specify Drink volume"
+        android:textSize="20sp"
+
+        />
+
+
+    <EditText
+        android:id="@+id/drink_volume_edit"
+        style="@style/Heading_font"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_drink_volume"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="140dp"
+        android:hint="Example: 25ml"
+        android:inputType="numberDecimal"
+        android:maxLength="4"
+        android:maxLines="1"
+        android:textAlignment="center" />
+
+    <View
+        android:id="@+id/divider_between_drink_volume"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="205dp"
+        android:background="@color/black">
+
+    </View>
+
+    <TextView
+        android:id="@+id/drink_type_category"
+        style="@style/receipt_child_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_drink_volume"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="210dp"
+        android:text="Specify Drink Type"
+        android:textSize="20sp"
+
+        />
+
+    <EditText
+        android:id="@+id/drink_type_edit"
+        style="@style/Heading_font"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/add_drink_title"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="240dp"
+        android:hint="Example: Spirit"
+        android:inputType="textAutoComplete"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:textAlignment="center" />
+
+
+
+
+    <View
+        android:id="@+id/divider_between_drink_type"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="295dp"
+        android:background="@color/black">
+
+    </View>
+    <TextView
+        android:id="@+id/drink_type_percentage"
+        style="@style/receipt_child_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_drink_volume"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="300dp"
+        android:text="Alcohol Percentage"
+        android:textSize="20sp"
+
+        />
+
+
+
+    <EditText
+        android:id="@+id/drink_percentage_edit"
+        style="@style/Heading_font"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/drink_type_percentage"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="330dp"
+        android:hint="Example: 5.00%"
+        android:inputType="numberDecimal"
+        android:maxLength="5"
+        android:maxLines="1"
+        android:textAlignment="center" />
+
+
+    <View
+        android:id="@+id/divider_between_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="380dp"
+        android:background="@color/black">
+
+    </View>
+
+    <Button
+        android:id="@+id/cancel_alcohol_button"
+        style="@style/receipt_child_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="20dp"
+
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="20dp"
+
+        android:layout_marginTop="390dp"
+        android:background="@drawable/circle_red_button"
+        android:contentDescription="@string/goal_remove_button_content_description"
+        android:onClick="cancelAloholicButton"
+        android:text="@string/add_a_goal_cancel_cross_icon"
+        android:textSize="28sp"
+
+        />
+
+    <Button
+        android:id="@+id/add_alcholic_drink"
+        style="@style/receipt_child_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="20dp"
+
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="390dp"
+        android:background="@drawable/circle_green_button"
+        android:contentDescription=""
+        android:text="@string/add_a_goal_add_plus_icon"
+        android:onClick="submitAddAlcholicDrink"
+
+
+        android:textSize="28sp">
+
+    </Button>
+
+</android.support.v7.widget.CardView>
+</RelativeLayout>
+
+
+

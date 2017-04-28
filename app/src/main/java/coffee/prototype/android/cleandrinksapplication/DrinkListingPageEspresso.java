@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
@@ -41,11 +42,13 @@ public class DrinkListingPageEspresso extends AppCompatActivity {
         mAdapter = new MainAdapter(this, activityHelper.populateDrinksArrayFromDataBase(getApplicationContext()));
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount() == 0) {
+//            activityHelper.insertValuesIntoDB(getApplicationContext());
             activityHelper.insertValuesIntoDB(getApplicationContext());
             finish();
             startActivity(getIntent());
             mAdapter.notifyDataSetChanged();
         }
+
 
 
     }
@@ -67,7 +70,15 @@ public class DrinkListingPageEspresso extends AppCompatActivity {
             startActivity(changeToWeightPage);
 
 
+        }else if(item.getItemId()==R.id.action_drinks_recipt){
+            finish();
+            Intent changeToDrinksRecipt = new Intent(this,DrinkRecipt.class);
+            startActivity(changeToDrinksRecipt);
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }

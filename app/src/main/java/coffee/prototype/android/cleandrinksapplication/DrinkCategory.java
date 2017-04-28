@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.DrinkListingPageWater;
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 
 public class DrinkCategory extends AppCompatActivity {
@@ -41,6 +42,17 @@ public class DrinkCategory extends AppCompatActivity {
         vibe.vibrate(100);
 
         Intent changeToDrinksCategoryAlcohol = new Intent(this, Drinks_Category_Types_Caffeine.class);
+        //Switches the activity to sign up.
+        startActivity(changeToDrinksCategoryAlcohol);
+
+
+    }
+
+    public void moveToWaterListing(View view) {
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+
+        Intent changeToDrinksCategoryAlcohol = new Intent(this, DrinkListingPageWater.class);
         //Switches the activity to sign up.
         startActivity(changeToDrinksCategoryAlcohol);
 

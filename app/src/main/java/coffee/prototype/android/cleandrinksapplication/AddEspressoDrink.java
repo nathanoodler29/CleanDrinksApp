@@ -8,14 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-
 import coffee.prototype.android.cleandrinksapplication.Model.Coffee;
-import coffee.prototype.android.cleandrinksapplication.Model.Drink;
-import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
+
 
 public class AddEspressoDrink extends AppCompatActivity {
 
@@ -23,7 +19,7 @@ public class AddEspressoDrink extends AppCompatActivity {
     private EditText drinkName;
     private EditText drinkVolume;
     private EditText drinkStrength;
-    private  Coffee userAddedDrink = new Coffee();
+    private Coffee userAddedDrink = new Coffee();
     private ActivityHelper helper = new ActivityHelper();
 
 
@@ -35,7 +31,6 @@ public class AddEspressoDrink extends AppCompatActivity {
         drinkName = (EditText) findViewById(R.id.coffee_drink_name);
         drinkVolume = (EditText) findViewById(R.id.coffee_drink_volume);
         drinkStrength = (EditText) findViewById(R.id.drink_strength);
-
 
 
         drinkNameField();
@@ -77,15 +72,15 @@ public class AddEspressoDrink extends AppCompatActivity {
                         | userInput.contains("\\") | userInput.contains("%")) {
                     drinkName.setError("Special characters can't be used");
                     //http://stackoverflow.com/questions/15472764/regular-expression-to-allow-spaces-between-words
-                } else if (userInput.matches("^([a-zA-Z]+ ?){4,20}")) {
+                } else if (userInput.matches("^([a-zA-Z]+ ?){4,15}")) {
                     userAddedDrink.setDrinkName(userInput);
                     helper.createToastWithText("Valid drink name!");
-                } else if (!userInput.matches("^([a-zA-Z] ?){4,20}")) {
+                } else if (!userInput.matches("^([a-zA-Z] ?){4,15}")) {
                     if (userInput.matches(".*\\d+.*")) {
                         drinkName.setError("Numbers aren't accepted");
 
                     } else {
-                        drinkName.setError("Drink name, needs to be between 4 and 20 characters");
+                        drinkName.setError("Drink name, needs to be between 4 and 15 characters");
 
                     }
                 } else if (userInput.matches(".*\\d+.*")) {
@@ -94,7 +89,7 @@ public class AddEspressoDrink extends AppCompatActivity {
                 }
             }
         });
-        return  userAddedDrink.getDrinkName();
+        return userAddedDrink.getDrinkName();
 
     }
 
@@ -186,7 +181,8 @@ public class AddEspressoDrink extends AppCompatActivity {
                     helper.createToastWithText("Valid shot amount");
                     int caffineContent = Integer.parseInt(userInput);
 
-                    double caffineQuantity =  userAddedDrink.calculateCaffineAmount(caffineContent);
+
+                    double caffineQuantity = userAddedDrink.calculateCaffineAmount(caffineContent);
                     userAddedDrink.setCaffineContent(caffineQuantity);
 
                 }
@@ -200,11 +196,11 @@ public class AddEspressoDrink extends AppCompatActivity {
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
 
-        helper.createToastWithText("Coffee object"+ "drink name"+drinkNameField()+"dirnk volumne:" +coffeeDrinkVolumeField()+"drink strength "+ coffeeStrengthField());
+        helper.createToastWithText("Coffee object" + "drink name" + drinkNameField() + "dirnk volumne:" + coffeeDrinkVolumeField() + "drink strength " + coffeeStrengthField());
 
 
+        helper.insertIntoDB(getApplicationContext(), drinkNameField() + " caffeine content: " + coffeeStrengthField(), "Coffee", coffeeDrinkVolumeField(), coffeeStrengthField());
 
-        helper.insertIntoDB(getApplicationContext(),drinkNameField(),"Coffee",coffeeDrinkVolumeField(),coffeeStrengthField());
 
         Intent changeToEspressoListing = new Intent(this, DrinkListingPageEspresso.class);
         //Switches the activity to sign up.
@@ -213,7 +209,6 @@ public class AddEspressoDrink extends AppCompatActivity {
 
         finish();
     }
-
 
 
 }

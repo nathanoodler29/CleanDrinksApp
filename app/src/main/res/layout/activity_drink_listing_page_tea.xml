@@ -6,9 +6,18 @@
     android:layout_height="match_parent"
     tools:context="coffee.prototype.android.cleandrinksapplication.DrinkListingPageTea">
 
-    <include
-        android:id="@+id/email_address_card"
-        layout="@layout/toolbargeneric" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tea_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="DrinkClean!"
+        app:titleTextAppearance="@style/tool_bar_text"
+        app:logo="@drawable/logowaterbottle">
+    </android.support.v7.widget.Toolbar>
 
 
     <android.support.v7.widget.RecyclerView

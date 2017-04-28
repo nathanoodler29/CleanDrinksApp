@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +20,7 @@ import org.w3c.dom.Text;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.GoalsAdapter;
 import coffee.prototype.android.cleandrinksapplication.data.GoalDBQueries;
+import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 
 
 public class GoalActivity extends AppCompatActivity {
@@ -40,6 +45,9 @@ public class GoalActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_goal);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
         addGoalButton = (Button) findViewById(R.id.adddrinkgoal);
         removeGoalbutton = (Button) findViewById(R.id.remove_drink_goal);
         //card view realted layout
@@ -76,9 +84,31 @@ public class GoalActivity extends AppCompatActivity {
             paragraphText.setText("Review your goals");
             totalNumOfGoals.setVisibility(View.VISIBLE);
             totalNumOfGoals.setText("Total num of goals "+goalDBQueries.numOfGoalsCreatedForAUser(getApplicationContext()));
-            // total_num_of_goals
+
+//            mAdapter.notifyDataSetChanged();
+
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.goal_activity_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_view_goal_progress) {
+            finish();
+            Intent changeToProGRESS = new Intent(this, Progress_Tracking.class);
+            startActivity(changeToProGRESS);
+
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -97,6 +127,8 @@ public class GoalActivity extends AppCompatActivity {
                 }else if(!goalDBQueries.checkIfGoalHasAlreadyBeenSet(getApplicationContext())){
                     startActivity(changeToAddGoalActivity);
                     helper.createToastWithText("Add a Goal!");
+                    finish();
+
 
                 }
 

@@ -292,6 +292,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
                 Intent changeToWeightPage = new Intent(this, Weight_and_Height_Activity.class);
                 startActivity(changeToWeightPage);
+                finish();
 
             } else if (userExists) {
                 Log.d("User Exists", "User is already written in DB");
