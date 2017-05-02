@@ -13,6 +13,33 @@
         android:id="@+id/email_address_card"
         layout="@layout/toolbargeneric" />
 
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/drinsk_recipet_card"
+        android:layout_width="360dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="70dp"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/brightOrange">
+
+        <TextView
+            android:id="@+id/drinks_reicipt_title"
+            style="@style/Heading_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="5dp"
+            android:text="Drinks Receipt"
+            android:textSize="25sp"
+
+            />
+        </android.support.v7.widget.CardView>
+
+
+
     <android.support.v7.widget.CardView
         android:id="@+id/no_values_drink_recipt_heading"
         android:layout_width="400dp"
@@ -89,166 +116,11 @@
         android:id="@+id/drinks_receipt_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="115dp"
         android:scrollbars="vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+     >
 
     </android.support.v7.widget.RecyclerView>
 
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/date_heading_card"-->
-        <!--android:layout_width="400dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--card_view:cardBackgroundColor="@color/com_facebook_button_send_background_color">-->
-
-
-        <!--<TextView-->
-            <!--android:id="@+id/date_heading_text"-->
-            <!--style="@style/receipt_parent_value  s"-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:gravity="center"-->
-            <!--android:paddingTop="12dp"-->
-            <!--android:text="@string/receipt_heading_title"-->
-        <!--/>-->
-
-    <!--</android.support.v7.widget.CardView>-->
-
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/caffeine_place_holder_card"-->
-        <!--android:layout_width="400dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_alignParentLeft="true"-->
-
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_below="@+id/date_heading_card"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="14dp"-->
-        <!--card_view:cardBackgroundColor="@android:color/darker_gray">-->
-
-        <!--<TextView-->
-            <!--style="@style/receipt_child_values"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:paddingTop="10dp"-->
-            <!--android:lineSpacingMultiplier="15"-->
-            <!--android:text="@string/place_holder_caffine_entry_text"-->
-
-            <!--/>-->
-
-
-    <!--</android.support.v7.widget.CardView>-->
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/alcohol_place_holder_card"-->
-        <!--android:layout_width="400dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_below="@+id/caffeine_place_holder_card"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--card_view:cardBackgroundColor="@color/orange">-->
-
-
-
-        <!--<TextView-->
-            <!--style="@style/receipt_child_values"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingTop="10dp"-->
-            <!--android:layout_gravity="center_horizontal"-->
-
-            <!--android:text="@string/place_holder_alcohol_entry_text"-->
-
-            <!--/>-->
-
-
-    <!--</android.support.v7.widget.CardView>-->
-
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/alcohol_place_holder_card_three"-->
-        <!--android:layout_width="400dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="15dp"-->
-        <!--card_view:cardBackgroundColor="@color/orange"-->
-        <!--android:layout_below="@+id/alcohol_place_holder_card"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true">-->
-
-
-
-        <!--<TextView-->
-            <!--style="@style/receipt_child_values"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingTop="10dp"-->
-            <!--android:layout_gravity="center_horizontal"-->
-
-            <!--android:text="@string/place_holder_alcohol_entry_text"-->
-
-            <!--/>-->
-
-
-    <!--</android.support.v7.widget.CardView>-->
-
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/date_heading_card_yesterday"-->
-        <!--android:layout_width="400dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--card_view:cardBackgroundColor="@color/com_facebook_button_send_background_color"-->
-        <!--android:layout_marginTop="15dp"-->
-        <!--android:layout_below="@+id/alcohol_place_holder_card_three"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true">-->
-
-
-        <!--<TextView-->
-            <!--android:id="@+id/date_heading_text_yesterday"-->
-            <!--style="@style/receipt_parent_values"-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:gravity="center"-->
-            <!--android:paddingTop="12dp"-->
-            <!--android:text="@string/receipt_heading_title_yesterday"-->
-            <!--/>-->
-
-    <!--</android.support.v7.widget.CardView>-->
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/alcohol_place_holder_card_yesterday"-->
-        <!--android:layout_width="400dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="13dp"-->
-        <!--card_view:cardBackgroundColor="@color/orange"-->
-        <!--android:layout_below="@+id/date_heading_card_yesterday"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true">-->
-
-
-
-        <!--<TextView-->
-            <!--style="@style/receipt_child_values"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingTop="10dp"-->
-            <!--android:layout_gravity="center_horizontal"-->
-
-            <!--android:text="@string/place_holder_alcohol_entry_text_wine"-->
-
-            <!--/>-->
-
-
-    <!--</android.support.v7.widget.CardView>-->
 
 </RelativeLayout>

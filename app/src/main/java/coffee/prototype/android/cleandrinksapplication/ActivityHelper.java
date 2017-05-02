@@ -426,7 +426,7 @@ public class ActivityHelper {
 
 
         Coffee filterCoffee = new Coffee("Filter Coffee caffeine:236mg", 236, "Black Coffee", 145, filterCoffeeImage);
-        filterCoffee.setDrinkName("Filter Coffee caffeine:236");
+        filterCoffee.setDrinkName("Filter Coffee caffeine:236mg");
         filterCoffee.setDrinkVolume(236);
         filterCoffee.setDrinkType("Black Coffee");
         filterCoffee.setCaffineContent(145);
@@ -447,7 +447,7 @@ public class ActivityHelper {
 
 
         Coffee mokaPotCoffee = new Coffee("Moka Pot caffeine:90mg ", 236, "Black Coffee", 90, mokaPotImage);
-        mokaPotCoffee.setDrinkName("Moka Pot caffine:90mg");
+        mokaPotCoffee.setDrinkName("Moka Pot caffeine:90mg");
         mokaPotCoffee.setDrinkVolume(236);
         mokaPotCoffee.setDrinkType("Black Coffee");
         mokaPotCoffee.setCaffineContent(90);
@@ -1626,9 +1626,12 @@ public class ActivityHelper {
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk, userID);
         //need to add another here for the date.
         //@// FIXME: 28/04/2017  Need to store the day name in here, to stop the values being changed after 12.00pm
-        //        contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE, timeHandler.dayName());
+        contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE_NAME, timeHandler.dayName());
+
+
 
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE, timeHandler.getTotalDateWithTime());
+
 
         createToastWithText("added to drinks quanitiy db");
         long lastRowAdded = db.insert(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME, null, contentValues);
@@ -1767,6 +1770,7 @@ public class ActivityHelper {
 
     }
 
+    //Here!
     public ArrayList<Drink> populateDrinksReciptAdatper(Context context) {
 
         UsersDBHelper dbHelper = new UsersDBHelper(context);
@@ -1797,9 +1801,12 @@ public class ActivityHelper {
 //                createToastWithText("user id related drinks"+drinksQuant);
 
 //
-                Coffee coffee = new Coffee(test(getApplicationContext(),cursor.getString(1)), cursor.getString(4));
+                Coffee coffee = new Coffee(test(getApplicationContext(),cursor.getString(1)), cursor.getString(4),cursor.getString(5));
                 coffee.setDrinkName(test(getApplicationContext(),cursor.getString(1)));
+
                 coffee.setDate(cursor.getString(4));
+                coffee.setDateName(cursor.getString(5));
+//                coffee.setDrinkName();
 
                 drinksRecipt.add(coffee);
 

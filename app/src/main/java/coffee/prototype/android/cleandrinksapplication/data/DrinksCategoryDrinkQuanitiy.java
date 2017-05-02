@@ -18,6 +18,7 @@ public class DrinksCategoryDrinkQuanitiy {
         //This is so a query, can show exactly how much a user has been drinking  for a recipt ivew.
         public final static String user_id_fk = "user_id_fk";
         public final static String quantity_of_drink = "quantity";
+        public final static String DATE_NAME = "day_name";
     public final static String DATE = "date";
 
 

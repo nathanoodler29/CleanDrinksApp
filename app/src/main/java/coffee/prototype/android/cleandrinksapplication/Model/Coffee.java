@@ -13,6 +13,7 @@ public class Coffee extends Drink implements GenericCaffineDrink {
     private int imagePath;
     private int drinkQuanitiy;
     private String date;
+    private String dateName;
 
 
 
@@ -40,9 +41,10 @@ public class Coffee extends Drink implements GenericCaffineDrink {
 
     }
 
-    public Coffee(String drinkName, String date){
+    public Coffee(String drinkName, String date, String dateName){
         this.drinkName = drinkName;
         this.date = date;
+        this.dateName = dateName;
     }
 
     @Override

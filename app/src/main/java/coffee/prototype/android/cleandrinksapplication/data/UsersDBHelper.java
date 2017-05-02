@@ -141,6 +141,9 @@ public class UsersDBHelper extends SQLiteOpenHelper {
                 //STORING date in this format dd/mm/yyyy hence the ser of text.
                 + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE + " TEXT NOT NULL, "
 
+                + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE_NAME + " TEXT NOT NULL, "
+
+
 
                 + " FOREIGN KEY(" + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk + ")" + " REFERENCES " + DrinksContract.DrinksCategoryEntry.TABLE_NAME + "(" + DrinksContract.DrinksCategoryEntry.DRINKS_ID + ")  "
 

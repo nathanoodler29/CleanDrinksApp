@@ -12,6 +12,16 @@ public class Drink {
     private int drinkQuantity;
     private String drinkType;
 
+    public String getDateName() {
+        return dateName;
+    }
+
+    public void setDateName(String dateName) {
+        this.dateName = dateName;
+    }
+
+    private String dateName;
+
     public String getDate() {
         return date;
     }
@@ -23,9 +33,7 @@ public class Drink {
     private String date;
 
 
-
     private int imagePath;
-
 
 
     private int numberOfDrinks;
@@ -46,7 +54,6 @@ public class Drink {
     public double getDrinkVolume() {
         return drinkVolume;
     }
-
 
 
     public int getDrinkQuantity() {

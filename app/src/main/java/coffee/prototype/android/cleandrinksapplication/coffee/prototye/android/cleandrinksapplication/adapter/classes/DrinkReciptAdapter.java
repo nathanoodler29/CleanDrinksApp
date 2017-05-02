@@ -35,7 +35,7 @@ public class  DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter
         public TextView drinkName;
         public TextView drinkTime;
         private CardView drinkNameCard;
-        private CardView drinksDate;
+        private TextView drinksDate;
 
 
         public ViewHolder(View v) {
@@ -65,6 +65,7 @@ public class  DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter
 
         viewHolder.drinkNameCard = (CardView) v.findViewById(R.id.drinks_recipt_card);
 
+        viewHolder.drinksDate = (TextView) v.findViewById(R.id.date_text);
 
 
         return viewHolder;
@@ -76,6 +77,8 @@ public class  DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter
 
         holder.drinkName.setText(drinksRecipt.get(position).getDrinkName());
         holder.drinkTime.setText(drinksRecipt.get(position).getDate());
+        holder.drinksDate.setText(drinksRecipt.get(position).getDateName());
+
 
       if (drinksRecipt.get(position).getDrinkName().matches(".*units:[0-9].*")){
             holder.drinkNameCard.setCardBackgroundColor(Color.parseColor("#76bda2"));

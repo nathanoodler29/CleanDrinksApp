@@ -7,24 +7,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-
-import coffee.prototype.android.cleandrinksapplication.Model.Coffee;
-import coffee.prototype.android.cleandrinksapplication.Model.Drink;
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.DrinkReciptAdapter;
-import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
 
 public class DrinkRecipt extends AppCompatActivity {
     private ActivityHelper helper= new ActivityHelper();
-    private ArrayList<Drink>drinksRecipt = new ArrayList<>();
     private DrinkReciptAdapter mAdapter;
     private CardView cardViewHeading;
     private CardView cardViewBottom;
     private TextView noDrinksSetHeading;
     private TextView noDrinksSetParagraph;
 
-
+    private CardView drinksReciptCardHeading;
+    private TextView drinksReciptHeading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +35,27 @@ public class DrinkRecipt extends AppCompatActivity {
         noDrinksSetHeading = (TextView) findViewById(R.id.no_drinks_set_parent_heading);
         noDrinksSetParagraph = (TextView) findViewById(R.id.onstrike_paragraph_text);
 
+        drinksReciptCardHeading = (CardView) findViewById(R.id.drinsk_recipet_card);
+        drinksReciptHeading = (TextView) findViewById(R.id.drinks_reicipt_title);
+
+
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount()==0){
             cardViewHeading.setVisibility(View.VISIBLE);
             cardViewBottom.setVisibility(View.VISIBLE);
             noDrinksSetHeading.setVisibility(View.VISIBLE);
             noDrinksSetParagraph.setVisibility(View.VISIBLE);
+            drinksReciptCardHeading.setVisibility(View.GONE);
+            drinksReciptHeading.setVisibility(View.GONE);
         }else{
             cardViewHeading.setVisibility(View.GONE);
             cardViewBottom.setVisibility(View.GONE);
             noDrinksSetHeading.setVisibility(View.GONE);
             noDrinksSetParagraph.setVisibility(View.GONE);
+            drinksReciptCardHeading.setVisibility(View.VISIBLE);
+            drinksReciptHeading.setVisibility(View.VISIBLE);
+
+
         }
     }
 }
