@@ -109,14 +109,69 @@
         android:layout_marginRight="-170dp"
         />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="380dp"
-        android:id="@+id/achievement_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
 
-    </android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.CardView
+        android:id="@+id/achievement_displayed_rookie"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:foregroundGravity="center_horizontal"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        card_view:cardBackgroundColor="@color/lightGrey">
+
+
+        <TextView
+            android:id="@+id/achievement_invidual_title"
+            style="@style/receipt_child_values"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/profile_text"
+            android:layout_gravity="start"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:textColor="@color/darkGrey"
+            android:text="Rookie "
+
+
+            />
+
+        <TextView
+            android:id="@+id/achievement_description_invidual"
+            style="@style/receipt_child_values"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_text"
+            android:paddingTop="35dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="italic"
+            android:textSize="18sp"
+            android:text="Created your first water goal."
+            android:textColor="@color/darkGrey"
+
+            />
+
+
+        <ImageView
+            android:id="@+id/achievement_image_invidual_rookie"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginTop="10dp"
+            android:foregroundGravity="center_horizontal"
+            android:src="@drawable/locked_achievement"
+            />
+
+
+    </android.support.v7.widget.CardView>
+
+
 
 
 </RelativeLayout>

@@ -425,7 +425,7 @@ public class ActivityHelper {
         int filterCoffeeImage = context.getResources().getIdentifier("filter_coffee", "drawable", context.getPackageName());
 
 
-        Coffee filterCoffee = new Coffee("Filter Coffee caffeine:236", 236, "Black Coffee", 145, filterCoffeeImage);
+        Coffee filterCoffee = new Coffee("Filter Coffee caffeine:236mg", 236, "Black Coffee", 145, filterCoffeeImage);
         filterCoffee.setDrinkName("Filter Coffee caffeine:236");
         filterCoffee.setDrinkVolume(236);
         filterCoffee.setDrinkType("Black Coffee");
@@ -1197,7 +1197,7 @@ public class ActivityHelper {
         ContentValues halfALitreOfWaterContentValue = new ContentValues();
         ContentValues litreOfWaterContentValue = new ContentValues();
 
-        int waterImage = context.getResources().getIdentifier("bottleofwater", "drawable", context.getPackageName());
+        int waterImage = context.getResources().getIdentifier("water_bottle", "drawable", context.getPackageName());
 
 
         Water water = new Water("250ml Water", 250, "Water", 0, waterImage);
@@ -1272,7 +1272,6 @@ public class ActivityHelper {
 
         String wholeCoffeeObject = "";
 
-        createToastWithText("curosr value" + cursor.getCount());
 
         while (cursor.moveToNext()) {
 
@@ -1300,7 +1299,7 @@ public class ActivityHelper {
         double total = 0;
         String wholeCoffeeObject = "";
 
-        createToastWithText("curosr value" + cursor.getCount());
+
 
         while (cursor.moveToNext()) {
 
@@ -1365,7 +1364,7 @@ public class ActivityHelper {
                 String value =
                         "Type" + cursor.getString(7) + "Volume" + cursor.getString(8);
 
-                createToastWithText("values" + value);
+//                createToastWithText("values" + value);
 
 //            createToastWithText("progress of total in if"+getTotalForProgres());
 
@@ -1395,16 +1394,14 @@ public class ActivityHelper {
 
         String wholeCoffeeObject = "";
 
-        createToastWithText("curosr value" + cursor.getCount());
 
         while (cursor.moveToNext()) {
 
             Coffee coffee = new Coffee(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             coffee.setDrinkName(cursor.getString(1));
-            createToastWithText("drink type"+cursor.getString(2));
             coffee.setDrinkType(cursor.getString(2));
             coffee.setImagePath(cursor.getInt(4));
-            createToastWithText(wholeCoffeeObject);
+
 
             mdrinks.add(coffee);
 
@@ -1425,17 +1422,14 @@ public class ActivityHelper {
 
         String wholeCoffeeObject = "";
 
-        createToastWithText("curosr value" + cursor.getCount());
 
         while (cursor.moveToNext()) {
 
             Coffee coffee = new Coffee(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             coffee.setDrinkName(cursor.getString(1));
             coffee.setDrinkType(cursor.getString(2));
-            createToastWithText("drink type"+cursor.getString(2));
 
             coffee.setImagePath(cursor.getInt(4));
-            createToastWithText(wholeCoffeeObject);
 
             mdrinks.add(coffee);
 
@@ -1457,17 +1451,15 @@ public class ActivityHelper {
 
         String wholeCoffeeObject = "";
 
-        createToastWithText("curosr value" + cursor.getCount());
 
         while (cursor.moveToNext()) {
 
             AlcoholicDrink alcoholicDrink = new AlcoholicDrink(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
             alcoholicDrink.setDrinkName(cursor.getString(1));
             alcoholicDrink.setDrinkType(cursor.getString(2));
-            createToastWithText("drink type"+cursor.getString(2));
 
             alcoholicDrink.setImagePath(cursor.getInt(4));
-            createToastWithText(wholeCoffeeObject);
+
 
             mdrinks.add(alcoholicDrink);
 
@@ -1489,7 +1481,6 @@ public class ActivityHelper {
 
         String wholeCoffeeObject = "";
 
-        createToastWithText("curosr value" + cursor.getCount());
             while (cursor.moveToNext()) {
 
                 Coffee coffee = new Coffee(cursor.getString(1), cursor.getDouble(3), cursor.getString(2), cursor.getDouble(5), cursor.getInt(4));
@@ -1497,7 +1488,6 @@ public class ActivityHelper {
                 coffee.setDrinkType(cursor.getString(2));
 
                 coffee.setImagePath(cursor.getInt(4));
-                createToastWithText(wholeCoffeeObject);
 
                 mdrinks.add(coffee);
 
@@ -1521,7 +1511,6 @@ public class ActivityHelper {
 
         String wholeCoffeeObject = "";
 
-        createToastWithText("curosr value" + cursor.getCount());
 
         while (cursor.moveToNext()) {
 
@@ -1530,7 +1519,6 @@ public class ActivityHelper {
             alcoholicDrink.setDrinkType(cursor.getString(2));
 
             alcoholicDrink.setImagePath(cursor.getInt(4));
-            createToastWithText(wholeCoffeeObject);
 
             mdrinks.add(alcoholicDrink);
 
@@ -1554,7 +1542,7 @@ public class ActivityHelper {
 
         if (cursor.moveToFirst()) {
             createToastWithText("Found a drink");
-            createToastWithText("drink id" + cursor.getString(0) + "drink name" + cursor.getString(1));
+//            createToastWithText("drink id" + cursor.getString(0) + "drink name" + cursor.getString(1));
             setDrinksID(cursor.getString(0));
 
         }
@@ -1590,7 +1578,36 @@ public class ActivityHelper {
         db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
 
 
-        createToastWithText("added new record to db");
+//        createToastWithText("added new record to db");
+
+        db.close();
+
+
+    }
+
+    public void insertIntoDBImage(Context context, String drinkName, String drinkType, double drinkVolume, double drinkCaffine,int imagePath) {
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINK_NAME, drinkName);
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINK_TYPE, drinkType);
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_VOLUME, drinkVolume);
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_IMAGE, imagePath);
+
+
+        contentValues.put(DrinksContract.DrinksCategoryEntry.DRINKS_AMOUNT, drinkCaffine);
+
+
+        db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
+
+
+//        createToastWithText("added new record to db");
 
         db.close();
 
@@ -1632,14 +1649,14 @@ public class ActivityHelper {
         String drinksQuant = "";
 
 
-        createToastWithText("number of items in db value" + cursor.getCount());
+//        createToastWithText("number of items in db value" + cursor.getCount());
 
         if (cursor.moveToFirst()) {
             while (cursor.moveToNext()) {
 
                 drinksQuant = "pk " + cursor.getString(0) + "drink key" + cursor.getString(1) + "user key" + cursor.getString(2) + "drink quantity:" +
                         cursor.getString(3) + "drink date: " + cursor.getString(4);
-                createToastWithText("drink" + drinksQuant);
+              //  createToastWithText("drink" + drinksQuant);
             }
 
         }
@@ -1812,7 +1829,7 @@ public class ActivityHelper {
         if (newCursor.moveToFirst()){
                 String newCursorStr = newCursor.getString(0)+newCursor.getString(1)+newCursor.getString(2)+newCursor.getString(3)+newCursor.getString(4);
 
-                createToastWithText("new cursor str"+newCursorStr);
+//                createToastWithText("new cursor str"+newCursorStr);
 
         }
 //        newCursor.close();
@@ -2026,7 +2043,7 @@ public class ActivityHelper {
             defaultImage = context.getResources().getIdentifier("tea_new", "drawable", context.getPackageName());
 
         } else if(drinkType.equals("Water")){
-            defaultImage = context.getResources().getIdentifier("logowaterbottle", "drawable", context.getPackageName());
+            defaultImage = context.getResources().getIdentifier("water_bottle", "drawable", context.getPackageName());
 
         }
         else if(drinkType.equals("Americano")){

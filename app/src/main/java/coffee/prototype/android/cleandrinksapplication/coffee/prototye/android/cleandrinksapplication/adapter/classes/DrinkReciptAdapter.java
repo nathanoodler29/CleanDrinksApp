@@ -1,6 +1,8 @@
 package coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +17,10 @@ import coffee.prototype.android.cleandrinksapplication.Model.Drink;
 import coffee.prototype.android.cleandrinksapplication.R;
 
 /**
- * Created by noodle on 19/04/2017.
+ * created by noodle on 19/04/2017.
  */
 
-public class DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter.ViewHolder>  {
+public class  DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter.ViewHolder>  {
 
     private ArrayList<Drink> drinksRecipt= new ArrayList<Drink>();
     private Context mContext;
@@ -26,12 +28,14 @@ public class DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter.
     private MainActivity activity= new MainActivity();
 
 
+
     public static class ViewHolder extends
             RecyclerView.ViewHolder {
 
         public TextView drinkName;
         public TextView drinkTime;
-
+        private CardView drinkNameCard;
+        private CardView drinksDate;
 
 
         public ViewHolder(View v) {
@@ -59,6 +63,10 @@ public class DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter.
 
         viewHolder.drinkTime = (TextView) v.findViewById(R.id.drinks_recipt_row_drink_time);
 
+        viewHolder.drinkNameCard = (CardView) v.findViewById(R.id.drinks_recipt_card);
+
+
+
         return viewHolder;
     }
 
@@ -69,8 +77,16 @@ public class DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter.
         holder.drinkName.setText(drinksRecipt.get(position).getDrinkName());
         holder.drinkTime.setText(drinksRecipt.get(position).getDate());
 
+      if (drinksRecipt.get(position).getDrinkName().matches(".*units:[0-9].*")){
+            holder.drinkNameCard.setCardBackgroundColor(Color.parseColor("#76bda2"));
+        }else if (drinksRecipt.get(position).getDrinkName().matches(".*ml.*")){
+            holder.drinkNameCard.setCardBackgroundColor(Color.parseColor("#9ce0f1"));
+        }else if (drinksRecipt.get(position).getDrinkName().matches(".*caffeine:[0-9]{2,3}[mg].*")){
+          holder.drinkNameCard.setCardBackgroundColor(Color.parseColor("#e5d4b2"));
+      }
 
-
+        //if drink name = this
+        //then change this // reference the middle item
     }
 
     @Override

@@ -199,7 +199,7 @@ public class AddEspressoDrink extends AppCompatActivity {
         helper.createToastWithText("Coffee object" + "drink name" + drinkNameField() + "dirnk volumne:" + coffeeDrinkVolumeField() + "drink strength " + coffeeStrengthField());
 
 
-        helper.insertIntoDB(getApplicationContext(), drinkNameField() + " caffeine content: " + coffeeStrengthField(), "Coffee", coffeeDrinkVolumeField(), coffeeStrengthField());
+        helper.insertIntoDB(getApplicationContext(), drinkNameField() + " caffeine content:" + coffeeStrengthField()+"mg", "Coffee", coffeeDrinkVolumeField(), coffeeStrengthField());
 
 
         Intent changeToEspressoListing = new Intent(this, DrinkListingPageEspresso.class);

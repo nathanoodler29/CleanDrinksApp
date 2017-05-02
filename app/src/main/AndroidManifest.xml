@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
+    #review the warnign related a back up, may be useufl if a user unistnalls the app but still want
+    so to keep th data.
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -138,14 +139,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DrinkListingPageLager" />
-        <activity android:name=".DrinkListingPageCraftBeer" />
-        <activity android:name=".DrinkListingPageRealAle" />
-        <activity android:name=".DrinkListingPageStout" />
-        <activity android:name=".DrinkListingPageWhiskey" />
-        <activity android:name=".DrinkListingPageGin" />
-        <activity android:name=".DrinkListingPageVodka" />
-        <activity android:name=".coffee.prototye.android.cleandrinksapplication.adapter.classes.DrinkListingPageWater" />
+        <activity android:name=".DrinkListingPageLager">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DrinkListingPageCraftBeer">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DrinkListingPageRealAle">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DrinkListingPageStout">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DrinkListingPageWhiskey">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DrinkListingPageGin">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DrinkListingPageVodka">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".AddTeaBasedDrink">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -153,7 +181,8 @@
         </activity>
         <activity android:name=".AddWaterBasedDrink" />
         <activity android:name=".AddAlcholicDrink" />
-        <activity android:name=".AddBlackCoffeeBasedDrink"></activity>
+        <activity android:name=".AddBlackCoffeeBasedDrink" />
+        <activity android:name=".DrinkListingPageForWater"></activity>
     </application>
 
 </manifest>

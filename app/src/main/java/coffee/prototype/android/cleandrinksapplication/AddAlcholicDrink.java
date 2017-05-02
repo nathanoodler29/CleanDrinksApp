@@ -301,7 +301,7 @@ public class AddAlcholicDrink extends AppCompatActivity {
 
             int value = returnImage(validateAlcoholDrinkType(),getApplicationContext());
 
-            queryHelper.insertIntoDBForImage(getApplicationContext(),validateDrinkNameField()+" "+userUnits+" units",validateAlcoholDrinkType(),validateDrinkVolume(),userUnits,value);
+            queryHelper.insertIntoDBImage(getApplicationContext(),validateDrinkNameField()+" units:"+userUnits,validateAlcoholDrinkType(),validateDrinkVolume(),userUnits,value);
 
 
 

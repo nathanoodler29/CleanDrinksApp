@@ -161,11 +161,10 @@ public class AddWaterBasedDrink extends AppCompatActivity {
 
         if (validateDrinkNameField() != ("not valid") && validateDrinkVolume() != (0.00)) {
             helper.createToastWithText("Valid input");
-            Intent changeToEspressoListing = new Intent(this, DrinksCategoryAlcoholTypes.class);
 
             int value = helper.returnImage("Water", getApplicationContext());
 
-            queryHelper.insertIntoDBForImage(getApplicationContext(), validateDrinkNameField(), "Water", validateDrinkVolume(), 0.00, value);
+            queryHelper.insertIntoDBImage(getApplicationContext(),  validateDrinkVolume()+"ml "+validateDrinkNameField(), "Water", validateDrinkVolume(), 0.00, value);
 
             finish();
         } else if (validateDrinkNameField() == ("not valid") && validateDrinkVolume() == (0.00)) {

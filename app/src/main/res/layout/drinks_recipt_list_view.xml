@@ -43,7 +43,6 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        card_view:cardBackgroundColor="@color/brightOrange"
         >
 
         <TextView

@@ -19,8 +19,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
     private EditText blackCoffeeDrinkName;
     private Coffee blackCoffee = new Coffee();
     private ActivityHelper helper = new ActivityHelper();
-    private Button addBlackCoffee;
-    private Button cancelBlackCoffee;
+
     private DBQueryHelper queryHelper = new DBQueryHelper();
 
 
@@ -29,8 +28,6 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_black_coffee_based_drink);
         blackCoffeeDrinkName = (EditText) findViewById(R.id.black_coffee_drink_name);
-        addBlackCoffee = (Button) findViewById(R.id.add_black_coffee_drink);
-        cancelBlackCoffee = (Button) findViewById(R.id.cancel_espresso_drink);
         validateDrinkNameField();
 
     }
@@ -219,7 +216,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
 
             int image = helper.returnImage(blackCoffee.getDrinkType(), getApplicationContext());
 
-            queryHelper.insertIntoDBForImage(getApplicationContext(), validateDrinkNameField(), "Black Coffee", blackCoffee.getDrinkVolume(), blackCoffee.getCaffineContent(), image);
+            queryHelper.insertIntoDBImage(getApplicationContext(), validateDrinkNameField()+ " caffeine:"+blackCoffee.getCaffineContent()+"mg", "Black Coffee", blackCoffee.getDrinkVolume(), blackCoffee.getCaffineContent(), image);
 
             finish();
 

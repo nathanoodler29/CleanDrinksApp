@@ -48,7 +48,9 @@
             android:layout_height="96dp"
             android:layout_gravity="center"
             android:contentDescription="@string/accessibility_label_for_alcohol_image"
-            android:src="@drawable/beer_category_image" />
+            android:src="@drawable/beer_category_image"
+            android:onClick="moveToAlcoholCategory"/>
+
     </android.support.v7.widget.CardView>
 
 
@@ -132,7 +134,7 @@
             android:layout_gravity="center"
             android:contentDescription=""
             android:src="@drawable/water_bottle"
-            android:onClick="moveToCaffineCategory"/>
+            android:onClick="moveToWaterListing"/>
 
     </android.support.v7.widget.CardView>
 

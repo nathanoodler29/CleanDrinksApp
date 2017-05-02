@@ -211,7 +211,7 @@ public class AddTeaBasedDrink extends AppCompatActivity {
                 helper.createToastWithText("Valid input");
                 int image = helper.returnImage("Tea", getApplicationContext());
 
-                queryHelper.insertIntoDBForImage(getApplicationContext(), validateDrinkNameField()+" caffeine: "+getTeaStrenght(), "Tea", validateDrinkVolume(), getTeaStrenght(), image);
+                queryHelper.insertIntoDBImage(getApplicationContext(), validateDrinkNameField()+" caffeine:"+getTeaStrenght()+"mg", "Tea", validateDrinkVolume(), getTeaStrenght(), image);
 
                 finish();
 
