@@ -58,8 +58,13 @@ public class Coffee extends Drink implements GenericCaffineDrink {
     }
 
 
-
-    public double calculateCaffineAmount(int numberOfShots){
+    /**
+     * For user added drinks, it calculate the amount of caffeine
+     * @param numberOfShots the number of shots for an espresso drink.
+     * Based espresso shot value from: https://www.caffeineinformer.com/the-complete-guide-to-starbucks-caffeine
+     * @return The total amount of Caffeine
+     */
+    public double calculateCaffeineAmount(int numberOfShots){
         double oneShotStrength = 92;
         double totalAmountCaffine  = (numberOfShots * oneShotStrength);
 

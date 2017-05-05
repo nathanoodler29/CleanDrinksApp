@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingTop="20dp"
-        android:text="Add an Alcoholic drink"
+        android:text="@string/add_alcoholic_drink_title"
         android:textColor="@color/white"
         android:textSize="25sp"
 
@@ -57,7 +57,7 @@
         android:layout_below="@+id/profile_text"
         android:layout_gravity="center_horizontal"
         android:paddingTop="10dp"
-        android:text="Name your drink"
+        android:text="@string/name_drink_title"
         android:textSize="20sp"
 
         />
@@ -71,7 +71,7 @@
         android:layout_below="@+id/add_drink_title"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:hint="Example: Sambucca"
+        android:hint="@string/name_drink_hint_text"
         android:inputType="textAutoComplete"
         android:maxLength="20"
         android:maxLines="1"
@@ -95,7 +95,7 @@
         android:layout_below="@+id/profile_text"
         android:layout_gravity="center_horizontal"
         android:paddingTop="110dp"
-        android:text="Specify Drink volume"
+        android:text="@string/name_drink_volume_text"
         android:textSize="20sp"
 
         />
@@ -109,7 +109,7 @@
         android:layout_below="@+id/add_drink_volume"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="140dp"
-        android:hint="Example: 25ml"
+        android:hint="@string/name_drink_volume_hint_text"
         android:inputType="numberDecimal"
         android:maxLength="4"
         android:maxLines="1"
@@ -132,7 +132,7 @@
         android:layout_below="@+id/add_drink_volume"
         android:layout_gravity="center_horizontal"
         android:paddingTop="210dp"
-        android:text="Specify Drink Type"
+        android:text="@string/name_drink_type_text"
         android:textSize="20sp"
 
         />
@@ -145,7 +145,7 @@
         android:layout_below="@+id/add_drink_title"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="240dp"
-        android:hint="Example: Spirit"
+        android:hint="@string/name_drink_type_hint_text"
         android:inputType="textAutoComplete"
         android:maxLength="20"
         android:maxLines="1"
@@ -170,7 +170,7 @@
         android:layout_below="@+id/add_drink_volume"
         android:layout_gravity="center_horizontal"
         android:paddingTop="300dp"
-        android:text="Alcohol Percentage"
+        android:text="@string/name_alcohol_percentage_title_text"
         android:textSize="20sp"
 
         />
@@ -185,7 +185,7 @@
         android:layout_below="@+id/drink_type_percentage"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="330dp"
-        android:hint="Example: 5.00%"
+        android:hint="@string/name_alcohol_percentage_title_hint_text"
         android:inputType="numberDecimal"
         android:maxLength="5"
         android:maxLines="1"
@@ -215,8 +215,8 @@
 
         android:layout_marginTop="390dp"
         android:background="@drawable/circle_red_button"
-        android:contentDescription="@string/goal_remove_button_content_description"
-        android:onClick="cancelAloholicButton"
+        android:contentDescription="@string/cancel_add_drink_button"
+        android:onClick="cancelAlcoholicButton"
         android:text="@string/add_a_goal_cancel_cross_icon"
         android:textSize="28sp"
 
@@ -235,9 +235,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="390dp"
         android:background="@drawable/circle_green_button"
-        android:contentDescription=""
+        android:contentDescription="@string/add_drink_button"
         android:text="@string/add_a_goal_add_plus_icon"
-        android:onClick="submitAddAlcholicDrink"
+        android:onClick="submitAddAlcoholicDrink"
 
 
         android:textSize="28sp">

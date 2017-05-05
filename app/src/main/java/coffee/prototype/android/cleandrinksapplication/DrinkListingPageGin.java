@@ -19,24 +19,41 @@ public class DrinkListingPageGin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_drink_listing_page_gin);
+        //References gin  toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.gin_tool_bar);
+        //sets the toolbar so it's visible.
         setSupportActionBar(myToolbar);
+        //Locates and sets the recycler view
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.gin_recycler);
+        //Creates linear layout for this activity.
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        //sets the linear layout for the activity.
         recyclerView.setLayoutManager(linearLayoutManager);
+        //Searches through the drinks array list for drinks of type gin and places these values in mAdapter
         mAdapter = new MainAdapter(this, helper.populateDrinksArrayFromDataBaseGeneric(getApplicationContext(),"Gin"));
-        //store adaptaer size within get itme count, or soemthong, then if it's - the prior total, update and it should remove the deleted drink
+        //Set the recycler view with the adapter.
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount() == 0) {
+            //Insert the gin values in the database.
             helper.insertGinIntoDatabase(getApplicationContext());
+            //Go back to previous screen
             finish();
+            //Refresh the activity
             startActivity(getIntent());
+            //Update the adapter.
             mAdapter.notifyDataSetChanged();
         }
 
     }
 
+    /**
+     * Creates a menu
+     *
+     * @param menu Needs a menu resource to populate the menu
+     * @return True to display the menu
+     */
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater menuInflater = getMenuInflater();
@@ -44,14 +61,21 @@ public class DrinkListingPageGin extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Sets the events related to each menu
+     *
+     * @param  item relates to the option in the menu
+     * @return The menu.
+     */
     @Override
     public boolean onOptionsItemSelected (MenuItem item){
-
+        //relates to adding the drink for the activity.
         if (item.getItemId() == R.id.action_add_drink) {
             finish();
             Intent changeToWeightPage = new Intent(this, AddAlcholicDrink.class);
             startActivity(changeToWeightPage);
 
+            //shows log of drinks
 
         } else if (item.getItemId() == R.id.action_drinks_recipt) {
             finish();

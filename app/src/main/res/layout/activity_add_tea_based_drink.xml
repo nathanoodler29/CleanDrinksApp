@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
     tools:context="coffee.prototype.android.cleandrinksapplication.AddTeaBasedDrink">
 
@@ -30,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="Add a Tea drink"
+            android:text="@string/add_tea_drink"
             android:textColor="@color/white"
             android:textSize="25sp"
 
@@ -38,14 +37,14 @@
             />
 
     </android.support.v7.widget.CardView>
+
     <android.support.v7.widget.CardView
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:foregroundGravity="center_horizontal"
+        android:layout_below="@+id/add_espresso_drink_heading"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_below="@+id/add_espresso_drink_heading"
-    >
+        android:foregroundGravity="center_horizontal">
 
 
         <TextView
@@ -56,7 +55,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
-            android:text="Name your drink"
+            android:text="@string/name_drink_title"
             android:textSize="20sp"
 
             />
@@ -70,7 +69,7 @@
             android:layout_below="@+id/add_drink_title"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
-            android:hint="Example: Green tea"
+            android:hint="@string/example_tea"
             android:inputType="textAutoComplete"
             android:maxLength="20"
             android:maxLines="1"
@@ -94,7 +93,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="110dp"
-            android:text="Specify Drink volume"
+            android:text="@string/name_drink_volume_text"
             android:textSize="20sp"
 
             />
@@ -108,7 +107,7 @@
             android:layout_below="@+id/add_drink_volume"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="140dp"
-            android:hint="Example: 140ml"
+            android:hint="@string/example_volume_drink_volume"
             android:inputType="numberDecimal"
             android:maxLength="4"
             android:maxLines="1"
@@ -131,60 +130,44 @@
             android:layout_below="@+id/drink_volume"
             android:layout_gravity="center_horizontal"
             android:paddingTop="220dp"
-            android:text="Number of minitues tea is steeped"
+            android:text="@string/number_of_mins_steeped"
             android:textSize="20sp"
 
             />
 
-        <!--<EditText-->
-            <!--android:id="@+id/drink_strength"-->
-            <!--style="@style/Heading_font"-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:layout_below="@+id/add_drink_strength"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginTop="250dp"-->
-            <!--android:hint="Example: 1  = 1 shot"-->
-            <!--android:inputType="number"-->
-            <!--android:maxLength="1"-->
-            <!--android:maxLines="1"-->
-            <!--android:textAlignment="center" />-->
-        <!---->
-        <!---->
         <RadioGroup
-        android:id="@+id/radio_group_exercise"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="260dp"
-        android:orientation="horizontal"
+            android:id="@+id/radio_group_exercise"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/add_drink_strength"
-            >
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="260dp"
+            android:orientation="horizontal">
 
-        <RadioButton
+            <RadioButton
 
-            android:id="@+id/one_minitue"
-            style="@style/receipt_child_values"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+                android:id="@+id/one_minitue"
+                style="@style/receipt_child_values"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
 
-            android:checked="false"
+                android:checked="false"
 
 
-        android:onClick="onCheckTeaStrengthDialog"
-            android:text="1"
-            android:textSize="20sp" />
+                android:onClick="onCheckTeaStrengthDialog"
+                android:text="@string/one"
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/three_minitue"
                 style="@style/receipt_child_values"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:checked="false"
                 android:onClick="onCheckTeaStrengthDialog"
-                android:text="3"
-                android:layout_weight="1"
+                android:text="@string/three"
 
                 android:textSize="20sp" />
 
@@ -193,15 +176,14 @@
                 style="@style/receipt_child_values"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:checked="false"
                 android:onClick="onCheckTeaStrengthDialog"
-                android:text="5"
-                android:layout_weight="1"
+                android:text="@string/five"
 
                 android:textSize="20sp" />
 
-    </RadioGroup>
-
+        </RadioGroup>
 
 
         <View
@@ -228,7 +210,7 @@
 
             android:layout_marginTop="335dp"
             android:background="@drawable/circle_red_button"
-            android:contentDescription="@string/goal_remove_button_content_description"
+            android:contentDescription="@string/cancel_button_tea"
             android:onClick="cancelButton"
             android:text="@string/add_a_goal_cancel_cross_icon"
             android:textSize="28sp"
@@ -248,9 +230,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="335dp"
             android:background="@drawable/circle_green_button"
-            android:contentDescription=""
-            android:text="@string/add_a_goal_add_plus_icon"
+            android:contentDescription="@string/add_button_tea"
             android:onClick="submitTeaDrink"
+            android:text="@string/add_a_goal_add_plus_icon"
 
 
             android:textSize="28sp">
@@ -258,7 +240,6 @@
         </Button>
 
     </android.support.v7.widget.CardView>
-
 
 
 </RelativeLayout>

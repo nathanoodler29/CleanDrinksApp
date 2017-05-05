@@ -1,7 +1,7 @@
 package coffee.prototype.android.cleandrinksapplication.Model;
 
 /**
- * created by noodle on 21/04/2017.
+ * created by Nathan on 21/04/2017.
  */
 
 public class Achievement {
@@ -10,14 +10,21 @@ public class Achievement {
     private int completionStatus;
     private int achievementAvatar;
 
+    //Default constructor for calling methods.
     public Achievement() {
 
     }
 
+    /**
+     * Creates an Achievement
+     * @param name Refers to the Achievement name.
+     * @param description Refers to the Achievement description.
+     * @param achievementAvater  Refers to the Achievement image.
+     */
     public Achievement(String name, String description, int achievementAvater) {
         this.name = name;
         this.description = description;
-        this.completionStatus = completionStatus;
+
         this.achievementAvatar = achievementAvater;
 
     }
@@ -38,13 +45,6 @@ public class Achievement {
         this.description = description;
     }
 
-    public int getCompletionStatus() {
-        return completionStatus;
-    }
-
-    public void setCompletionStatus(int completionStatus) {
-        this.completionStatus = completionStatus;
-    }
 
     public int getAchievementAvater() {
         return achievementAvatar;

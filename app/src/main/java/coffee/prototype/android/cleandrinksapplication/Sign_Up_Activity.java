@@ -7,8 +7,8 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,8 +23,6 @@ import android.widget.Toast;
 
 import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 import coffee.prototype.android.cleandrinksapplication.data.UsersContract.UsersEntry;
-
-
 import coffee.prototype.android.cleandrinksapplication.data.UsersDBHelper;
 
 import static coffee.prototype.android.cleandrinksapplication.R.id.password_address_sign_up_field;
@@ -74,10 +72,14 @@ public class Sign_Up_Activity extends AppCompatActivity {
         usersDBHelper = new UsersDBHelper(this);
 
 
-
     }
 
-
+    /**
+     * Creates a menu
+     *
+     * @param menu Needs a menu resource to populate the menu
+     * @return True to display the menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -85,12 +87,18 @@ public class Sign_Up_Activity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Sets the events related to each menu
+     *
+     * @param item relates to the option in the menu
+     * @return The menu.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         SessionManager sessionManager = new SessionManager(getApplicationContext());
 
         if (item.getItemId() == R.id.action_addgoal) {
-        //add goal intent here.
+            //add goal intent here.
             createToastWithText("Clicked add Goal ");
 
         }
@@ -98,7 +106,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
     }
 
 
-
+    //@TODO relate to the user object
     public String getUserEmail() {
         return userEmail;
     }
@@ -157,7 +165,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
                     signUpEmailAddressInput.setError("Special characters can't be used");
 
                     //Regular expression used from Google's Regex Checker:
-                    // https://chrome.google.com/webstore/detail/regexp-tester/fekbbmalpajhfifodaakkfeodkpigjbk?hl=en
+                    // Reference to email checker: https://chrome.google.com/webstore/detail/regexp-tester/fekbbmalpajhfifodaakkfeodkpigjbk?hl=en
                     // Regular expression for validating an email, is in the correct form.
                 } else if (userInput.matches("^(\\w[-._+\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})$")) {
                     //If validation is passed then checkNumberEmail is 1, suggesting a pass.
@@ -241,7 +249,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
 
                     //Regex used from http://javarevisited.blogspot.co.uk/2012/10/regular-expression-example-in-java-to-check-String-number.html
-                } else if (userInput.matches(".*\\d+.*") ) {
+                } else if (userInput.matches(".*\\d+.*")) {
                     //Toast is displayed to show a ps password.
                     createToastWithText("Valid Password");
                     passwordStrengthIndicator.setText("Password Strength: Strong");
@@ -324,7 +332,6 @@ public class Sign_Up_Activity extends AppCompatActivity {
         cursor.moveToFirst();
 
 
-
         if (cursor.getCount() == 1) {
             createToastWithText("Account with this email already exists");
             userExists = true;
@@ -372,62 +379,63 @@ public class Sign_Up_Activity extends AppCompatActivity {
         long newRowId = db.insert(UsersEntry.TABLE_NAME, null, contentValues);
         //Log cat used to show that a database insertion is occuring.
 
-
-        //INSERT SESSION HERE
         SessionManager sessionManager = new SessionManager(getApplicationContext());
-
-//        createToastWithText("User id being added to the sesh"+getUserId());
-        String session = sessionManager.createSessionForUser(getUserId(),email);
-
-        createToastWithText("Session actual  :" +session);
-
-
-
-
-
+        //Creates the user session
+        String session = sessionManager.createSessionForUser(getUserId(), email);
+        //Logs that the sign up activity has added a user
         Log.v("sign up activity", "new row id" + newRowId);
-
+        //closes the db
         db.close();
     }
 
-    private void checkIfDataHasBeenAddedToDb(){
+    /**
+     * Used for debugging for whether the user has been added to the user table.
+     */
+    private void checkIfDataHasBeenAddedToDb() {
 
         SQLiteDatabase db = usersDBHelper.getReadableDatabase();
-
+        //checks that values are populated in db.
         Cursor cursor = db.rawQuery("SELECT * FROM " + UsersEntry.TABLE_NAME, null);
-        createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
         if (cursor != null) {
             cursor.moveToFirst();
         }
+        //@todo may cause error clsoed cusor
+        cursor.close();
     }
 
 
+    /**
+     * Gets the users id related to the session
+     *
+     * @return The user id of the current logge din user
+     */
+    private int getUserId() {
+        UsersDBHelper dbHelper = new UsersDBHelper(this);
+        num = 0;
 
-        private int getUserId(){
-            UsersDBHelper dbHelper = new UsersDBHelper(this);
-             num = 0;
+        //Makes the database readable.
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        //Get the users id based on the email.
+        Cursor cursor = db.rawQuery("SELECT " + UsersEntry._ID + " " + "FROM " +
+                UsersEntry.TABLE_NAME + " WHERE " + UsersEntry.COLUMN_USER_EMAIL + "=" + "'" + getUserEmail() + "'" + " AND " + "" +
+                UsersEntry.COLUMN_USER_PASSWORD + "=" + "'" + getUserPassword() + "'", null);
+        //if cursor is 1 or more then get the user id.
+        if (cursor.getCount() >= 1) {
+            while (cursor.moveToNext()) {
+                //get the user id from the user id column in user table.
+                setNum(Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID))));
 
-            //Makes the database readable.
-            SQLiteDatabase db = dbHelper.getReadableDatabase();
-            Cursor cursor= db.rawQuery("SELECT "+UsersEntry._ID+" " +"FROM "+
-                    UsersEntry.TABLE_NAME+" WHERE " +UsersEntry.COLUMN_USER_EMAIL+"="+"'"+getUserEmail()+"'"+" AND "+"" +
-                    UsersEntry.COLUMN_USER_PASSWORD+"="+"'"+getUserPassword()+"'",null);
-            if (cursor.getCount() >= 1) {
-                while (cursor.moveToNext()) {
-                     setNum(Integer.parseInt(cursor.getString(cursor.getColumnIndex(UsersEntry._ID))));
+//                    Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
 
-                    createToastWithText("User ID FROM GET USERid" + num);
-                    Log.v("Cursor ObjectID", DatabaseUtils.dumpCursorToString(cursor));
-
-                }
             }
-
-
-            db.close();
-
-            return num;
-
         }
+
+
+        db.close();
+
+        return num;
+
+    }
 }
 
 

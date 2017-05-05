@@ -212,7 +212,7 @@
 
     <string name="weight_height_activity_height_hint"> Height </string>
 
-    <string name="weight_height_example_height_hint">Example  Height 5ft11""</string>
+    <string name="weight_height_example_height_hint">Height in ft inches 5.11""</string>
 
     <string name="weight_height_activity_height_image_content_description">Image of a weight lifter</string>
 
@@ -229,7 +229,7 @@
 
     <string name="add_a_goal_active_radio_text_high">High</string>
 
-    <string name="add_a_goal_active_water_goal_heading">Water target for today?</string>
+    <string name="add_a_goal_active_water_goal_heading">Water target for today? In litres.</string>
 
     <string name="add_a_goal_duration_water_goal_heading">Duration of goal?</string>
 
@@ -255,6 +255,136 @@
         <item>metres</item>
     </string-array>
     <string name="espresso_drinks_cat_add_drink_menu_text">Add drink</string>
+    <string name = "total_num_of_achievements">You have unlocked 0/2 </string>
+    <string name = "achievements_rookie_title">Rookie</string>
+    <string name = "achievements_rookie_description">Created your first water goal.</string>
+    <string name = "grey_crown">Grey crown to represent locked achievement</string>
+    <string name = "no_longer_rookie_title"> No Longer the Rookie</string>
+    <string name = "no_longer_rookie_desc">Completed your first water goal.</string>
+    <string name = "grey_flag">Grey flag to represent locked achievement</string>
+
+    <string name = "add_alcoholic_drink_title">Add an Alcoholic drink</string>
+    <string name = "name_drink_title">Name your drink"</string>
+    <string name = "name_drink_hint_text"> Example: Sambucca</string>
+    <string name = "name_drink_volume_text">Specify Drink volume</string>
+    <string name = "name_drink_volume_hint_text">Example: 25ml</string>
+    <string name = "name_drink_type_text">Specify Drink Type</string>
+    <string name = "name_drink_type_hint_text">Example:Red Wine</string>
+    <string name = "name_alcohol_percentage_title_text">Alcohol Percentage</string>
+    <string name = "name_alcohol_percentage_title_hint_text">Example: 5.00</string>
+    <string name = "cancel_add_drink_button">Exists the add alcohol activity.</string>
+    <string name = "add_drink_button">Submits the add alcohol activity</string>
+
+
+    <string name = "add_black_coffee_title">Add Black Coffee</string>
+    <string name = "example_hint_text_black_coffee"> Example:Filter Coffee</string>
+    <string name = "americano_text">Americano</string>
+    <string name = "filter_text">Filter</string>
+    <string name = "instant">Instant</string>
+    <string name="drink_size_starbucks_heading">Drink size based on S/M/L starbucks</string>
+    <string name="two_three_six">236ml</string>
+    <string name="two_five_four">254ml</string>
+    <string name="four_seven_three">473ml</string>
+    <string name="cancel_coffee_adding_drink">cancel adding black coffee based drink</string>
+    <string name="add_coffee_drink"> submit black coffee based drink</string>
+    <string name="add_coffee_espresso_drink">Add a coffee drink</string>
+    <string name="specify_drink_volume">Specify Drink volume in ml</string>
+    <string name="name_drink_hint">Example:Espresso</string>
+    <string name="example_volume">Example:140</string>
+    <string name="number_of_espresso_shots">Number of espresso shots</string>
+    <string name="example_of_espresso_shots">Example: 1 = 1 shot</string>
+    <string name="cancel_button_espresso">Cancel button for adding espresso drinks</string>
+    <string name="add_button_espresso"> Button for adding espresso drinks</string>
+    <string name="example_litres">Example: 1.5</string>
+    <string name="add_water_based_drink">Add Water based drink</string>
+    <string name="example_water">Example: Bottle of water</string>
+    <string name="add_button_water"> Button for adding Water drinks</string>
+
+    <string name="cancel_button_water">Cancel button for adding water drinks</string>
+    <string name="example_tea">Example: Green tea</string>
+    <string name="example_volume_drink_volume">Example: 473ml</string>
+    <string name="number_of_mins_steeped">Number of minutes tea steeped</string>
+    <string name="one">1</string>
+    <string name="three">3</string>
+    <string name="five">5</string>
+
+
+    <string name="cancel_button_tea">Cancel button for adding tea drinks</string>
+    <string name="add_button_tea"> Button for adding tea drinks</string>
+    <string name="add_tea_drink">Add a Tea drink</string>
+
+
+    <string name="lager_heading">Lager</string>
+
+    <string name="lager_bottle_description">Bottle of lager</string>
+
+
+    <string name="craft_beer_heading">Craft Beer</string>
+
+    <string name="craft_beer_bottle_description">Bottle of craft beer</string>
+
+
+    <string name="real_ale_beer_heading">Real Ale</string>
+
+    <string name="real_ale_beer_bottle_description">Stein of real ale</string>
+
+    <string name="stout_beer_heading">Stout</string>
+
+    <string name="stout_beer_bottle_description">Pint of stout</string>
+
+
+    <string name="alcohol_text">Alcohol</string>
+
+    <string name="water_text">Water</string>
+    <string name="bottle_of_water_text">Bottle of Water</string>
+
+    <string name="coffee_content_desc">coffee takeaway cup of Water</string>
+
+
+    <string name="tea_title">Tea</string>
+    <string name="tea_title_content_desc">Cup of Tea</string>
+    <string name="tea_title_content_cat">Cup of Tea for tea category button</string>
+
+
+    <string name="coffee_title">Coffee</string>
+    <string name="coffee_title_content_cat">Coffee machine</string>
+    <string name="coffee_title_content_desc">Coffee machine for caffeine category button</string>
+
+
+
+    <string name="wine_title_content_desc">Wine Bottle for wine category button</string>
+
+    <string name="beer_title_content_desc">Beer bottle for beer category button</string>
+    <string name="spirit_title_content_desc">Spirit bottle for spirit category button</string>
+
+    <string name="redwine_title">Red Wine</string>
+    <string name="redwine_title_content_desc">Red wine  for red wine listing page</string>
+
+
+    <string name="whitewine_title">White Wine</string>
+    <string name="whitewine_title_content_desc">White wine  for white wine listing page</string>
+
+
+    <string name="espresso_title">Espresso Based Drinks</string>
+    <string name="espresso_title_content_cat">Espresso cup</string>
+    <string name="espresso_title_content_desc">Espresso cup for espresso listing button</string>
+
+    <string name="black_coffee_title">Black Coffee Based Drinks</string>
+    <string name="black_coffee_title_content_cat">Espresso cup</string>
+    <string name="black_coffee_title_content_desc">Black coffee pot  for black coffee listing button</string>
+
+    <string name="ghost_image_forgot_password">Ghost image</string>
+    <string name="forgot_password_title">Forgotten Password</string>
+    <string name="email_address_hint">Forgotten Password</string>
+    <string name="update_password">Update password</string>
+    <string name="update_password_button">Update password Button</string>
+    <string name="remember_password">Remember password?</string>
+    <string name="back_to_login_password">Back to login </string>
+    <string name="back_to_login__password_button">Back to login  Button</string>
+    <string name="no_goals_are_Set"> Snap, no goals are set!</string>
+    <string name="sign_up_button_desc">Sign up button, goes to the weight category after click</string>
+
+
 
 
 </resources>

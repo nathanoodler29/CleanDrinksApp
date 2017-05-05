@@ -16,6 +16,11 @@ public class Caffine_Activity_Listing_Coffee_Based_Types extends AppCompatActivi
     }
 
 
+    /**
+     * Changes the current activity to the espresso listing pages.
+     *
+     * @param view References current view.
+     */
     public void listDrinks(View view){
             Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             vibe.vibrate(100);
@@ -25,6 +30,12 @@ public class Caffine_Activity_Listing_Coffee_Based_Types extends AppCompatActivi
             startActivity(drinkListingPageEspresso);
         }
 
+
+    /**
+     * Changes the current activity to the espresso listing pages.
+     *
+     * @param view References current view.
+     */
     public void listBlackCoffeeBasedDrinks(View view){
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);

@@ -1,16 +1,28 @@
 package coffee.prototype.android.cleandrinksapplication.Model;
 
-/**
- * created by Noodle on 10/04/2017.
+/*
+ * created by Nathan on 10/04/2017.
  */
 
+
+/**
+ * THis class comprises of the simple getter and setter methods related to a drink.
+ * This is to avoid duplication of methods in every single drink sub class.
+ */
 public class Drink {
 
-    public String testing;
     private String drinkName;
     private double drinkVolume;
     private int drinkQuantity;
     private String drinkType;
+
+    private String date;
+
+
+    private int imagePath;
+
+    private String dateName;
+
 
     public String getDateName() {
         return dateName;
@@ -20,7 +32,6 @@ public class Drink {
         this.dateName = dateName;
     }
 
-    private String dateName;
 
     public String getDate() {
         return date;
@@ -29,14 +40,6 @@ public class Drink {
     public void setDate(String date) {
         this.date = date;
     }
-
-    private String date;
-
-
-    private int imagePath;
-
-
-    private int numberOfDrinks;
 
 
     public String getDrinkName() {

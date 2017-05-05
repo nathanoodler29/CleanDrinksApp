@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="Add Black Coffee"
+            android:text="@string/add_black_coffee_title"
             android:textColor="@color/white"
             android:textSize="25sp"
 
@@ -60,7 +59,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
-            android:text="Name your drink"
+            android:text="@string/name_drink_title"
             android:textSize="20sp"
 
             />
@@ -74,7 +73,7 @@
             android:layout_below="@+id/add_drink_title"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
-            android:hint="Example: Espresso"
+            android:hint ="@string/example_hint_text_black_coffee"
             android:inputType="textAutoComplete"
             android:maxLength="20"
             android:maxLines="1"
@@ -89,7 +88,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="110dp"
-            android:text="Select drink type"
+            android:text="@string/name_drink_type_text"
             android:textSize="20sp"
 
             />
@@ -127,7 +126,7 @@
 
 
             android:onClick="onCheckCoffeeDrinkType"
-            android:text="Americano"
+            android:text="@string/americano_text"
             android:textSize="20sp" />
 
             <RadioButton
@@ -142,7 +141,7 @@
 
 
                 android:onClick="onCheckCoffeeDrinkType"
-                android:text="Filter"
+                android:text="@string/filter_text"
                 android:textSize="20sp" />
 
 
@@ -159,7 +158,7 @@
 
 
                 android:onClick="onCheckCoffeeDrinkType"
-                android:text="Instant"
+                android:text="@string/instant"
                 android:layout_marginTop="-50dp"
                 android:textSize="20sp" />
 
@@ -175,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="210dp"
-            android:text="Drink size based on S/M/L starbucks"
+            android:text="@string/drink_size_starbucks_heading"
             android:textSize="20sp"
 
             />
@@ -214,7 +213,7 @@
 
 
                 android:onClick="onCheckCoffeeDrinkSize"
-                android:text="236ml"
+                android:text="@string/two_three_six"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -229,7 +228,7 @@
 
 
                 android:onClick="onCheckCoffeeDrinkSize"
-                android:text="254ml"
+                android:text="@string/two_five_four"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -244,7 +243,7 @@
 
 
                 android:onClick="onCheckCoffeeDrinkSize"
-                android:text="473ml"
+                android:text="@string/four_seven_three"
                 android:textSize="20sp" />
 
 
@@ -278,7 +277,7 @@
 
             android:layout_marginTop="335dp"
             android:background="@drawable/circle_red_button"
-            android:contentDescription="@string/goal_remove_button_content_description"
+            android:contentDescription="@string/cancel_coffee_adding_drink"
             android:onClick="onClickCancelDrink"
             android:text="@string/add_a_goal_cancel_cross_icon"
             android:textSize="28sp"
@@ -298,7 +297,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="335dp"
             android:background="@drawable/circle_green_button"
-            android:contentDescription=""
+            android:contentDescription="@string/add_coffee_drink"
             android:text="@string/add_a_goal_add_plus_icon"
             android:onClick="addBlackCoffeeBasedDrink"
 

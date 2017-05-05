@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_drink__category"
@@ -17,14 +16,13 @@
         android:id="@+id/alcohol_category_card"
         android:layout_width="400dp"
         android:layout_height="140dp"
-        android:layout_marginTop="90dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:foregroundGravity="center_horizontal"
-        card_view:cardBackgroundColor="@color/darkBlue"
-
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        >
+        android:layout_marginTop="90dp"
+        android:background="?android:attr/selectableItemBackground"
+
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/darkBlue">
 
         <TextView
             android:id="@+id/alcohol_heading"
@@ -32,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="ALCOHOL"
+            android:text="@string/alcohol_text"
             android:textColor="@color/white" />
 
         <Button
@@ -47,24 +45,22 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:contentDescription="@string/accessibility_label_for_alcohol_image"
-            android:src="@drawable/beer_category_image"
-            android:onClick="moveToAlcoholCategory"/>
+            android:contentDescription="@string/title_for_category_types_beer"
+            android:onClick="moveToAlcoholCategory"
+            android:src="@drawable/beer_category_image" />
 
     </android.support.v7.widget.CardView>
-
 
 
     <android.support.v7.widget.CardView
         android:id="@+id/caffeine_category_card"
         android:layout_width="400dp"
         android:layout_height="160dp"
-        android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/colorAccent"
         android:layout_below="@+id/alcohol_category_card"
+        android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        >
+        card_view:cardBackgroundColor="@color/colorAccent">
 
         <TextView
             android:id="@+id/caffeine_heading"
@@ -83,16 +79,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
-            android:onClick="moveToCaffineCategory" />
+            android:onClick="moveToCaffeineCategory" />
 
         <ImageView
             android:id="@+id/caffeine_background_category_card"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:contentDescription="@string/accessibility_label_for_caffeine_image"
-            android:src="@drawable/caffine_cup"
-            android:onClick="moveToCaffineCategory"/>
+            android:contentDescription="@string/coffee_content_desc"
+            android:onClick="moveToCaffeineCategory"
+            android:src="@drawable/caffine_cup" />
 
     </android.support.v7.widget.CardView>
 
@@ -101,12 +97,11 @@
         android:id="@+id/water_category_card"
         android:layout_width="400dp"
         android:layout_height="160dp"
-        android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/skyBlue"
         android:layout_below="@+id/caffeine_category_card"
+        android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        >
+        card_view:cardBackgroundColor="@color/skyBlue">
 
         <TextView
             android:id="@+id/water_heading"
@@ -114,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Water"
+            android:text="@string/water_text"
             android:textColor="@color/white"
 
             />
@@ -132,9 +127,9 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:contentDescription=""
-            android:src="@drawable/water_bottle"
-            android:onClick="moveToWaterListing"/>
+            android:contentDescription="@string/bottle_of_water_text"
+            android:onClick="moveToWaterListing"
+            android:src="@drawable/water_bottle" />
 
     </android.support.v7.widget.CardView>
 

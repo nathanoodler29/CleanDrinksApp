@@ -47,7 +47,7 @@ public class DrinkRecipt extends AppCompatActivity {
             noDrinksSetParagraph.setVisibility(View.VISIBLE);
             drinksReciptCardHeading.setVisibility(View.GONE);
             drinksReciptHeading.setVisibility(View.GONE);
-        }else{
+        }else {
             cardViewHeading.setVisibility(View.GONE);
             cardViewBottom.setVisibility(View.GONE);
             noDrinksSetHeading.setVisibility(View.GONE);
@@ -55,7 +55,13 @@ public class DrinkRecipt extends AppCompatActivity {
             drinksReciptCardHeading.setVisibility(View.VISIBLE);
             drinksReciptHeading.setVisibility(View.VISIBLE);
 
+            if (mAdapter.getItemCount() == 0) {
+                cardViewHeading.setVisibility(View.VISIBLE);
+                cardViewBottom.setVisibility(View.VISIBLE);
+                noDrinksSetHeading.setVisibility(View.VISIBLE);
+                noDrinksSetParagraph.setVisibility(View.VISIBLE);
 
+            }
         }
     }
 }

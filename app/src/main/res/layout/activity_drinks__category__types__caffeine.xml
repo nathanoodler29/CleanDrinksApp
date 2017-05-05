@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="coffee.prototype.android.cleandrinksapplication.Drinks_Category_Types_Caffeine"
->
+    tools:context="coffee.prototype.android.cleandrinksapplication.Drinks_Category_Types_Caffeine">
 
     <include
         android:id="@+id/email_address_card"
@@ -16,23 +14,24 @@
 
     <android.support.v7.widget.CardView
 
-        android:layout_marginTop="90dp"
-        android:foregroundGravity="center_horizontal"
         android:id="@+id/caffeine_sub_cat_tea"
         android:layout_width="400dp"
         android:layout_height="140dp"
-        card_view:cardBackgroundColor="@color/bottleGreen"
-        android:background="?android:attr/selectableItemBackground"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="90dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/bottleGreen"
 
         >
+
         <TextView
-            android:layout_gravity="center_horizontal"
+            style="@style/Heading_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Heading_font"
-            android:text="TEA"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/tea_title"
             android:textColor="@color/white"
 
             />
@@ -42,53 +41,55 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
-            android:onClick="changeToTeaListingPage" />
+            android:contentDescription="@string/tea_title_content_cat"
+
+            android:onClick="changeToTeaListingPage"
+
+            />
 
         <ImageView
             android:id="@+id/tea_card_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:contentDescription=""
-            android:src="@drawable/tea_category"
-            />
+            android:contentDescription="@string/tea_title_content_desc"
+            android:src="@drawable/tea_category" />
     </android.support.v7.widget.CardView>
 
 
-
     <android.support.v7.widget.CardView
-        android:foregroundGravity="center_horizontal"
         android:id="@+id/alcohol_sub_cat_beer"
         android:layout_width="400dp"
         android:layout_height="140dp"
-        card_view:cardBackgroundColor="@color/coffeeColor"
-
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_below="@+id/caffeine_sub_cat_tea"
-    >
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginRight="10dp"
+        android:foregroundGravity="center_horizontal"
+        card_view:cardBackgroundColor="@color/coffeeColor">
+
         <Button
             android:id="@+id/invisible_button_to_coffee_sub_cat_inside_image_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/coffee_title_content_desc"
             android:onClick="changeToCaffieneTypePage" />
 
         <TextView
-            android:layout_gravity="center_horizontal"
+            style="@style/Heading_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Heading_font"
-            android:text="COFFEE"
-            android:textColor="@color/white"
-            />
+            android:layout_gravity="center_horizontal"
+            android:text="@string/coffee_title"
+            android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/beer_card_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:contentDescription=""
+            android:contentDescription="@string/coffee_title_content_cat"
             android:src="@drawable/coffee_category_for_caffine_category" />
     </android.support.v7.widget.CardView>
 

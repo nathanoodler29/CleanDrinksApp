@@ -16,11 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.GoalsAdapter;
 import coffee.prototype.android.cleandrinksapplication.data.GoalDBQueries;
-import coffee.prototype.android.cleandrinksapplication.data.SessionManager;
 
 
 public class GoalActivity extends AppCompatActivity {
@@ -50,47 +47,62 @@ public class GoalActivity extends AppCompatActivity {
 
         addGoalButton = (Button) findViewById(R.id.adddrinkgoal);
         removeGoalbutton = (Button) findViewById(R.id.remove_drink_goal);
-        //card view realted layout
+        //card view related layout
         cardView = (CardView) findViewById(R.id.no_goals_set);
         noGoalsText = (TextView) findViewById(R.id.no_goals_set_text);
 
-
-        //goal layout
-
+        //Goal heading layout change if the goal exists.
         goalHeading = (TextView) findViewById(R.id.goal_parent_heading);
+        //Goal paragraph layout change if the goal exists.
         paragraphText = (TextView) findViewById(R.id.goal_paragraph_text);
-
-        totalNumOfGoals = (TextView)findViewById(R.id.total_num_of_goals);
-
-
-
+        //Total number of goal layout change if the goal exists.
+        totalNumOfGoals = (TextView) findViewById(R.id.total_num_of_goals);
+        //Creates a recycler view for goals
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.goal_recycle);
+        //creates a linear layout
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        //sets a linear layout
         recyclerView.setLayoutManager(linearLayoutManager);
+        //Populate the adapter with goals
         mAdapter = new GoalsAdapter(this, helper.populateGoalAdapter(getApplicationContext()));
+        //sets the adapter.
         recyclerView.setAdapter(mAdapter);
-
+        //If the item count is zero.
         if (mAdapter.getItemCount() == 0) {
 
-            //http://stackoverflow.com/questions/4249237/can-i-hide-an-image-button-on-a-layout-dimensions-and-background-until-a-call
+            //Reference: http://stackoverflow.com/questions/4249237/can-i-hide-an-image-button-on-a-layout-dimensions-and-background-until-a-call
+            //makes the cared view visible.
             cardView.setVisibility(View.VISIBLE);
+            //no goals text is displayed
             noGoalsText.setVisibility(View.VISIBLE);
+            //doesn't display goals because none are presnt
             totalNumOfGoals.setVisibility(View.GONE);
-
+            //if more than or euqal  0 goal exists
         } else if (mAdapter.getItemCount() >= 0) {
+            //sets the card view to non visible
             cardView.setVisibility(View.GONE);
+            //removes no goal text
             noGoalsText.setVisibility(View.GONE);
+            //sets the text to view goals.
             goalHeading.setText("View your goals");
+            //Review your goal text is dispalyed.
             paragraphText.setText("Review your goals");
+            //Total number is displayed.
             totalNumOfGoals.setVisibility(View.VISIBLE);
-            totalNumOfGoals.setText("Total num of goals "+goalDBQueries.numOfGoalsCreatedForAUser(getApplicationContext()));
+            //Query from db to return the number of goals related to user session.
+            totalNumOfGoals.setText("Total num of goals " + goalDBQueries.numOfGoalsCreatedForAUser(getApplicationContext()));
 
-//            mAdapter.notifyDataSetChanged();
 
         }
 
     }
 
+    /**
+     * Creates a menu
+     *
+     * @param menu Needs a menu resource to populate the menu
+     * @return True to display the menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -98,13 +110,21 @@ public class GoalActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Sets the events related to each menu
+     *
+     * @param item relates to the option in the menu
+     * @return The menu.
+     * @todo need to set the progress to a value or query that's been written.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_view_goal_progress) {
             finish();
-            Intent changeToProGRESS = new Intent(this, Progress_Tracking.class);
-            startActivity(changeToProGRESS);
+            //change to progress view
+            Intent changeToProgress = new Intent(this, Progress_Tracking.class);
+            startActivity(changeToProgress);
 
 
         }
@@ -112,20 +132,31 @@ public class GoalActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Open the add goal activity.
+     *
+     * @param view references current view.
+     */
     public void openAddGoalActivity(View view) {
 
         addGoalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //http://stackoverflow.com/questions/20149415/vibrate-onclick
+                //Reference to vibrate onclick: http://stackoverflow.com/questions/20149415/vibrate-onclick
                 Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                //sets duration.
                 vibe.vibrate(100);
-
+                //Opens the add goal class
                 Intent changeToAddGoalActivity = new Intent(getApplicationContext(), addgoal.class);
-                if (goalDBQueries.checkIfGoalHasAlreadyBeenSet(getApplicationContext())){
+                //Check to see if a goal has already beens et on current day.
+                if (goalDBQueries.checkIfGoalHasAlreadyBeenSet(getApplicationContext())) {
+                    //If so, then sorry goal has already been set message displayed
                     helper.createToastWithText("Sorry you've already set a goal, One goal a day can only be set.");
-                }else if(!goalDBQueries.checkIfGoalHasAlreadyBeenSet(getApplicationContext())){
+                    //else if a goal hasn't been set then user is able to add goa.
+                } else if (!goalDBQueries.checkIfGoalHasAlreadyBeenSet(getApplicationContext())) {
+                    //changes to add goal activity.
                     startActivity(changeToAddGoalActivity);
+                    //toast message displays add a goa
                     helper.createToastWithText("Add a Goal!");
                     finish();
 
@@ -137,12 +168,16 @@ public class GoalActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * This was meant to delete a goal, but didn't get round to do the functionality.
+     *
+     * @param view References the current view.
+     */
     public void closeAddGoalActivity(View view) {
         removeGoalbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                helper.createToastWithText("Deleted goal");
+                helper.createToastWithText("Deleted goal functionalty doesn't work");
             }
         });
 

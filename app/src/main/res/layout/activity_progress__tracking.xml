@@ -5,27 +5,35 @@
     android:id="@+id/activity_progress__tracking"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="coffee.prototype.android.cleandrinksapplication.Progress_Tracking"
-    android:background="@color/lightGrey">
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbargeneric" />
+
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_title"
         android:layout_width="400dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        card_view:cardBackgroundColor="@color/darkBlue"
 
         >
 
         <TextView
-            style="@style/receipt_parent_values"
+            style="@style/receipt_child_values"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:textSize="29sp"
             android:textAlignment="center"
-            android:text="@string/activity_progress_heading"
+            android:text="Water Goal progress"
             />
 
     </android.support.v7.widget.CardView>
@@ -36,10 +44,11 @@
         android:layout_width="400dp"
         android:layout_height="220dp"
         android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/lightBlue"
+        card_view:cardBackgroundColor="@color/darkerWhite"
         android:layout_below="@+id/card_title"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+    >
 
 
         <TextView
@@ -76,6 +85,9 @@
         android:layout_height="140dp"
         android:layout_below="@+id/progress"
         android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        card_view:cardBackgroundColor="@color/darkGrey"
        >
 
 
@@ -113,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="70dp"
-            android:background="@color/lightGrey">
+            android:background="@color/black">
 
         </View>
 

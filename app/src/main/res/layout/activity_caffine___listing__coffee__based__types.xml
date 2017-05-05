@@ -18,20 +18,19 @@
         android:id="@+id/caffeine_sub_cat_espresso"
         android:layout_width="400dp"
         android:layout_height="140dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="90dp"
         android:background="?android:attr/selectableItemBackground"
         android:foregroundGravity="center_horizontal"
-        card_view:cardBackgroundColor="@color/espressoColor"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
+        card_view:cardBackgroundColor="@color/espressoColor">
 
         <TextView
             style="@style/Heading_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="ESPRESSO BASED DRINKS"
+            android:text="@string/espresso_title"
             android:textColor="@color/white" />
 
         <Button
@@ -39,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/espresso_title_content_desc"
             android:onClick="listDrinks" />
 
         <ImageView
@@ -46,7 +46,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:contentDescription=""
+            android:contentDescription="@string/espresso_title_content_desc"
             android:src="@drawable/espresso_based_drinks" />
     </android.support.v7.widget.CardView>
 
@@ -56,25 +56,28 @@
         android:layout_height="140dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-
         android:layout_below="@+id/caffeine_sub_cat_espresso"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginRight="10dp"
         android:foregroundGravity="center_horizontal"
         card_view:cardBackgroundColor="@color/coffeeColor">
+
         <Button
             android:id="@+id/invisible_button_to_black_coffee_based_drinks"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
-            android:onClick="listBlackCoffeeBasedDrinks" />
+            android:onClick="listBlackCoffeeBasedDrinks"
+            android:contentDescription="@string/black_coffee_title_content_desc"
+            />
 
         <TextView
             style="@style/Heading_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="BLACK COFFEE BASED DRINKS"
+            android:text="@string/black_coffee_title"
             android:textColor="@color/white" />
 
         <ImageView
@@ -82,7 +85,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
-            android:contentDescription=""
+            android:contentDescription="@string/black_coffee_title_content_desc"
             android:src="@drawable/black_coffee_based_drinks" />
     </android.support.v7.widget.CardView>
 

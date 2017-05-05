@@ -15,6 +15,12 @@ public class BeerCategories extends AppCompatActivity {
         setContentView(R.layout.activity_beer_categories);
     }
 
+
+    /**
+     * Changes the current activity to the lager listing page.
+     *
+     * @param view References current view.
+     */
     public void goToLagerPage(View view){
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
@@ -23,6 +29,11 @@ public class BeerCategories extends AppCompatActivity {
         startActivity(changeToLagerListingPage);
     }
 
+    /**
+     * Changes the current activity to the craft beer listing page.
+     *
+     * @param view References current view.
+     */
     public void goToCraftBeerPage(View view){
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
@@ -31,6 +42,11 @@ public class BeerCategories extends AppCompatActivity {
         startActivity(changeToCraftListingPage);
     }
 
+    /**
+     * Changes the current activity to the real ale listing page.
+     *
+     * @param view References current view.
+     */
     public void goToRealAleBeerPage(View view){
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
@@ -39,6 +55,11 @@ public class BeerCategories extends AppCompatActivity {
         startActivity(changeToRealAleListingPage);
     }
 
+    /**
+     * Changes the current activity to the stout listing page.
+     *
+     * @param view References current view.
+     */
     public void goToStoutPage(View view){
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);

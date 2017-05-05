@@ -2,10 +2,14 @@ package coffee.prototype.android.cleandrinksapplication.data;
 
 import android.provider.BaseColumns;
 
-/**
- * Created by Noodle on 21/04/2017.
+/*
+ * created by Nathan on 21/04/2017.
  */
 
+/**
+ * This class is used to retrieve column names, to ensure they are spelled correctly.
+ * As such a columns are referenced in the schema.
+ */
 public class AchievementContract {
     private AchievementContract() {
     }
@@ -14,14 +18,14 @@ public class AchievementContract {
 
         public final static String TABLE_NAME = "ACHIEVEMENT";
 
-        //must have ID otherwise, wont; be able to update or delete an existing measurment.
-
+        //Base columns is used to reference id in reycler view and each record in the table.
         public final static String ACHIEVEMENT_ID = BaseColumns._ID;
-        //i think here we pass in the pk of the users table, so we can trace this through that.
+        //name of the achievement
         public final static String COLUMN_ACHIEVEMENT_NAME = "achievement_name";
+        //Achievement description
         public final static String COLUMN_ACHIEVEMENT_DESCRIPTION = "achievement_description";
+        //Achievement image icon
         public final static String COLUMN_ACHIEVEMENT_IMAGE = "achievement_image";
-
 
 
     }

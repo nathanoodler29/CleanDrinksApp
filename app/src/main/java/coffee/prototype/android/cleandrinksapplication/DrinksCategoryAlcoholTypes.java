@@ -2,9 +2,9 @@ package coffee.prototype.android.cleandrinksapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,7 +24,12 @@ public class DrinksCategoryAlcoholTypes extends AppCompatActivity {
     }
 
 
-    public void goToWineCategory(View view){
+    /**
+     * Changes the current activity to the wine category pages.
+     *
+     * @param view References current view.
+     */
+    public void goToWineCategory(View view) {
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
         Intent changeToWineCategoryPage = new Intent(this, WineCategories.class);
@@ -32,7 +37,13 @@ public class DrinksCategoryAlcoholTypes extends AppCompatActivity {
         startActivity(changeToWineCategoryPage);
     }
 
-    public void goToBeerCat(View view){
+
+    /**
+     * Changes the current activity to the beer category pages.
+     *
+     * @param view References current view.
+     */
+    public void goToBeerCat(View view) {
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
         Intent changeToBeerCategoryPage = new Intent(this, BeerCategories.class);
@@ -40,7 +51,13 @@ public class DrinksCategoryAlcoholTypes extends AppCompatActivity {
         startActivity(changeToBeerCategoryPage);
     }
 
-    public void goToSpiritsCat(View view){
+
+    /**
+     * Changes the current activity to the spirits category pages.
+     *
+     * @param view References current view.
+     */
+    public void goToSpiritsCat(View view) {
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
         Intent changeToSpiritsCategoryPage = new Intent(this, SpiritsCategories.class);
@@ -49,31 +66,43 @@ public class DrinksCategoryAlcoholTypes extends AppCompatActivity {
     }
 
 
+    /**
+     * Creates a menu
+     *
+     * @param menu Needs a menu resource to populate the menu
+     * @return True to display the menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.current_menu, menu);
+        menuInflater.inflate(R.menu.add_goal_and_view_achievement_menu, menu);
         return true;
     }
 
+    /**
+     * Sets the events related to each menu
+     *
+     * @param item Item relates to the option in the menu
+     * @return The menu.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         SessionManager sessionManager = new SessionManager(getApplicationContext());
 
-        if (item.getItemId() == R.id.action_logout) {
-            sessionManager.deleteSession();
-//            createToastWithText("Successfully logged out");
-        }else if(item.getItemId()==R.id.action_addgoal){
+        if (item.getItemId() == R.id.action_addgoal) {
 
             Intent changeToGoal = new Intent(this, GoalActivity.class);
-            //Switches the activity to sign up.
+            //Switches the activity to goal
             startActivity(changeToGoal);
+        } else if (item.getItemId() == R.id.action_view_achivements) {
+            //Switches the activity to achievement
+            Intent achivements = new Intent(this, AchievementGallery.class);
+            startActivity(achivements);
+
+
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
 }

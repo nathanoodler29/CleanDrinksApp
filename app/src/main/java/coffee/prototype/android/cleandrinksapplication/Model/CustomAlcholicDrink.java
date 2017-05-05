@@ -1,7 +1,7 @@
 package coffee.prototype.android.cleandrinksapplication.Model;
 
 /**
- * Created by Noodle on 25/04/2017.
+ * created by Nathan on 25/04/2017.
  */
 
 public interface CustomAlcholicDrink {

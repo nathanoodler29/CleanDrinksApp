@@ -32,7 +32,7 @@ import coffee.prototype.android.cleandrinksapplication.data.WeightContract;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
- * created by Noodle on 28/03/2017.
+ * created by Nathan on 28/03/2017.
  * tea icons from http://www.flaticon.com/free-icon/cup-with-tea-bag_68890#term=tea&page=2&position=35
  */
 
@@ -160,7 +160,7 @@ public class ActivityHelper {
             while (cursor.moveToNext()) {
                 num = Integer.parseInt(cursor.getString(cursor.getColumnIndex(WeightContract.WeightEntry.COLUMN_WEIGHT)));
 
-                createToastWithText("Weight from user ID method from db   " + num);
+//                createToastWithText("Weight from user ID method from db   " + num);
 
             }
             cursor.close();
@@ -196,10 +196,11 @@ public class ActivityHelper {
 
             }
         }
+        //// TODO: 04/04/2017 recent change!
 
-
+        cursor.close();
         db.close();
-        createToastWithText("Returning" + num);
+//        createToastWithText("Returning" + num);
         return num;
 
 
@@ -226,7 +227,7 @@ public class ActivityHelper {
 
         setGoalID(String.valueOf(newRowId));
 
-        createToastWithText("row id of goal id" + newRowId);
+//        createToastWithText("row id of goal id" + newRowId);
         //Log cat used to show that a database insertion is occuring.
         Log.v("goal table  activity", "new row id" + newRowId);
 
@@ -278,7 +279,7 @@ public class ActivityHelper {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME + " WHERE " + GoalContract.GoalEntry.USER_FK_REF + "= " + getUserId(getApplicationContext()), null);
-        createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
+//        createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
         ArrayList<Goal> goalsList = new ArrayList<Goal>();
         goalsList.clear();
 
@@ -308,7 +309,7 @@ public class ActivityHelper {
 
         }
 
-        createToastWithText("goals list+" + goalsList);
+//        createToastWithText("goals list+" + goalsList);
         return goalsList;
     }
 
@@ -532,8 +533,8 @@ public class ActivityHelper {
 
         int teaImage = context.getResources().getIdentifier("english_breakfast", "drawable", context.getPackageName());
 
-        Tea englishBreakFast = new Tea("3 Min steep breakfast caffeine:22mg", 170, "Tea", 22, teaImage);
-        englishBreakFast.setDrinkName("3 Min steep breakfast caffeine:22mg");
+        Tea englishBreakFast = new Tea("3Min steep breakfast caffeine:22mg", 170, "Tea", 22, teaImage);
+        englishBreakFast.setDrinkName("3Min steep breakfast caffeine:22mg");
         englishBreakFast.setDrinkVolume(170);
         englishBreakFast.setDrinkType("Tea");
         englishBreakFast.setCaffineContent(22);
@@ -541,8 +542,8 @@ public class ActivityHelper {
 
         int blackTeaImage = context.getResources().getIdentifier("black_tea_cup", "drawable", context.getPackageName());
 
-        Tea blackTea = new Tea("3 Min Steep Black Tea caffeine:42mg", 236, "Tea", 42, blackTeaImage);
-        blackTea.setDrinkName("3 Min Steep Black Tea caffeine:42mg");
+        Tea blackTea = new Tea("3Min Steep Black Tea caffeine:42mg", 236, "Tea", 42, blackTeaImage);
+        blackTea.setDrinkName("3Min Steep Black Tea caffeine:42mg");
         blackTea.setDrinkVolume(236);
         blackTea.setDrinkType("Tea");
         blackTea.setCaffineContent(42);
@@ -1026,16 +1027,16 @@ public class ActivityHelper {
 
         int whiskeyImage = context.getResources().getIdentifier("whiskey_listing", "drawable", context.getPackageName());
 
-        AlcoholicDrink jackDanielsHoney= new AlcoholicDrink("A shot Jack Daniels Honey units:1", 25, "Whiskey", 1, whiskeyImage);
-        jackDanielsHoney.setDrinkName("A shot Jack Daniels Honey units:1");
+        AlcoholicDrink jackDanielsHoney= new AlcoholicDrink("Shot Jack Daniels Honey units:1", 25, "Whiskey", 1, whiskeyImage);
+        jackDanielsHoney.setDrinkName("Shot Jack Daniels Honey units:1");
         jackDanielsHoney.setDrinkVolume(25);
         jackDanielsHoney.setDrinkType("Whiskey");
         jackDanielsHoney.setUnitContent(1);
         jackDanielsHoney.setImagePath(whiskeyImage);
 
 
-        AlcoholicDrink jamesonsWhiskey = new AlcoholicDrink("A shot Jameson Whiskey units:1", 25, "Whiskey", 1, whiskeyImage);
-        jamesonsWhiskey.setDrinkName("A shot Jameson Whiskey units: 1");
+        AlcoholicDrink jamesonsWhiskey = new AlcoholicDrink("Shot Jameson Whiskey units:1", 25, "Whiskey", 1, whiskeyImage);
+        jamesonsWhiskey.setDrinkName("Shot Jameson Whiskey units:1");
         jamesonsWhiskey.setDrinkVolume(25);
         jamesonsWhiskey.setDrinkType("Whiskey");
         jamesonsWhiskey.setUnitContent(1);
@@ -1084,16 +1085,16 @@ public class ActivityHelper {
 
         int vodkaImage = context.getResources().getIdentifier("gin", "drawable", context.getPackageName());
 
-        AlcoholicDrink smirnoffRedLabel= new AlcoholicDrink("One Shot Smirnoff Red Label units:1", 25, "Vodka", 1, vodkaImage);
-        smirnoffRedLabel.setDrinkName("One Shot Smirnoff Red Label units:1");
+        AlcoholicDrink smirnoffRedLabel= new AlcoholicDrink("Shot Smirnoff Red Label units:1", 25, "Vodka", 1, vodkaImage);
+        smirnoffRedLabel.setDrinkName("A Shot Smirnoff Red Label units:1");
         smirnoffRedLabel.setDrinkVolume(25);
         smirnoffRedLabel.setDrinkType("Vodka");
         smirnoffRedLabel.setUnitContent(1);
         smirnoffRedLabel.setImagePath(vodkaImage);
 
 
-        AlcoholicDrink russianStandard = new AlcoholicDrink("A shot Russian Standard units:1", 25, "Vodka", 1, vodkaImage);
-        russianStandard.setDrinkName("A shot Russian Standard Vodka units:1");
+        AlcoholicDrink russianStandard = new AlcoholicDrink("Shot Russian Standard shot units:1", 25, "Vodka", 1, vodkaImage);
+        russianStandard.setDrinkName("Shot Russian Standard Vodka units:1");
         russianStandard.setDrinkVolume(25);
         russianStandard.setDrinkType("Vodka");
         russianStandard.setUnitContent(1);
@@ -1142,8 +1143,8 @@ public class ActivityHelper {
 
         int ginImage = context.getResources().getIdentifier("vodka", "drawable", context.getPackageName());
 
-        AlcoholicDrink bombayGin= new AlcoholicDrink("A shot Bombay Sapphire units:1", 25, "Gin", 1, ginImage);
-        bombayGin.setDrinkName("A shot Bombay Sapphire units: 1");
+        AlcoholicDrink bombayGin= new AlcoholicDrink("hot Bombay Sapphire units:1", 25, "Gin", 1, ginImage);
+        bombayGin.setDrinkName("Shot Bombay Sapphire units:1");
         bombayGin.setDrinkVolume(25);
         bombayGin.setDrinkType("Gin");
         bombayGin.setUnitContent(1);
@@ -1151,7 +1152,7 @@ public class ActivityHelper {
 
 
         AlcoholicDrink hendricksGin = new AlcoholicDrink("A shot Hendricks Gin units:1", 25, "Gin", 1, ginImage);
-        hendricksGin.setDrinkName("A shot Hendricks Gin units: 1");
+        hendricksGin.setDrinkName("A shot Hendricks Gin units:1");
         hendricksGin.setDrinkVolume(25);
         hendricksGin.setDrinkType("Gin");
         hendricksGin.setUnitContent(1);
@@ -1279,7 +1280,6 @@ public class ActivityHelper {
             coffee.setDrinkName(cursor.getString(1));
             coffee.setDrinkType(cursor.getString(2));
             coffee.setImagePath(cursor.getInt(4));
-            createToastWithText(wholeCoffeeObject);
 
             mdrinks.add(coffee);
 
@@ -1316,12 +1316,17 @@ public class ActivityHelper {
         cursor.close();
         db.close();
         double percentage = ((getTotalForProgres()*100)/3000);
-        createToastWithText("total after while"+getTotalForProgres());
-        createToastWithText("apparent percentage"+percentage);
+//        createToastWithText("total after while"+getTotalForProgres());
+//        createToastWithText("apparent percentage"+percentage);
         int percentageInt = (int) percentage;
         return percentageInt;
     }
 
+    /**
+     * @todo Add this to progress activity
+     * @param context
+     * @return
+     */
     public double returnTotalAmountOfWaterConsumedContextFromDb (Context context) {
 
         UsersDBHelper dbHelper = new UsersDBHelper(context);
@@ -1371,11 +1376,11 @@ public class ActivityHelper {
             }
 //        }
         }
-        createToastWithText("progress of total"+getTotalForProgres());
+//        createToastWithText("progress of total"+getTotalForProgres());
 //
         double percentage = ((getTotalForProgres()*100)/3000);
-        createToastWithText("total after while"+getTotalForProgres());
-        createToastWithText("apparent percentage"+percentage);
+//        createToastWithText("total after while"+getTotalForProgres());
+//        createToastWithText("apparent percentage"+percentage);
         int percentageInt = (int) percentage;
         cursor.close();
         db.close();
@@ -1531,25 +1536,23 @@ public class ActivityHelper {
     }
 
 
-    public String printAllFromDb(Context context, String nameOfDrink) {
+    public String getDrinksIDFromDrinkName(Context context, String nameOfDrink) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksContract.DrinksCategoryEntry.TABLE_NAME + " " + "WHERE " + DrinksContract.DrinksCategoryEntry.DRINK_NAME + "=" + "'" + nameOfDrink + "'" + " ", null);
 
 
-        String wholeCoffeeObject = "";
 
 
         if (cursor.moveToFirst()) {
-            createToastWithText("Found a drink");
-//            createToastWithText("drink id" + cursor.getString(0) + "drink name" + cursor.getString(1));
+
             setDrinksID(cursor.getString(0));
 
         }
 
         cursor.close();
         db.close();
-        createToastWithText("drinks id from print all from db" + getDrinksID());
+
         return getDrinksID();
 
     }
@@ -1578,8 +1581,6 @@ public class ActivityHelper {
         db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
 
 
-//        createToastWithText("added new record to db");
-
         db.close();
 
 
@@ -1607,8 +1608,6 @@ public class ActivityHelper {
         db.insert(DrinksContract.DrinksCategoryEntry.TABLE_NAME, null, contentValues);
 
 
-//        createToastWithText("added new record to db");
-
         db.close();
 
 
@@ -1625,7 +1624,6 @@ public class ActivityHelper {
 
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.user_id_fk, userID);
         //need to add another here for the date.
-        //@// FIXME: 28/04/2017  Need to store the day name in here, to stop the values being changed after 12.00pm
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE_NAME, timeHandler.dayName());
 
 
@@ -1633,7 +1631,6 @@ public class ActivityHelper {
         contentValues.put(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.DATE, timeHandler.getTotalDateWithTime());
 
 
-        createToastWithText("added to drinks quanitiy db");
         long lastRowAdded = db.insert(DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME, null, contentValues);
 
         db.close();
@@ -1651,15 +1648,11 @@ public class ActivityHelper {
 
         String drinksQuant = "";
 
-
-//        createToastWithText("number of items in db value" + cursor.getCount());
-
         if (cursor.moveToFirst()) {
             while (cursor.moveToNext()) {
 
                 drinksQuant = "pk " + cursor.getString(0) + "drink key" + cursor.getString(1) + "user key" + cursor.getString(2) + "drink quantity:" +
                         cursor.getString(3) + "drink date: " + cursor.getString(4);
-              //  createToastWithText("drink" + drinksQuant);
             }
 
         }
@@ -1680,53 +1673,24 @@ public class ActivityHelper {
         boolean userExists = false;
 
 
-        //Performs the sql query on the email a user has passed, to check if present in the DB.
-//        Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.drink_id_fk + "=" + "'" + drinkID + "'", null);
-        //If a column number exists related to the query, then the user is sent back to the login screen.
-//        cursor.moveToFirst();
-
-//        if (cursor.getCount() == 1) {
         int one = 1;
         int zero = 0;
 
         Cursor checkQuantitycusor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " =" + "'" + zero + "'", null);
 
-        createToastWithText("count of the query" + checkQuantitycusor.getCount());
         if (checkQuantitycusor.getCount() > 0) {
 
             Cursor updateCursor = db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
                     + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " " + "= "
                     + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " + 1" + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink + " =" + "'" + zero + "'", null);
 
-
-            createToastWithText("Update quanitiy" + DatabaseUtils.dumpCursorToString(updateCursor));
-            createToastWithText("roW NUMBER" + updateCursor.getCount());
             updateCursor.close();
 
         } else {
-            createToastWithText("Already ypdated");
 
             checkQuantitycusor.close();
 //
         }
-//            createToastWithText("alreayd around");
-//        }else if (checkQuantitycusor.getCount()==0){
-//            checkQuantitycusor.moveToFirst();
-//            Cursor updateCursor = db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
-//                    +     DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" "+"= "
-//                    +DrinksCategoryDrinkQuanitiy.DrinksQusantityEntry.quantity_of_drink+" + 1", null);
-//
-//
-//            createToastWithText("Update quanitiy" + DatabaseUtils.dumpCursorToString(updateCursor));
-//            createToastWithText("roW NUMBER"+updateCursor.getCount());
-//
-//            checkQuantitycusor.close();
-//            updateCursor.close();
-//
-//        }
-
-
-//        }
 
         checkQuantitycusor.close();
         db.close();
@@ -1750,25 +1714,23 @@ public class ActivityHelper {
 
         if (cursor.moveToFirst()) {
 
-            lastAddedID = "id" + cursor.getString(0)+"id"+cursor.getString(1)+" "+cursor.getString(2)+" "+cursor.getString(3)+" "+cursor.getString(4);
+            lastAddedID = "id" + cursor.getString(0);
 
             String lastAddedIDActual = cursor.getString(0);
 
             setLastAddedID(lastAddedID);
-//            db.rawQuery("UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
-//                    +     DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" "+"= "
-//                    +DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quantity_of_drink+" + 1"+ " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " ="+"'"+lastAddedID+"'", null);
+
             cursor.close();
-//            updateCursor.close();
 
 
         }
-        createToastWithText("last added id before return"+lastAddedID);
+//        createToastWithText("last added id before return"+lastAddedID);
         db.close();
         return getLastAddedID();
 
 
     }
+
 
     //Here!
     public ArrayList<Drink> populateDrinksReciptAdatper(Context context) {
@@ -1785,43 +1747,32 @@ public class ActivityHelper {
 
 
 
-
-
-
-        createToastWithText("number of items in db value" + cursor.getCount());
-
         drinksRecipt.clear();
-        if (cursor.moveToFirst()) {
-            while (cursor.moveToNext()) {
+                if (cursor.moveToFirst()) {
+                    do{
+                        Coffee coffee = new Coffee(test(getApplicationContext(),cursor.getString(1)), cursor.getString(4),cursor.getString(5));
+                        coffee.setDrinkName(test(getApplicationContext(),cursor.getString(1)));
 
-        createToastWithText("found user sesh");
-
-
-
-//                createToastWithText("user id related drinks"+drinksQuant);
-
-//
-                Coffee coffee = new Coffee(test(getApplicationContext(),cursor.getString(1)), cursor.getString(4),cursor.getString(5));
-                coffee.setDrinkName(test(getApplicationContext(),cursor.getString(1)));
-
-                coffee.setDate(cursor.getString(4));
-                coffee.setDateName(cursor.getString(5));
+                        coffee.setDate(cursor.getString(4));
+                        coffee.setDateName(cursor.getString(5));
 //                coffee.setDrinkName();
 
-                drinksRecipt.add(coffee);
-
-
+                        drinksRecipt.add(coffee);
+                    }
+            while (cursor.moveToNext());
 
 
             }
 
 
-        }
+
+
+
 
         cursor.close();
         db.close();
 
-        createToastWithText("size of recipt"+drinksRecipt.size());
+//        createToastWithText("size of recipt"+drinksRecipt.size());
 
         return drinksRecipt;
 
@@ -1844,11 +1795,11 @@ public class ActivityHelper {
         return newCursor.getString(1);
     }
 
-    public void getIDcHEC(Context context, String id) {
+    public void checkIfDrinksIDExists(Context context, String id) {
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         //Makes the database readable.
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        createToastWithText("getidchec method");
+//        createToastWithText("getidchec method");
         String num = "1";
         Cursor cursor = db.rawQuery("SELECT * from " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + id + "'", null);
 
@@ -1857,7 +1808,6 @@ public class ActivityHelper {
                     cursor.getString(3) + "drink date: " + cursor.getString(4);
 
 
-            createToastWithText("drink from the getIDchec methid"+drinkDetialsFromID);
         }
         cursor.close();
         db.close();
@@ -1866,9 +1816,7 @@ public class ActivityHelper {
 
     public void upateIDToHave0Value(Context context,String drinksID){
 
-        createToastWithText("drimks id from inside update method");
         UsersDBHelper dbHelper = new UsersDBHelper(context);
-        //Makes the database readable.
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'"+
@@ -1877,9 +1825,6 @@ public class ActivityHelper {
         if (cursor.moveToFirst()){
             createToastWithText("DELETED");
 
-//            String sql = "DELETE FROM " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME +
-//                    " WHERE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.quanitiy_ID + " =" + "'" + drinksID + "'"+"";
-//
 
 
            String sql =  "UPDATE " + DrinksCategoryDrinkQuanitiy.DrinksQuantityEntry.TABLE_NAME + " SET "
@@ -1892,13 +1837,32 @@ public class ActivityHelper {
 
             cursor.close();
             db.close();
-//            db.execSQL(sql);
         }
 
 
     }
 
 
+
+    public void deleteDrinkFromTableBasedOnDrinkID(Context context, String drinksID){
+
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+        //Makes the database readable.
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("DELETE FROM " + DrinksContract.DrinksCategoryEntry.TABLE_NAME+ " WHERE " +DrinksContract.DrinksCategoryEntry.DRINKS_ID+" " + " =" + "'" + drinksID + "'", null);
+
+        if (cursor.moveToFirst()) {
+            createToastWithText("Deleted Drink");
+
+        }
+
+
+            cursor.close();
+            db.close();
+
+
+    }
     public void populateAchievementsDatabase(Context context){
         UsersDBHelper dbHelper = new UsersDBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -1972,43 +1936,7 @@ public class ActivityHelper {
 
     }
 
-    public ArrayList<Achievement> populateAchivementsFromDataBase(Context context) {
-        UsersDBHelper dbHelper = new UsersDBHelper(context);
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + AchievementContract.AchievementEntry.TABLE_NAME, null);
 
-
-        String wholeCoffeeObject = "";
-
-        createToastWithText("cursor value" + cursor.getCount());
-
-        setNumOfAchivementsInDB(String.valueOf(cursor.getCount()));
-
-        while (cursor.moveToNext()) {
-
-            Achievement achievement = new Achievement(cursor.getString(0), cursor.getString(1),cursor.getInt(2));
-            achievement.setName(cursor.getString(1));
-            achievement.setDescription(cursor.getString(2));
-            achievement.setAchievementAvater(cursor.getInt(3));
-            createToastWithText(wholeCoffeeObject);
-
-            achivements.add(achievement);
-
-
-        }
-        cursor.close();
-        db.close();
-        return achivements;
-    }
-
-
-    public String getNumOfAchivementsInDB() {
-        return numOfAchivementsInDB;
-    }
-
-    public void setNumOfAchivementsInDB(String numOfAchivementsInDB) {
-        this.numOfAchivementsInDB = numOfAchivementsInDB;
-    }
 
 
 
@@ -2058,6 +1986,8 @@ public class ActivityHelper {
 
         }
         else if(drinkType.equals("filter coffee")){
+
+            //@todo add cotnent descriptions for images
             defaultImage = context.getResources().getIdentifier("filter_coffee", "drawable", context.getPackageName());
 
         }

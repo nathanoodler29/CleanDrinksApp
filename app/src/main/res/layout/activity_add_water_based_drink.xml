@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
-            android:text="Add  Water based drink"
+            android:text="@string/add_water_based_drink"
             android:textColor="@color/white"
             android:textSize="25sp"
 
@@ -56,7 +56,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
-            android:text="Name your drink"
+            android:text="@string/name_drink_title"
             android:textSize="20sp"
 
             />
@@ -70,7 +70,7 @@
             android:layout_below="@+id/add_drink_title"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
-            android:hint="Example: Bottle of water"
+            android:hint="@string/example_water"
             android:inputType="textAutoComplete"
             android:maxLength="20"
             android:maxLines="1"
@@ -94,7 +94,7 @@
             android:layout_below="@+id/profile_text"
             android:layout_gravity="center_horizontal"
             android:paddingTop="110dp"
-            android:text="Specify Drink volume"
+            android:text="@string/name_drink_volume_text"
             android:textSize="20sp"
 
             />
@@ -140,7 +140,7 @@
 
             android:layout_marginTop="220dp"
             android:background="@drawable/circle_red_button"
-            android:contentDescription="@string/goal_remove_button_content_description"
+            android:contentDescription="@string/cancel_button_water"
             android:onClick=""
             android:text="@string/add_a_goal_cancel_cross_icon"
             android:textSize="28sp"
@@ -160,7 +160,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="220dp"
             android:background="@drawable/circle_green_button"
-            android:contentDescription=""
+            android:contentDescription="@string/add_button_water"
             android:text="@string/add_a_goal_add_plus_icon"
             android:onClick="submitWater"
 

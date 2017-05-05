@@ -33,6 +33,12 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
     }
 
 
+    /**
+     * This method validates using input for the drink name edit text.
+     * This method checks that no illegal characters
+     *
+     * @return Returns the value that the user has typed into the edit text.
+     */
     public String validateDrinkNameField() {
 
 
@@ -92,6 +98,11 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
 
     }
 
+    /**
+     * Reference https://developer.android.com/guide/topics/ui/controls/checkbox.html
+     * @param view References the view
+     * @return The coffee drink type
+     */
     public String onCheckCoffeeDrinkType(View view) {
         // Is the view now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -102,6 +113,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
             case R.id.americano:
 
                 if (checked) {
+                    //If Americano is selected set this as drink type
                     coffeeType = "Americano";
                     blackCoffee.setDrinkType(coffeeType);
 
@@ -111,7 +123,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
             case R.id.filter_coffee:
                 if (checked) {
                     coffeeType = "filter coffee";
-
+                    //If filter coffee is selected set this as drink type
                     blackCoffee.setDrinkType(coffeeType);
 
 
@@ -121,7 +133,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
             case R.id.instant_coffee:
                 if (checked) {
                     coffeeType = "Instant coffee";
-
+                    //If Instant coffee is selected set this as drink type
                     blackCoffee.setDrinkType(coffeeType);
 
 
@@ -130,11 +142,17 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
                 break;
 
         }
-
+        //Creates toast related to what has been selected.
         helper.createToastWithText("You've selected" + blackCoffee.getDrinkType());
         return blackCoffee.getDrinkName();
     }
 
+    /**
+     * Reference https://developer.android.com/guide/topics/ui/controls/checkbox.html
+     * Reference for volume in drinks https://www.caffeineinformer.com/the-complete-guide-to-starbucks-caffeine
+     * @param view References the view
+     * @return The coffee drink size
+     */
     public double onCheckCoffeeDrinkSize(View view) {
         // Is the view now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -144,8 +162,10 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.small_coffee:
 
+
                 if (checked) {
                     coffeeVolume = 236.00;
+                    //If Instant 236.00 is selected set this as drink volume
                     blackCoffee.setDrinkVolume(coffeeVolume);
 
                 }
@@ -154,7 +174,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
             case R.id.medium_coffee:
                 if (checked) {
                     coffeeVolume = 254.00;
-
+                    //If Instant 254.00 is selected set this as drink volume
                     blackCoffee.setDrinkVolume(coffeeVolume);
 
 
@@ -164,7 +184,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
             case R.id.large_coffee:
                 if (checked) {
                     coffeeVolume = 473.00;
-
+                    //If Instant 473.00 is selected set this as drink volume
                     blackCoffee.setDrinkVolume(coffeeVolume);
 
 
@@ -173,23 +193,34 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
                 break;
 
         }
-
+        //Notifies user which volume they selected
         helper.createToastWithText("You've selected" + blackCoffee.getDrinkVolume() + "ml");
+        //Then sets this as the volume.
         return blackCoffee.getDrinkVolume();
     }
 
-
+    /**
+     * Goes back to prior activity.
+     * @param view References the view.
+     */
     public void onClickCancelDrink(View view) {
+        //Creates a subtle vibrate.
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
         finish();
-        //Switches the activity to sign up.
     }
 
+    /**
+     * This method checks to see that the user has selected a type and volume
+     * Then sets the caffeine in relation to that volume.
+     * Reference for caffeine in drinks https://www.caffeineinformer.com/the-complete-guide-to-starbucks-caffeine
+     * @param view Relates to the current view.
+     */
     public void addBlackCoffeeBasedDrink(View view) {
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(100);
         double caffine = 0.00;
+        //Every statement checks the possible type and corresponding volume, then sets caffeine level based on that.
         if (blackCoffee.getDrinkType() == "Americano" && blackCoffee.getDrinkVolume() == 236.00) {
             blackCoffee.setCaffineContent(75.00);
         } else if (blackCoffee.getDrinkType() == "Americano" && blackCoffee.getDrinkVolume() == 254.00) {
@@ -210,17 +241,16 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
         } else if (blackCoffee.getDrinkType() == "Instant coffee" && blackCoffee.getDrinkVolume() == 473.00) {
             blackCoffee.setCaffineContent(114);
         }
-
+        //If the type isn't null and the volume isn't 0.00 then the users input as accepted.
         if (blackCoffee.getDrinkType() != null && blackCoffee.getDrinkVolume() != 0.00 && blackCoffee.getDrinkName() != "not valid") {
             helper.createToastWithText("accepted");
-
+            //Image for the drink type is took
             int image = helper.returnImage(blackCoffee.getDrinkType(), getApplicationContext());
-
+            //Then inserted into the db, with the correct image.
             queryHelper.insertIntoDBImage(getApplicationContext(), validateDrinkNameField()+ " caffeine:"+blackCoffee.getCaffineContent()+"mg", "Black Coffee", blackCoffee.getDrinkVolume(), blackCoffee.getCaffineContent(), image);
-
+            //Goes back to prior activity.
             finish();
-
-
+          //If the type is null and 0.00 or not valid then input isn't valid.
         } else if (blackCoffee.getDrinkType() == null | blackCoffee.getDrinkVolume() == 0.00 | blackCoffee.getDrinkName() == "not valid") {
             helper.createToastWithText("Please review values entered");
 
