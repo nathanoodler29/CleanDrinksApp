@@ -245,7 +245,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
         if (blackCoffee.getDrinkType() != null && blackCoffee.getDrinkVolume() != 0.00 && blackCoffee.getDrinkName() != "not valid") {
             helper.createToastWithText("accepted");
             //Image for the drink type is took
-            int image = helper.returnImage(blackCoffee.getDrinkType(), getApplicationContext());
+            int image = queryHelper.returnImageRelatedToDrinkTypeForAddDrinkDb(blackCoffee.getDrinkType(), getApplicationContext());
             //Then inserted into the db, with the correct image.
             queryHelper.insertIntoDBImage(getApplicationContext(), validateDrinkNameField()+ " caffeine:"+blackCoffee.getCaffineContent()+"mg", "Black Coffee", blackCoffee.getDrinkVolume(), blackCoffee.getCaffineContent(), image);
             //Goes back to prior activity.
@@ -257,5 +257,7 @@ public class AddBlackCoffeeBasedDrink extends AppCompatActivity {
         }
 
     }
+
+
 
 }

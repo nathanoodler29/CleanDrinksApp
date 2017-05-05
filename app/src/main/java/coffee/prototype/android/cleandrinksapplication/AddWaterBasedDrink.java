@@ -184,7 +184,7 @@ public class AddWaterBasedDrink extends AppCompatActivity {
         if (validateDrinkNameField() != ("not valid") && validateDrinkVolume() != (0.00)) {
             helper.createToastWithText("Valid input");
 
-            int value = helper.returnImage("Water", getApplicationContext());
+            int value = queryHelper.returnImageRelatedToDrinkTypeForAddDrinkDb("Water", getApplicationContext());
             //Inserts water based drink into database
             queryHelper.insertIntoDBImage(getApplicationContext(), validateDrinkVolume() + "ml " + validateDrinkNameField(), "Water", validateDrinkVolume(), 0.00, value);
             //Goes back to prior activity.
@@ -199,4 +199,16 @@ public class AddWaterBasedDrink extends AppCompatActivity {
 
     }
 
+    /**
+     * Cancels the water prompt
+     * @param view References the view
+     */
+    public void cancelWaterPrompt(View view){
+        //sets vibrate
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+        //back to prior activity
+        finish();
+    }
 }
+

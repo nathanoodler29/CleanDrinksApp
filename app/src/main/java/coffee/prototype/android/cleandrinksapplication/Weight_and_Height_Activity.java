@@ -272,7 +272,6 @@ public class Weight_and_Height_Activity extends AppCompatActivity {
         SQLiteDatabase db = weightDBHelper.getReadableDatabase();
         //displays all weights inthe table, this was mostly used for debugging
         Cursor cursor = db.rawQuery("SELECT * FROM " + WeightEntry.TABLE_NAME, null);
-        createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
         if (cursor != null) {
             cursor.moveToFirst();
         }

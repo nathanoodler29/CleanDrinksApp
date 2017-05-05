@@ -11,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.DBQueryHelper;
 
 public class DrinkListingPageStout extends AppCompatActivity {
     private MainAdapter mAdapter;
     private  ActivityHelper helper = new ActivityHelper();
+    private DBQueryHelper dbQueryHelper = new DBQueryHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class DrinkListingPageStout extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount() == 0) {
             //Insert the stout values in the database.
-            helper.insertStoutIntoDatabase(getApplicationContext());
+            dbQueryHelper.insertStoutIntoDatabase(getApplicationContext());
             //Go back to previous screen
             finish();
             //Refresh the activity

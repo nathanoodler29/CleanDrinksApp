@@ -248,7 +248,7 @@ public class AddTeaBasedDrink extends AppCompatActivity {
             if (teaContent == 14.0 | teaContent == 22.0 | teaContent == 25.0) {
                 helper.createToastWithText("Valid input");
                 //Returns the corresponding image related to type.
-                int image = helper.returnImage("Tea", getApplicationContext());
+                int image = queryHelper.returnImageRelatedToDrinkTypeForAddDrinkDb("Tea", getApplicationContext());
                 //Inserts record into Db.
                 queryHelper.insertIntoDBImage(getApplicationContext(), validateDrinkNameField()+" caffeine:"+ getTeaStrength()+"mg", "Tea", validateDrinkVolume(), getTeaStrength(), image);
 
@@ -264,6 +264,18 @@ public class AddTeaBasedDrink extends AppCompatActivity {
             helper.createToastWithText("Please review the values entered");
 
         }
+    }
+
+    /**
+     * Cancels the tea prompt
+     * @param view References the view
+     */
+    public void cancelTeaPrompt(View view){
+        //sets vibrate
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+        //back to prior activity
+        finish();
     }
 }
 

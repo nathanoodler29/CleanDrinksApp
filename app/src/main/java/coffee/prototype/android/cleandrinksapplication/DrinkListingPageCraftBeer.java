@@ -11,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.DBQueryHelper;
 
 public class DrinkListingPageCraftBeer extends AppCompatActivity {
     private MainAdapter mAdapter;
     private  ActivityHelper helper = new ActivityHelper();
+    private DBQueryHelper queryHelper = new DBQueryHelper();
 
 
     @Override
@@ -38,7 +40,9 @@ public class DrinkListingPageCraftBeer extends AppCompatActivity {
         //This stops the adapter being populated every time the activity is opened
         if (mAdapter.getItemCount() == 0) {
             //Insert the craft beer values in the database.
-            helper.insertCraftBeerIntoDatabase(getApplicationContext());
+//            helper.insertCraftBeerIntoDatabase(getApplicationContext());
+            queryHelper.insertCraftBeerIntoDatabase(getApplicationContext());
+
             //Go back to previous screen
             finish();
             //Refresh the activity

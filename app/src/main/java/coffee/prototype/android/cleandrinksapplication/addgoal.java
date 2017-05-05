@@ -108,7 +108,7 @@ public class addgoal extends AppCompatActivity {
                 break;
         }
         //Gets the weight of the user from the session, then calculates the recommended water level.
-        double waterGoalValue = goal.setExpectedWaterGoal(water.calculateTotalWater(activityHelper.getWeightFromSesh(getApplicationContext()), goal.getExerciseLevels()));
+        double waterGoalValue = goal.setExpectedWaterGoal(water.calculateTotalWater(activityHelper.getWeightFromUserSession(getApplicationContext()), goal.getExerciseLevels()));
         //Sets the water goal.
         goal.setExpectedWaterGoal(waterGoalValue);
         //Returns the water goal value.
@@ -336,7 +336,7 @@ public class addgoal extends AppCompatActivity {
                     //Returns the user  ID
                     String userID = String.valueOf(activityHelper.getUserId(context));
                     //Adds the validated goal into the Goal table.
-                    activityHelper.addGoalToGoalTable(context, userID, goal.getWaterGoal(), goal.getStartTimeGoal(), goal.getEndTimeGoal(), timeHandler.getYearAndMonth());
+                    goalQuery.addGoalToGoalTable(context, userID, goal.getWaterGoal(), goal.getStartTimeGoal(), goal.getEndTimeGoal(), timeHandler.getYearAndMonth());
                     //Intent navigates to the goal main activity.
                     Intent changeToGoalMainPage = new Intent(getApplicationContext(), GoalActivity.class);
                     //Switches the activity to goal activity
@@ -401,6 +401,7 @@ public class addgoal extends AppCompatActivity {
         cancelGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //Switches activity to back to previous screen.
                 finish();
             }

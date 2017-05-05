@@ -11,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.DBQueryHelper;
 
 public class DrinkListingPageLager extends AppCompatActivity {
     private MainAdapter mAdapter;
     private ActivityHelper helper = new ActivityHelper();
+    private DBQueryHelper dbQueryHelper = new DBQueryHelper();
 
 
     @Override
@@ -37,7 +39,7 @@ public class DrinkListingPageLager extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount() == 0) {
             //Insert the lager values in the database.
-            helper.insertLagerIntoDatabase(getApplicationContext());
+            dbQueryHelper.insertLagerIntoDatabase(getApplicationContext());
             //Go back to previous screen
             finish();
             //Refresh the activity

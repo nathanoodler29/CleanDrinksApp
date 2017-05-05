@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.DBQueryHelper;
 
 public class DrinkListingPageEspresso extends AppCompatActivity {
     private ActivityHelper activityHelper = new ActivityHelper();
@@ -20,6 +21,7 @@ public class DrinkListingPageEspresso extends AppCompatActivity {
 
     private MainAdapter mAdapter;
     private View view;
+    private DBQueryHelper dbQueryHelper = new DBQueryHelper();
 
 
     @Override
@@ -45,7 +47,9 @@ public class DrinkListingPageEspresso extends AppCompatActivity {
         //This stops the adapter being popualted every time the activity is opened
         if (mAdapter.getItemCount() == 0) {
             //Insert the  values in the database.
-            activityHelper.insertValuesIntoDB(getApplicationContext());
+//            activityHelper.insertValuesIntoDB(getApplicationContext());
+            dbQueryHelper.insertEspressoBasedDrinksIntoDB(getApplicationContext());
+
             //Go back to previous screen
             finish();
             //Refresh the activity

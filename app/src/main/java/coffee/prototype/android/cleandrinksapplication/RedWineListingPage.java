@@ -11,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.DBQueryHelper;
 
 public class RedWineListingPage extends AppCompatActivity {
     private MainAdapter mAdapter;
     private ActivityHelper helper = new ActivityHelper();
+    private DBQueryHelper queryHelper = new DBQueryHelper();
 
 
     @Override
@@ -33,7 +35,7 @@ public class RedWineListingPage extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount() == 0) {
             //Insert the red wine values in the database.
-            helper.insertRedWineIntoDatabase(getApplicationContext());
+            queryHelper.insertRedWineIntoDatabase(getApplicationContext());
             //Go back to previous screen
             finish();
             //Refresh the activity

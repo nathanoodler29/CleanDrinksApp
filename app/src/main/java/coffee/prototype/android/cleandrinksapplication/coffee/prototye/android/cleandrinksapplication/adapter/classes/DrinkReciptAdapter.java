@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import coffee.prototype.android.cleandrinksapplication.ActivityHelper;
 import coffee.prototype.android.cleandrinksapplication.Model.Drink;
 import coffee.prototype.android.cleandrinksapplication.R;
+import coffee.prototype.android.cleandrinksapplication.data.DrinksReceiptQueries;
 
 /**
  * created by noodle on 19/04/2017.
@@ -26,6 +27,7 @@ public class DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter.
     private ArrayList<Drink> drinksRecipt = new ArrayList<Drink>();
     private Context mContext;
     private ActivityHelper helper = new ActivityHelper();
+    private DrinksReceiptQueries drinksQueryHelper = new DrinksReceiptQueries();
 
 
     public static class ViewHolder extends
@@ -128,11 +130,11 @@ public class DrinkReciptAdapter extends RecyclerView.Adapter<DrinkReciptAdapter.
                 //Gets the last added drink with the same drink ID with the latest date.
                 String lastAddedId = helper.getLastAddedDrinksQuanitiy(context, drinkID);
                 //Outputs if the drink has been deleted.
-                helper.checkIfDrinksIDExists(context, lastAddedId);
+                drinksQueryHelper.checkIfDrinksIDExists(context, lastAddedId);
                 //Deletes the drink from the dateabase.
                 helper.upateIDToHave0Value(context, lastAddedId);
                 //Prints to see if the drink has been deleted.
-                helper.checkDrinksQuantiiyValuesExist(context);
+                drinksQueryHelper.checkDrinksQuantiiyValuesExist(context);
                 //Updates the Drinks adapter to state a change has been present, and to refresh the values in the adapter.
                 notifyDataSetChanged();
             }

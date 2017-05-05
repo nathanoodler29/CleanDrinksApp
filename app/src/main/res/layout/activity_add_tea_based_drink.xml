@@ -197,7 +197,7 @@
 
 
         <Button
-            android:id="@+id/cancel_espresso_drink"
+            android:id="@+id/cancel_tea_drink"
             style="@style/receipt_child_values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -211,7 +211,7 @@
             android:layout_marginTop="335dp"
             android:background="@drawable/circle_red_button"
             android:contentDescription="@string/cancel_button_tea"
-            android:onClick="cancelButton"
+            android:onClick="cancelTeaPrompt"
             android:text="@string/add_a_goal_cancel_cross_icon"
             android:textSize="28sp"
 

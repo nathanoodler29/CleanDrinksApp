@@ -64,7 +64,7 @@ public class GoalActivity extends AppCompatActivity {
         //sets a linear layout
         recyclerView.setLayoutManager(linearLayoutManager);
         //Populate the adapter with goals
-        mAdapter = new GoalsAdapter(this, helper.populateGoalAdapter(getApplicationContext()));
+        mAdapter = new GoalsAdapter(this, goalDBQueries.populateGoalAdapter(getApplicationContext()));
         //sets the adapter.
         recyclerView.setAdapter(mAdapter);
         //If the item count is zero.

@@ -11,10 +11,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.DBQueryHelper;
 
 public class DrinkListingPageForWater extends AppCompatActivity {
     private MainAdapter mAdapter;
     private ActivityHelper helper = new ActivityHelper();
+    private DBQueryHelper dbQueryHelper = new DBQueryHelper();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class DrinkListingPageForWater extends AppCompatActivity {
         //This stops the adapter being populated every time the activity is opened
         if (mAdapter.getItemCount() == 0) {
             //Insert the water values in the database.
-            helper.insertWaterIntoDatabase(getApplicationContext());
+            dbQueryHelper.insertWaterIntoDatabase(getApplicationContext());
             //Go back to previous screen
 
             finish();

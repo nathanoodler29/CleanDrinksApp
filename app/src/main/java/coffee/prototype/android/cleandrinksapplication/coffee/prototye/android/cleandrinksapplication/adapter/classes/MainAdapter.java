@@ -13,8 +13,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import coffee.prototype.android.cleandrinksapplication.ActivityHelper;
+import coffee.prototype.android.cleandrinksapplication.DrinkRecipt;
 import coffee.prototype.android.cleandrinksapplication.Model.Drink;
 import coffee.prototype.android.cleandrinksapplication.R;
+import coffee.prototype.android.cleandrinksapplication.data.DrinksReceiptQueries;
 
 /**
  * created by Noodle on 12/04/2017.
@@ -25,7 +27,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     private ArrayList<Drink> mdrinks;
     private Context mContext;
     private ActivityHelper helper = new ActivityHelper();
-
+    private DrinksReceiptQueries drinksQueryHelper = new DrinksReceiptQueries();
 
     public static class ViewHolder extends
             RecyclerView.ViewHolder {
@@ -102,11 +104,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 //Adds the drink to the drinks quanitiy table, which tracks the users drinks added.
                 helper.addDrinkQuanitiyValues(context, drinkID, userID);
                 //Checks to see if the table has any values populated,
-                if (helper.checkDrinksQuantiiyValuesExist(context) > 0) {
+                if (drinksQueryHelper.checkDrinksQuantiiyValuesExist(context) > 0) {
                     //Adds 1 to the quanitiy of the drink
                     helper.updateUsingCursor(context, drinkID);
                     //Returns the number of entries  in the table.
-                    helper.checkDrinksQuantiiyValuesExist(context);
+                    drinksQueryHelper.checkDrinksQuantiiyValuesExist(context);
                 }
 
 
@@ -132,11 +134,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 //Returns the drink that was latest added by the drinks, id and checking which was the latest added.
                 String lastAddedId = helper.getLastAddedDrinksQuanitiy(context, drinkID);
                 //Checks to see if the the latest drink added, actually exists otherwise error would be thrown in db.
-                helper.checkIfDrinksIDExists(context, lastAddedId);
+                drinksQueryHelper.checkIfDrinksIDExists(context, lastAddedId);
                 //Deletes the drink.
-                helper.deleteDrinkFromTableBasedOnDrinkID(context, lastAddedId);
+                drinksQueryHelper.deleteDrinkFromTableBasedOnDrinkID(context, lastAddedId);
                 //Returns the number of items from the table, this was more used for Debugging.
-                helper.checkDrinksQuantiiyValuesExist(context);
+                drinksQueryHelper.checkDrinksQuantiiyValuesExist(context);
                 //Notifies the adapter that the size of the arraylist has changed, therefore it should update itself.
                 notifyDataSetChanged();
 

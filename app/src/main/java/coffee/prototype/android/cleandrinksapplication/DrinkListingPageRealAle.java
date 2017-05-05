@@ -11,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.DBQueryHelper;
 
 public class DrinkListingPageRealAle extends AppCompatActivity {
     private MainAdapter mAdapter;
     private ActivityHelper helper = new ActivityHelper();
+    private DBQueryHelper queryHelper = new DBQueryHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,8 @@ public class DrinkListingPageRealAle extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount() == 0) {
             //Insert the real ale values in the database.
-            helper.insertRealAleIntoDatabase(getApplicationContext());
+//            helper.insertRealAleIntoDatabase(getApplicationContext());
+            queryHelper.insertRealAleBeerIntoDatabase(getApplicationContext());
             //Go back to previous screen
             finish();
             //Refresh the activity

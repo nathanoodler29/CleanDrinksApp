@@ -229,6 +229,18 @@ public class AddEspressoDrink extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Quits the menu and returns user to previous activity.
+     * @param view References the iew
+     */
+    public void cancelAddEspressoDrink(View view) {
+        //Sets vibrate
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+        //Go back an activity.
+        finish();
+    }
+
 
 }
 

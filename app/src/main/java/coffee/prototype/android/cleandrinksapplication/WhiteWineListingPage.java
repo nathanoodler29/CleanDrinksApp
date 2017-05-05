@@ -11,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import coffee.prototype.android.cleandrinksapplication.coffee.prototye.android.cleandrinksapplication.adapter.classes.MainAdapter;
+import coffee.prototype.android.cleandrinksapplication.data.DBQueryHelper;
 
 public class WhiteWineListingPage extends AppCompatActivity {
     private MainAdapter mAdapter;
     private  ActivityHelper helper = new ActivityHelper();
+    private DBQueryHelper queryHelper = new DBQueryHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class WhiteWineListingPage extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
         if (mAdapter.getItemCount() == 0) {
             //Insert the tea values in the database. @Todo make this method generic, by using insertintodb, then place the values in method.
-            helper.insertWhiteWineIntoDatabase(getApplicationContext());
+            queryHelper.insertWhiteWineIntoDatabase(getApplicationContext());
             //Go back to previous screen
             finish();
             //Refresh the activity

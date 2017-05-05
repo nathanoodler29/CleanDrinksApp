@@ -1,10 +1,15 @@
 package coffee.prototype.android.cleandrinksapplication.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 import coffee.prototype.android.cleandrinksapplication.ActivityHelper;
+import coffee.prototype.android.cleandrinksapplication.Model.Goal;
 import coffee.prototype.android.cleandrinksapplication.Model.TimeHandler;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -18,7 +23,8 @@ public class GoalDBQueries {
 
     private ActivityHelper helper = new ActivityHelper();
     private TimeHandler timeHandler = new TimeHandler();
-
+    private String goalID;
+    private DBQueryHelper queryHelper = new DBQueryHelper();
     /**
      * This method checks to see if a goal already exists for the current day.
      * As a user is only able to have one goal set a day.
@@ -88,6 +94,82 @@ public class GoalDBQueries {
         return numOfGoals;
 
     }
+
+    public void addGoalToGoalTable(Context context, String userID, double waterGoal, String startTime, String endTime,String date) {
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(GoalContract.GoalEntry.USER_FK_REF, userID);
+
+        contentValues.put(GoalContract.GoalEntry.COLUMN_Water_Target, waterGoal);
+        contentValues.put(GoalContract.GoalEntry.COLUMN_START_TIME, startTime);
+        contentValues.put(GoalContract.GoalEntry.COLUMN_END_TIME, endTime);
+
+
+        contentValues.put(GoalContract.GoalEntry.COLUMN_DATE, date);
+
+        long newRowId = db.insert(GoalContract.GoalEntry.TABLE_NAME, null, contentValues);
+
+        setGoalID(String.valueOf(newRowId));
+
+//        createToastWithText("row id of goal id" + newRowId);
+        //Log cat used to show that a database insertion is occuring.
+        Log.v("goal table  activity", "new row id" + newRowId);
+
+        db.close();
+
+    }
+
+    public String getGoalID() {
+        return goalID;
+    }
+
+    public void setGoalID(String goalID) {
+        this.goalID = goalID;
+    }
+
+    public ArrayList<Goal> populateGoalAdapter(Context context) {
+        UsersDBHelper dbHelper = new UsersDBHelper(context);
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + GoalContract.GoalEntry.TABLE_NAME + " WHERE " + GoalContract.GoalEntry.USER_FK_REF + "= " + queryHelper.getUserId(getApplicationContext()), null);
+//        createToastWithText(DatabaseUtils.dumpCursorToString(cursor));
+        ArrayList<Goal> goalsList = new ArrayList<Goal>();
+        goalsList.clear();
+
+
+        if (cursor.moveToFirst()) {
+
+
+            do {
+
+                String waterGoal = cursor.getString(2);
+                String startTime = cursor.getString(3);
+                String endTime = cursor.getString(4);
+
+
+                Goal goal = new Goal(waterGoal,startTime, endTime);
+
+                goal.setWaterGoalStr(waterGoal);
+                goal.setStartTimeGoal(startTime);
+                goal.setEndTimeGoal(endTime);
+
+                goalsList.add(goal);
+
+            } while (cursor.moveToNext());
+
+
+            cursor.close();
+
+        }
+
+//        createToastWithText("goals list+" + goalsList);
+        return goalsList;
+    }
+
 }
 
 

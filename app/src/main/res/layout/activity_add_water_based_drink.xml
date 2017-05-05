@@ -108,7 +108,7 @@
             android:layout_below="@+id/add_drink_volume"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="140dp"
-            android:hint="Example: 140ml"
+            android:hint="@string/name_drink_volume_hint_text"
             android:inputType="numberDecimal"
             android:maxLength="4"
             android:maxLines="1"
@@ -141,7 +141,7 @@
             android:layout_marginTop="220dp"
             android:background="@drawable/circle_red_button"
             android:contentDescription="@string/cancel_button_water"
-            android:onClick=""
+            android:onClick="cancelWaterPrompt"
             android:text="@string/add_a_goal_cancel_cross_icon"
             android:textSize="28sp"
 
